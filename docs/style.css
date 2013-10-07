@@ -1,4 +1,9 @@
-﻿body{
+﻿span{
+margin: 0px;
+border: 0px;
+padding: 0px;
+}
+body{
 	margin: 0px;
 	font-family: 'Open Sans', sans-serif;
 }
@@ -14,5 +19,27 @@ header{
 	/*vertical-align: middle;*/
 	/*position:absolute; 
 	top:50%;*/
+	margin-top: 10px;
 	border: 0px;
+}
+.searchpanel{
+	position:absolute;
+	margin-left: 150px;
+	margin-top: 15px;
+}
+.searchinput{
+	/*position:absolute;
+	margin-left: 200px;
+	margin-top: 15px;*/
+	width: 315px;
+	/*margin: 0px auto;*/
+	float: center;
+}
+.searchbutton{
+	border: 0px;
+	margin: 0px;
+	background-image: url(bt.png);
+	background-position: -80px -32px;
+	/*background-size: auto;*/
+	background-repeat: no-repeat;\
 }
