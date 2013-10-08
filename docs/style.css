@@ -68,6 +68,13 @@ footer{
 }
 .nav-footer{
 	list-style-type: none;
+	margin-left: 20px;
+}
+#nav-footer-menu{
+	/*margin: 0px auto;*/
+}
+#div-footer-menu{
+	text-align: center;
 }
 #itemsonmainpage{
 	padding: 0px;
