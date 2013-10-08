@@ -11,6 +11,10 @@ header{
 	/*height: 45px;*/
 	background:rgb(30, 140, 190)
 }
+footer{
+	width: 720px;
+	margin: 0px auto;
+}
 .openshop{
 	background:rgb(54, 163, 202);
 	color: rgb(255, 255, 255);
@@ -44,20 +48,25 @@ header{
 	background-repeat: no-repeat;\
 }
 
-.itemmainpage{
+/*.itemmainpage{
 	border: 4px solid black;
 	width: 232px;
 	height: 232px;
-}
+}*/
 
 /*#item1, #item2, #item3{
 	float: left;
 }*/
-.liitemsonmainpage{
+.vertical-li{
 	float: left;
+}
+.liitemsonmainpage{
 	height: 220px;
 	width: 220px;
 	border: 4px solid black;
+	list-style-type: none;
+}
+.nav-footer{
 	list-style-type: none;
 }
 #itemsonmainpage{
