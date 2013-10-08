@@ -20,23 +20,16 @@ footer{
 	color: rgb(255, 255, 255);
 	font-size:14pt;
 	float: right;
-	/*vertical-align: middle;*/
-	/*position:absolute; 
-	top:50%;*/
 	margin-top: 10px;
 	border: 0px;
 }
 .searchpanel{
 	position:absolute;
 	margin-left: 150px;
-	margin-top: 15px;
+	margin-top: 12px;
 }
 .searchinput{
-	/*position:absolute;
-	margin-left: 200px;
-	margin-top: 15px;*/
 	width: 315px;
-	/*margin: 0px auto;*/
 	float: center;
 }
 .searchbutton{
@@ -44,19 +37,15 @@ footer{
 	margin: 0px;
 	background-image: url(bt.png);
 	background-position: -80px -32px;
-	/*background-size: auto;*/
-	background-repeat: no-repeat;\
+	background-repeat: no-repeat;
+	background-color: #fff;
+	width: 22px;
+	height: 19px;
+	padding: 0px;
+	position:absolute;
+	right: 1px;
+	bottom: 4px;
 }
-
-/*.itemmainpage{
-	border: 4px solid black;
-	width: 232px;
-	height: 232px;
-}*/
-
-/*#item1, #item2, #item3{
-	float: left;
-}*/
 .vertical-li{
 	float: left;
 }
@@ -80,7 +69,6 @@ footer{
 	padding: 0px;
 	margin: 0px;
 }
-
 #headerdiv{
 	height:45px;
 	width: 720px;
@@ -90,12 +78,10 @@ footer{
 	width: 720px;
 	margin: 0px auto;
 }
-
 #firstdiv{
 	border: 4px solid black;
 	height: 240px;
 }
-
 #seconddiv{
 	border: 4px solid black;
 }
