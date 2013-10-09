@@ -33,4 +33,9 @@ local.properties
 #################
 *.pyc
 
+#################
+## Secrets string
+#################
+secrets.py
+
 errordocs/
