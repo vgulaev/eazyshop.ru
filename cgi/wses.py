@@ -14,10 +14,17 @@ print ("")
 def createnewshop(shopname):
 	pt = "/home/eazyshop/eazyshop.ru/docs/" + shopname
 	if (os.path.isdir(pt)):
-		print("already exist")
-		return None
+		return "already exist"
 	os.makedirs(pt)
-	print("complete")
+	return "complete"
+
+def destroyoldshop(shopname):
+	pt = "/home/eazyshop/eazyshop.ru/docs/" + shopname
+	if (os.path.isdir(pt)):
+		shutil.rmtree("/home/eazyshop/eazyshop.ru/docs/" + form["n"].value)
+		return "complete"
+	else:
+		return "already deleted"
 
 form = cgi.FieldStorage()
 # o - mean "operation", cut the value name for smaller http request
@@ -34,5 +41,4 @@ if form.has_key("o"):
 		print (createnewshop(form["n"].value))
 	# d - mean "delete shop"
 	elif (operation == "d"):
-		shutil.rmtree("/home/eazyshop/eazyshop.ru/docs/" + form["n"].value)
-		print ("complete")		
+		print (destroyoldshop(form["n"].value))
