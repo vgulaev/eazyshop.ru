@@ -15,7 +15,7 @@ form = cgi.FieldStorage()
 if form.has_key("o"):
 	# cn - mean "check name"
 	if (form["o"].value == "cn"):
-		if (os.path.isdir("/home/eazyshop/eazyshop.ru/doc/" + form["n"].value)):
+		if (os.path.isdir("/home/eazyshop/eazyshop.ru/docs/" + form["n"].value)):
 			print("exist")
 		else:
 			print ("free")
