@@ -20,11 +20,14 @@ function showprice() {
     req = getXmlHttp();
 
     req.onreadystatechange = function () {
-        if (req.readyState == 4)
-            statusElem.innerHTML = req.statusText;
-        if (req.status == 200) {
-            alert("Ответ сервера: " + req.responseText);
+        if (req.readyState == 4) {
+            //statusElem.innerHTML = req.statusText;
+            if (req.status == 200) {
+                alert("Ответ сервера: " + req.responseText);
+            }
         }
+
     }
-}
+	req.open('GET', '/cgi/getprice.py', true);
+	req.send(null);
 }
