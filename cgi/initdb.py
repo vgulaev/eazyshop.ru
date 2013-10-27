@@ -68,11 +68,11 @@ def createpricetypestable():
 def createpricestable():
     sql = """
     CREATE TABLE prices (
-    id INTEGER PRIMARY KEY,
     pricetype CHAR(40),
     good CHAR(40),
     price DECIMAL(8,2),
     
+    PRIMARY KEY(pricetype, good),
     FOREIGN KEY (good) REFERENCES goods(id),
     FOREIGN KEY (pricetype) REFERENCES pricetypes(id)
     ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
