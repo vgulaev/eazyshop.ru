@@ -10,6 +10,17 @@ db = MySQLdb.connect(host="localhost", user=mysqlusername, passwd=mysqlupsw, db=
 
 cursor = db.cursor()
 
+def droptable(tablename):
+    sql = "DROP TABLE %s" % (tablename)
+    cursor.execute(sql)
+    db.commit()
+
+def dropalltable():
+    names = ["prices", "pricetypes", "goods"]
+    for e in names:
+        if checktableexist(e):
+            droptable(e)
+    
 def checktableexist(tablename):
     sql = """
     SHOW TABLES IN eazyshop_db
@@ -18,43 +29,47 @@ def checktableexist(tablename):
     cursor.execute(sql, tablename)
     return not cursor.fetchone() is None
     
-print(checktableexist("goods"))
-    
 def creategoodstable():
+    if checktableexist("goods"):
+        droptable("goods")
     sql = """
-    DROP TABLE goods
+    CREATE TABLE goods (
+    id CHAR(40) PRIMARY KEY,
+    caption CHAR(100)
+    ) ENGINE=INNODB;
     """
-#cursor.execute(sql)
+    cursor.execute(sql)
+    db.commit()
 
-#db.commit()
+def createpricetypestable():
+    if checktableexist("pricetypes"):
+        droptable("pricetypes")
+    sql = """
+    CREATE TABLE goods (
+    id CHAR(40) PRIMARY KEY,
+    caption CHAR(100)
+    ) ENGINE=INNODB;
+    """
+    cursor.execute(sql)
+    db.commit()
 
-sql = """
-CREATE TABLE goods (
-caption CHAR(100)
-)
-"""
-#cursor.execute(sql)
-#db.commit()
+def createpricestable():
+    if checktableexist("prices"):
+        droptable("prices")
+    sql = """
+    CREATE TABLE prices (
+    id INTEGER PRIMARY KEY,
+    good CHAR(40),
+    price DECIMAL(8,2),
+    
+    FOREIGN KEY (good)
+        REFERENCES goods(id)    
+    ) ENGINE=INNODB;
+    """
+    cursor.execute(sql)
+    db.commit()
 
-sql = """
-CREATE TABLE pricetype (
-caption CHAR(100)
-)
-"""
-#cursor.execute(sql)
-#db.commit()
-
-sql = """
-SHOW TABLES IN eazyshop_db
-LIKE "dfdffer"
-"""
-cursor.execute(sql)
-
-print(cursor.fetchone())
-row = cursor.fetchone()
-while row is not None:
-    print(row)
-    row = cursor.fetchone()
-#print(cursor.fetchall())
-
+dropalltable()
+creategoodstable()
+createpricestable()
 db.close()
