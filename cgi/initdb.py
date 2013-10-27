@@ -85,4 +85,29 @@ createshopstable()
 creategoodstable()
 createpricetypestable()
 createpricestable()
+
+def loadexampledata():
+    slq = "INSERT INTO shops (id, caption) VALUES('1', 'МПК')"
+    cursor.execute(slq)
+    slq = "INSERT INTO pricetypes (id, shop, caption) VALUES ('1', '1', 'Цена1'), ('2', '1', 'Цена2')"
+    cursor.execute(slq)
+    slq = """
+    INSERT INTO goods (id, shop, caption) VALUES ('1', '1', 'Арматура а400/а500'),
+     ('2', '1', 'Балка 40Б1'),
+     ('3', '1', 'Профнастил НС 50'),
+     ('4', '1', 'Колбаса докторская'),
+     ('5', '1', 'Yokohama 225x35')
+    """
+    cursor.execute(slq)
+    slq = """
+    INSERT INTO prices (pricetype, good, price) VALUES ('1', '1', 23500),
+    ('2', '1', 23400),
+    ('1', '2', 36000),
+    ('2', '2', 35500)
+    """
+    cursor.execute(slq)
+    db.commit()
+
+loadexampledata()
+
 db.close()
