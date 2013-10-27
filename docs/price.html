@@ -1,53 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head data-gwd-animation-mode="quickMode">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Торгуй - легко!!!</title>
-    <meta name="generator" content="Google Web Designer 1.0.0.924">
-    <link rel="stylesheet" href="style.css" type="text/css">
-  </head>
-  <body>
-    <header>
-      <div id="headerdiv">	<span style="color: rgb(236, 145, 23); margin-top: -5px; position:absolute;">
-			<span style="font-size:28pt">e</span><span style="font-size:20pt">Shop</span>
-</span>	<span class="searchpanel">
-			<input placeholder="Ищите магазины, товары" class="searchinput">
-			<button class="searchbutton"></button>
-		</span>
-        <a class="openshop" href="file:///C:/Program%20Files%20(x86)/Ampps/www/docs/createshop.html">Открыть магазин</a>
+   <head data-gwd-animation-mode="quickMode">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Торгуй - легко!!!</title>
+      <meta name="generator" content="Google Web Designer 1.0.0.924">
+      <link rel="stylesheet" href="style.css" type="text/css">
+	  <script type="text/javascript" src="price.js"></script>
+   </head>
+   <body onload = "showprice()">
+      <header>
+         <div id="headerdiv">	<span style="color: rgb(236, 145, 23); margin-top: -5px; position:absolute;">
+            <span style="font-size:28pt">e</span><span style="font-size:20pt">Shop</span>
+            </span>	<span class="searchpanel">
+            <input placeholder="Ищите магазины, товары" class="searchinput">
+            <button class="searchbutton"></button>
+            </span>
+            <a class="openshop" href="file:///C:/Program%20Files%20(x86)/Ampps/www/docs/createshop.html">Открыть магазин</a>
+         </div>
+      </header>
+      <div>
+      <div id = "body-div">
+         <table id = "price-table" cellspacing = "0px">
+            <tbody>
+               <tr>
+                  <td>Наименование</td>
+                  <td class="price-cell">Цена1</td>
+                  <td class="price-cell">Цена2</td>
+               </tr>
+               <tr>
+                  <td>Арматура а400/а500</td>
+                  <td class="price-cell">23 000</td>
+                  <td class="price-cell">22 700</td>
+               </tr>
+               <tr>
+                  <td>Балка 40Б1</td>
+                  <td class="price-cell">36 000</td>
+                  <td class="price-cell">35 500</td>
+               </tr>
+               <tr>
+                  <td>Профнастил НС 50</td>
+                  <td class="price-cell">240</td>
+                  <td class="price-cell">230</td>
+               </tr>
+               <tr>
+                  <td>Колбаса докторская</td>
+                  <td class="price-cell">240</td>
+                  <td class="price-cell">230</td>
+               </tr>
+            </tbody>
+         </table>
       </div>
-    </header>
-	<div>
-    <table class="gwd-table-1x5q" cellspacing = "0px">
-      <tbody>
-        <tr>
-          <td>Наименование</td>
-          <td class="price-cell">Цена1</td>
-          <td class="price-cell">Цена2</td>
-        </tr>
-        <tr>
-          <td>Арматура а400/а500</td>
-          <td class="price-cell">23 000</td>
-          <td class="price-cell">22 700</td>
-        </tr>
-        <tr>
-          <td>Балка 40Б1</td>
-          <td class="price-cell">36 000</td>
-          <td class="price-cell">35 500</td>
-        </tr>
-        <tr>
-          <td>Профнастил НС 50</td>
-          <td class="price-cell">240</td>
-          <td class="price-cell">230</td>
-        </tr>
-        <tr>
-          <td>Колбаса докторская</td>
-          <td class="price-cell">240</td>
-          <td class="price-cell">230</td>
-        </tr>
-      </tbody>
-    </table>
-	</div>
-  </body>
-
+   </body>
 </html>
