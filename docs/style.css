@@ -85,3 +85,16 @@ footer{
 #seconddiv{
 	border: 4px solid black;
 }
+
+td{
+	border: solid;
+	border-width: 1px;
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+table{
+	width: 500px;
+}
+.price-cell{
+	text-align: center;
+}
