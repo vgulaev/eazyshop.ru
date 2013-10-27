@@ -29,6 +29,6 @@ while not row is None:
 
 db.close()
 
-rd = wh(wh(rd, "tbody"), "table")
+rd = wh(wh(rd, "tbody"), "table", 'id = "price-table" cellspacing = "0px"')
 
 print rd.encode("utf8")
