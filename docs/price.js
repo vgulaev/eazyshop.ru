@@ -1,4 +1,4 @@
-function getXmlHttp() {
+﻿function getXmlHttp() {
     var xmlhttp;
     try {
         xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
@@ -23,7 +23,11 @@ function showprice() {
         if (req.readyState == 4) {
             //statusElem.innerHTML = req.statusText;
             if (req.status == 200) {
-                alert("Ответ сервера: " + req.responseText);
+                //var pt = document.getElementById("price-table");
+				//pt.remove();
+				var bd = document.getElementById("body-div");
+				bd.innerHTML = req.responseText;
+				//alert("Ответ сервера: " + req.responseText);
             }
         }
 
