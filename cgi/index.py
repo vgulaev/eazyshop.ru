@@ -4,6 +4,9 @@ print ("Content-Type: text/html; charset=utf-8")
 print ("")
 h = htmlgen.htmlgn();
 
+b = htmlgen.input()
+h.items.append(b)
+
 b = htmlgen.button()
 b.id = "fb"
 b.caption = "Жми!!!";
