@@ -6,12 +6,13 @@ class button:
 	_class = ""
 	caption = ""
 	def text(self):
-		return '<button ' + hg.at("id", self.id) + ' class = "' + self._class + '">' + self.caption + '</button>'
+		return '<button' + hg.at("id", self.id) + hg.at("class", self._class) + '>' + self.caption + '</button>'
 
 class htmlgn:
 	items = []
 	def gen(self):
-		print "<!DOCTYPE html>"
+		print "<!DOCTYPE html><html><head></head><body>"
 		print "Hello word"
 		for i in self.items:
 			print i.text();
+		print "</body></html>"

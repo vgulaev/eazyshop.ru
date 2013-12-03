@@ -5,6 +5,13 @@ print ("")
 h = htmlgen.htmlgn();
 
 b = htmlgen.button()
+b.id = "fb"
 b.caption = "Жми!!!";
 h.items.append(b)
+
+b = htmlgen.button()
+b._class = "btcl"
+b.caption = "Вторая кнопка";
+h.items.append(b)
+
 h.gen()
