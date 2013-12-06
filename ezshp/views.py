@@ -1,13 +1,11 @@
 # Create your views here.
 from django.http import HttpResponse
-
+import sys
+sys.path.append("cgi")
+import htmlgen as hg
 
 def index(request):
-    httptext = """
-<!DOCTYPE html>
-<html><head>
-</head><body>
-<button>Press me</button>
-</body></html>
-"""
+    t = hg.htmlgn()
+    
+    httptext = t.gen()
     return HttpResponse(httptext)

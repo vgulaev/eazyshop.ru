@@ -17,10 +17,14 @@ class input(htmltag):
 class htmlgn:
 	items = []
 	def gen(self):
-		print "<!DOCTYPE html><html><head>"
-		print hg.wh("", "script", hg.at("src", "//code.jquery.com/jquery-1.10.2.min.js"))
-		print "</head><body>"
-		print "Hello word"
+		r =  "<!DOCTYPE html><html><head>"
+		r += hg.wh("", "script", hg.at("src", "//code.jquery.com/jquery-1.10.2.min.js"))
+		r += "</head><body>"
+		r += "Hello word"
 		for i in self.items:
-			print i.text();
-		print "</body></html>"
+			r += i.text();
+		r += "</body></html>"
+		return r
+		
+#t = htmlgn()
+#print(t.gen())
