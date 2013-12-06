@@ -8,7 +8,7 @@ import views
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', views.index, name='index')
+    url(r'^', views.index, name='index')
     # url(r'^$', 'ezshp.views.home', name='home'),
     # url(r'^ezshp/', include('ezshp.foo.urls')),
 

@@ -1,22 +1,39 @@
 #!c:/Python27/python.exe
+#import sys
 import htmlgenerator as hg
 
 class htmltag:
-	id = ""
-	_class = ""
+    def __init__(self):
+        self.id = ""
+        self._class = ""
+    def idtext(self):
+	    return hg.at("id", self.id) + hg.at("class", self._class)
+
+class a(htmltag):
+    def __init__(self):
+        htmltag.__init__(self)
+        self.href = ""
+        self.caption = ""
+    def text(self):
+        return "<a " + self.idtext() + hg.at("href", "/something") + ">"+ self.caption + "</a>"
 
 class button(htmltag):
-	caption = ""
-	def text(self):
-		return '<button' + hg.at("id", self.id) + hg.at("class", self._class) + '>' + self.caption + '</button>'
+    def __init__(self):
+        htmltag.__init__(self)
+        self.caption = ""
+    def text(self):
+		return '<button' +  self.idtext() + '>' + self.caption + '</button>'
 
 class input(htmltag):
+    def __init__(self):
+        htmltag.__init__(self)
 	def text(self):
-		return '<input' + hg.at("id", self.id) + hg.at("class", self._class) + '></input>'
+		return '<input' + self.idtext() + '></input>'
 
 class htmlgn:
-	items = []
-	def gen(self):
+    def __init__(self):
+        self.items = []
+    def gen(self):
 		r =  "<!DOCTYPE html><html><head>"
 		r += hg.wh("", "script", hg.at("src", "//code.jquery.com/jquery-1.10.2.min.js"))
 		r += "</head><body>"
