@@ -1,12 +1,12 @@
-﻿#!c:/Python27/python.exe
-
+#!c:/Python27/python.exe
+# -*- coding: utf-8 -*-
 from secrets import * 
 import MySQLdb
 print ("Content-Type: text/html; charset=utf-8")
 print ("")
 print ("Hello word")
 
-db = MySQLdb.connect(host="localhost", user=mysqlusername, passwd=mysqlupsw, db="eazyshop_db", charset='utf8')
+db = MySQLdb.connect(host="localhost", user=mysqlusername, passwd=mysqlupsw, db="c9", charset='utf8')
 
 cursor = db.cursor()
 
