@@ -1,4 +1,5 @@
 #!c:/Python27/python.exe
+# -*- coding: utf-8 -*-
 #import sys
 import htmlgenerator as hg
 
@@ -34,7 +35,8 @@ class htmlgn:
     def __init__(self):
         self.items = []
     def gen(self):
-		r =  "<!DOCTYPE html><html><head>"
+		r =  "<!DOCTYPE html><html><head><title>Торгуй - легко!!!</title>"
+		r += '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
 		r += hg.wh("", "script", hg.at("src", "//code.jquery.com/jquery-1.10.2.min.js"))
 		r += "</head><body>"
 		r += "Hello word"
@@ -43,5 +45,5 @@ class htmlgn:
 		r += "</body></html>"
 		return r
 		
-#t = htmlgn()
-#print(t.gen())
+t = htmlgn()
+print(t.gen())

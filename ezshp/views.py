@@ -1,7 +1,6 @@
 # Create your views here.
 from django.http import HttpResponse
-import sys
-sys.path.append("cgi")
+from django.conf import settings
 import htmlgen as hg
 
 def index(request):
@@ -9,7 +8,8 @@ def index(request):
     
     a = hg.a()
     a.id = "sa"
-    a.caption = "Reprezent json"
+    a.caption = settings.SITE_ROOT
+    #a.caption = "Not bad"
     a.href = "/json/"
     t.items.append(a)
     
