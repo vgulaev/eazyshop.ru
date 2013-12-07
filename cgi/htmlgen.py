@@ -1,6 +1,5 @@
 #!c:/Python27/python.exe
 # -*- coding: utf-8 -*-
-#import sys
 import htmlgenerator as hg
 
 class htmltag:
@@ -45,5 +44,5 @@ class htmlgn:
 		r += "</body></html>"
 		return r
 		
-t = htmlgn()
-print(t.gen())
+#t = htmlgn()
+#print(t.gen())

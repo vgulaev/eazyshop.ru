@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 #admin.autodiscover()
 import os
 import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))) + "/cgi")
+sys.path.append(settings.SITE_ROOT + "/cgi")
 
 import views
 import jsonresponse
