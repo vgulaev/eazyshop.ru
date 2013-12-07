@@ -8,8 +8,8 @@ def index(request):
     
     a = hg.a()
     a.id = "sa"
-    #a.caption = settings.SITE_ROOT
-    a.caption = "Not bad"
+    a.caption = str(settings.STATICFILES_DIRS)
+    #a.caption = "Not bad"
     a.href = "/json/"
     t.items.append(a)
     
