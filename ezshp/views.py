@@ -1,19 +1,24 @@
 # Create your views here.
 from django.http import HttpResponse
-import os
 import sys
 sys.path.append("cgi")
 import htmlgen as hg
-from django.conf import settings
 
 def index(request):
     t = hg.htmlgn()
     
     a = hg.a()
     a.id = "sa"
-    a.caption = settings.STATIC_ROOT
+    a.caption = "Reprezent json"
+    a.href = "/json/"
     t.items.append(a)
     
+    a = hg.a()
+    a.id = "sb"
+    a.caption = "Show request"
+    a.href = "/sr/"
+    t.items.append(a)
+
     b = hg.button()
     b.id = "sb1"
     b.caption = "Press me!"

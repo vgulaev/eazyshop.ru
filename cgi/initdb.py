@@ -1,12 +1,13 @@
 #!c:/Python27/python.exe
 # -*- coding: utf-8 -*-
 from secrets import * 
+import os
 import MySQLdb
 print ("Content-Type: text/html; charset=utf-8")
 print ("")
 print ("Hello word")
 
-db = MySQLdb.connect(host="localhost", user=mysqlusername, passwd=mysqlupsw, db="c9", charset='utf8')
+db = MySQLdb.connect(host = os.environ['IP'], user=mysqlusername, passwd="", db="c9", charset='utf8')
 
 cursor = db.cursor()
 
@@ -23,7 +24,7 @@ def dropalltable():
     
 def checktableexist(tablename):
     sql = """
-    SHOW TABLES IN eazyshop_db
+    SHOW TABLES IN c9
     LIKE %s
     """
     cursor.execute(sql, tablename)

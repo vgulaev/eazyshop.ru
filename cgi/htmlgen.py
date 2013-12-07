@@ -15,7 +15,7 @@ class a(htmltag):
         self.href = ""
         self.caption = ""
     def text(self):
-        return "<a " + self.idtext() + hg.at("href", "/something") + ">"+ self.caption + "</a>"
+        return "<a " + self.idtext() + hg.at("href", self.href) + ">"+ self.caption + "</a>"
 
 class button(htmltag):
     def __init__(self):
