@@ -11,12 +11,14 @@ sys.path.append(settings.SITE_ROOT + "/cgi")
 import views
 import jsonresponse
 import showrequest
+import myadmin.main
 
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', views.index, name='index'),
     url(r'^json/$', jsonresponse.index, name='index'),
     url(r'^sr/$', showrequest.index, name='index'),
+    url(r'^myadmin/', myadmin.main.index, name = 'index'),
     # url(r'^$', 'ezshp.views.home', name='home'),
     # url(r'^ezshp/', include('ezshp.foo.urls')),
 

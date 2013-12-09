@@ -9,6 +9,12 @@ class htmltag:
     def idtext(self):
 	    return hg.at("id", self.id) + hg.at("class", self._class)
 
+class htmltext:
+    def __init__(self, content = ""):
+        self.content = content
+    def text(self):
+        return self.content
+
 class a(htmltag):
     def __init__(self, id = "", _class = ""):
         htmltag.__init__(self, id, _class)
@@ -46,12 +52,14 @@ class registerblock(htmltag):
 class htmlgn:
     def __init__(self):
         self.items = []
+    def append(self, htmlel):
+        self.items.append(htmlel)
     def gen(self):
 		r =  "<!DOCTYPE html><html><head><title>Торгуй - легко!!!</title>"
 		r += '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
 		r += hg.wh("", "script", hg.at("src", "//code.jquery.com/jquery-1.10.2.min.js"))
 		r += "</head><body>"
-		r += "Hello word"
+		#r += "Hello word"
 		for i in self.items:
 			r += i.text();
 		r += "</body></html>"
