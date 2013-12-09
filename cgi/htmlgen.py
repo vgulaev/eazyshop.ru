@@ -1,6 +1,7 @@
 #!c:/Python27/python.exe
 # -*- coding: utf-8 -*-
 import htmlgenerator as hg
+from django.conf import settings
 
 class htmltag:
     def __init__(self, id, _class):
@@ -54,16 +55,20 @@ class htmlgn:
         self.items = []
     def append(self, htmlel):
         self.items.append(htmlel)
+    def generatejsfiles(self):
+        f = open(settings.SITE_ROOT + "/static/js/first.js", "w")
+        f.write("//***")
     def gen(self):
-		r =  "<!DOCTYPE html><html><head><title>Торгуй - легко!!!</title>"
-		r += '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
-		r += hg.wh("", "script", hg.at("src", "//code.jquery.com/jquery-1.10.2.min.js"))
-		r += "</head><body>"
+        self.generatejsfiles()
+        r =  "<!DOCTYPE html><html><head><title>Торгуй - легко!!!</title>"
+        r += '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
+        r += hg.wh("", "script", hg.at("src", "//code.jquery.com/jquery-1.10.2.min.js"))
+        r += "</head><body>"
 		#r += "Hello word"
-		for i in self.items:
-			r += i.text();
-		r += "</body></html>"
-		return r
+        for i in self.items:
+            r += i.text();
+        r += "</body></html>"
+        return r
 		
 #t = htmlgn()
 #print(t.gen())
