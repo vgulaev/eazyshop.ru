@@ -3,13 +3,9 @@
 from secrets import * 
 import os
 import MySQLdb
-print ("Content-Type: text/html; charset=utf-8")
-print ("")
-print ("Hello word")
-
-db = MySQLdb.connect(host = os.environ['IP'], user=mysqlusername, passwd="", db="c9", charset='utf8')
-
-cursor = db.cursor()
+#print ("Content-Type: text/html; charset=utf-8")
+#print ("")
+#print ("Hello word")
 
 def droptable(tablename):
     sql = "DROP TABLE %s" % (tablename)
@@ -81,12 +77,6 @@ def createpricestable():
     cursor.execute(sql)
     db.commit()
 
-dropalltable()
-createshopstable()
-creategoodstable()
-createpricetypestable()
-createpricestable()
-
 def loadexampledata():
     slq = "INSERT INTO shops (id, caption) VALUES('1', 'МПК')"
     cursor.execute(slq)
@@ -109,6 +99,24 @@ def loadexampledata():
     cursor.execute(slq)
     db.commit()
 
-loadexampledata()
+def doinitdb():
+    db = MySQLdb.connect(host = os.environ['IP'], user=mysqlusername, passwd="", db="c9", charset='utf8')
+    cursor = db.cursor()
+    dropalltable()
+    createshopstable()
+    creategoodstable()
+    createpricetypestable()
+    createpricestable()
+    loadexampledata()
+    db.close()
+    
+from django.http import HttpResponse
+import htmlgen as hg
 
-db.close()
+def index(request):
+    doinitdb()
+    t = hg.htmlgn()
+    t.append(hg.htmltext("Initialization complete!!!"))
+
+    httptext = t.gen()
+    return HttpResponse(httptext)

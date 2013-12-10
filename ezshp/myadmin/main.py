@@ -14,9 +14,17 @@ def index(request):
 """
     
     a = hg.a(id = "initdb")
-    a.href = "/admin/initdb"
+    a.href = "/myadmin/initdb"
     a.caption = "Init DB"
     a.events.append(e)
     t.append(a)
+    
+    t.append(hg.htmltext("<br>"))
+
+    a = hg.a(id = "debug")
+    a.href = "/myadmin/debug"
+    a.caption = "Debuging page"
+    t.append(a)
+
     httptext = t.gen()
     return HttpResponse(httptext)

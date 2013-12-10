@@ -73,7 +73,7 @@ class htmlgn:
     def generatejsfiles(self):
         filename = settings.SITE_ROOT + "/static/js/first.js"
         self.scripts.append("/static/js/first.js")
-        f = open(filename, "w")
+        f = open(filename, "w+")
         for t in self.items:
             for e in t.events:
                 f.write(e.text)
