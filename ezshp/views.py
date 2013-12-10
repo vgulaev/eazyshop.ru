@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Create your views here.
 from django.http import HttpResponse
 from django.conf import settings
@@ -22,13 +23,21 @@ def index(request):
     a.caption = "Show request"
     a.href = "/sr/"
     t.append(a)
+    
+    i = hg.input(id = "username")
+    i.placeholder = "Логин"
+    t.append(i)
 
-    b = hg.button(id = "sb1")
-    b.caption = "Press me!"
+    i = hg.input(id = "passw")
+    i.placeholder = "Пароль"
+    t.append(i)
+
+    b = hg.button(id = "button-signin")
+    b.caption = "Войти"
     t.append(b)
     
-    b = hg.button(id = "sb2")
-    b.caption = "Check me!"
+    b = hg.button(id = "button-signup")
+    b.caption = "Зарегистрироваться"
     t.append(b)
 
     httptext = t.gen()
