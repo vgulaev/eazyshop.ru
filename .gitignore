@@ -40,3 +40,8 @@ secrets.py
 
 errordocs/
 .c9revisions/
+
+#################
+## Temp for dynamic string
+#################
+*.js
