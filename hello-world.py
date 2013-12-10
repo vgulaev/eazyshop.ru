@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-import os
-import ezshp.views
-import ezshp.htmlgen as hg
+import initdb
 
+initdb.doinitdb()
 
-i = hg.input()
 #print("Привет!")
-print(i.text())
+if (os.environ.get('C9_USER') == None):
+	os.environ['C9_USER'] = "root"
+print(os.environ.get('C9_USER'))

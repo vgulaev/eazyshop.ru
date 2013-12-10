@@ -2,12 +2,14 @@
 # -*- coding: utf-8 -*-
 import os
 import MySQLdb
+import secrets
 #print ("Content-Type: text/html; charset=utf-8")
 #print ("")
 #print ("Hello word")
+mysql_pass = ""
 class dbworker:
     def __init__(self, dbuser):
-        self.db = MySQLdb.connect(host = os.environ['IP'], user=dbuser, passwd="", db="c9", charset='utf8')
+        self.db = MySQLdb.connect(host = os.environ['IP'], user=dbuser, passwd=mysql_pass, db="c9", charset='utf8')
         self.cursor = self.db.cursor()
     def droptable(self, tablename):
         sql = "DROP TABLE %s" % (tablename)
@@ -105,15 +107,22 @@ class dbworker:
 from django.http import HttpResponse
 import htmlgen as hg
 
-#d = dbworker(dbuser=os.environ['C9_USER'])
+def loadmysqlcredential():
+    global mysql_pass
+    if (os.environ.get('C9_USER') == None):
+        os.environ['C9_USER'] = "root"
+        mysql_pass = secrets.mysql_pass
+    if (os.environ.get('IP') == None):
+        os.environ['IP'] = "localhost"
+
+#loadmysqlcredential()
+#print("*********=", mysql_pass)
+#d = dbworker(dbuser="root")
 #d.doinitdb()
 #print("Verry Good!!!")
 
 def index(request):
-    
-    if (os.environ.get('C9_USER') == None):
-	    os.environ['C9_USER'] = "root"
-
+    loadmysqlcredential()
     d = dbworker(dbuser=os.environ['C9_USER'])
     d.doinitdb()
     t = hg.htmlgn()
