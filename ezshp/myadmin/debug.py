@@ -5,8 +5,8 @@ def index(request):
     #httptext = str(request.COOKIES)
     #httptext = str(request.path)
     t = hg.htmlgn()
-    t.setjsrootname(request.path)
-    httptext = t.jsrootname
+    #t.setjsrootname(request.path)
+    httptext = str(request)
     response = HttpResponse(httptext)
-    response.set_cookie("user_agreement", "fdsdsjhgfshjdfjkl")
+    #response.set_cookie("user_agreement", "fdsdsjhgfshjdfjkl")
     return response 
