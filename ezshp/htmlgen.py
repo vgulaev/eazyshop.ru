@@ -97,6 +97,7 @@ class htmlgn:
             self.ismobile = checkmobile(request.META)
         else:
             self.ismobile = False
+        #self.ismobile = True
         if (self.ismobile):
             self.cssmain = """body {
             width: 320px
@@ -125,6 +126,7 @@ class htmlgn:
         filename =  "/static/css/" + str(self.jsrootname) + "main.css"
         self.css.append(filename)
         f = open(settings.SITE_ROOT + filename, "w+")
+        f.write(self.cssmain)
         for t in self.items:
             for e in t.css:
                 f.write(e)
