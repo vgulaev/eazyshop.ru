@@ -125,7 +125,7 @@ def index(request):
     loadmysqlcredential()
     d = dbworker(dbuser=os.environ['C9_USER'])
     d.doinitdb()
-    t = hg.htmlgn()
+    t = hg.htmlgn(request)
     t.setjsrootname(request.path)
     t.append(hg.htmltext("Initialization complete!!!"))
 

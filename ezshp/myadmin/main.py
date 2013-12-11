@@ -2,7 +2,7 @@ from django.http import HttpResponse
 import htmlgen as hg
 
 def index(request):
-    t = hg.htmlgn()
+    t = hg.htmlgn(request)
     t.setjsrootname(request.path)
 
     n = hg.navigationblock()
