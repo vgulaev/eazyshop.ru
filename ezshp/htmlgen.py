@@ -97,9 +97,8 @@ class htmlgn:
             self.ismobile = checkmobile(request.META)
         else:
             self.ismobile = False
-        
         if (self.ismobile):
-        self.cssmain = """body {
+            self.cssmain = """body {
             width: 320px
             }"""
         else:
