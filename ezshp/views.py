@@ -6,6 +6,7 @@ import htmlgen as hg
 
 def index(request):
     t = hg.htmlgn()
+    t.setjsrootname(request.path)
     
     a = hg.a(id = "reftoadmin")
     a.caption = "Admin page"
@@ -39,6 +40,12 @@ def index(request):
     b = hg.button(id = "button-signup")
     b.caption = "Зарегистрироваться"
     t.append(b)
+    t.append(hg.htmltext("<br>"))
+    
+    a = hg.a(id = "pr")
+    a.caption = "Узнайте наши принципы, что бы остаться с нами"
+    a.href = "/principles/"
+    t.append(a)
 
     httptext = t.gen()
     return HttpResponse(httptext)

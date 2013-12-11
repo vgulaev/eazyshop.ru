@@ -126,6 +126,7 @@ def index(request):
     d = dbworker(dbuser=os.environ['C9_USER'])
     d.doinitdb()
     t = hg.htmlgn()
+    t.setjsrootname(request.path)
     t.append(hg.htmltext("Initialization complete!!!"))
 
     httptext = t.gen()

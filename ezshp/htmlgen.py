@@ -7,7 +7,6 @@ class htmlevent:
         name = ""
         function = ""
         text = ""
-    pass
 
 class htmltag:
     def __init__(self, id = "", _class = ""):
@@ -68,21 +67,33 @@ class htmlgn:
     def __init__(self):
         self.items = []
         self.scripts = []
+        self.jsrootname = ""
+        self.jsmain = ""
+    def setjsrootname(self, path):
+        self.jsrootname = path[1:].replace("/", "-")
     def append(self, htmlel):
         self.items.append(htmlel)
     def generatejsfiles(self):
-        filename = settings.SITE_ROOT + "/static/js/first.js"
-        self.scripts.append("/static/js/first.js")
-        f = open(filename, "w+")
+        filename =  "/static/js/" + str(self.jsrootname) + "first.js"
+        #filename =  "/static/js/" + "myadmin-debug-" + "first.js"
+        self.scripts.append(filename)
+        f = open(settings.SITE_ROOT + filename, "w+")
         for t in self.items:
             for e in t.events:
                 f.write(e.text)
+        f.close()
+        filename =  "/static/js/" + str(self.jsrootname) + "main.js"
+        self.scripts.append(filename)
+        f = open(settings.SITE_ROOT + filename, "w+")
+        f.write(self.jsmain)
         f.close()
     def gen(self):
         self.generatejsfiles()
         r =  "<!DOCTYPE html><html><head><title>Торгуй - легко!!!</title>"
         r += '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
-        r += hg.wh("", "script", hg.at("src", "//code.jquery.com/jquery-1.10.2.min.js"))
+        r += hg.wh("", "link", hg.at("src", "//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"))
+        r += hg.wh("", "script", hg.at("src", "//code.jquery.com/jquery-1.9.1.js"))
+        r += hg.wh("", "script", hg.at("src", "//code.jquery.com/ui/1.10.3/jquery-ui.js"))
         for s in self.scripts:
             r += hg.wh("", "script", hg.at("src", s))
         r += "</head><body>"

@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-import initdb
 
-initdb.doinitdb()
+s = "/myadmin/debug/"
 
-#print("Привет!")
-if (os.environ.get('C9_USER') == None):
-	os.environ['C9_USER'] = "root"
-print(os.environ.get('C9_USER'))
+print(s[1:].replace("/", "-"))
