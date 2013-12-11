@@ -62,13 +62,24 @@ class registerblock(htmltag):
             r += i.text
         r = hg.wh("", "<div>", self.idtext())
         return r
-    
+
+class navigationblock(htmltag):
+    def __init__(self, id = "", _class = ""):
+        htmltag.__init__(self, id, _class)
+    def text(self):
+        return """<div id = "nav-div"><ul>
+        <li><a href = "/">Главная</a></li>
+        <li><a href = "/myadmin/">Админка</a></li>
+        </ul></div>"""
+
 class htmlgn:
     def __init__(self):
         self.items = []
         self.scripts = []
+        self.css = []
         self.jsrootname = ""
         self.jsmain = ""
+        self.cssmain = ""
     def setjsrootname(self, path):
         self.jsrootname = path[1:].replace("/", "-")
     def append(self, htmlel):
@@ -87,8 +98,13 @@ class htmlgn:
         f = open(settings.SITE_ROOT + filename, "w+")
         f.write(self.jsmain)
         f.close()
+    def generatecssfiles(self):
+        filename =  "/static/js/" + str(self.jsrootname) + "main.css"
+        self.css.append(filename)
+        f = open(settings.SITE_ROOT + filename, "w+")
     def gen(self):
         self.generatejsfiles()
+        self.generatecssfiles()
         r =  "<!DOCTYPE html><html><head><title>Торгуй - легко!!!</title>"
         r += '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
         r += hg.wh("", "link", hg.at("src", "//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"))

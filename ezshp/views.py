@@ -8,6 +8,10 @@ def index(request):
     t = hg.htmlgn()
     t.setjsrootname(request.path)
     
+    n = hg.navigationblock()
+    t.append(n)
+    t.append(hg.htmltext("<br>"))    
+    
     a = hg.a(id = "reftoadmin")
     a.caption = "Admin page"
     a.href = "/myadmin/"
@@ -37,15 +41,23 @@ def index(request):
     b.caption = "Войти"
     t.append(b)
     
-    b = hg.button(id = "button-signup")
-    b.caption = "Зарегистрироваться"
-    t.append(b)
+    a = hg.a(id = "button-signup")
+    a.href = "/registration/"
+    a.caption = "Зарегистрироваться"
+    t.append(a)
     t.append(hg.htmltext("<br>"))
     
     a = hg.a(id = "pr")
     a.caption = "Узнайте наши принципы, что бы остаться с нами"
     a.href = "/principles/"
     t.append(a)
+    
+    t.jsmain = """
+    $(function () {
+    $("#username").val($(window).width());
+    $("#passw").val($(window).height());
+    });
+    """;
 
     httptext = t.gen()
     return HttpResponse(httptext)
