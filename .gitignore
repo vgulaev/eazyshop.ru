@@ -45,3 +45,4 @@ errordocs/
 ## Temp for dynamic string
 #################
 *.js
+*.css
