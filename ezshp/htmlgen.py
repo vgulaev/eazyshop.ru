@@ -13,6 +13,7 @@ class htmltag:
         self.id = id
         self._class = _class
         self.events = []
+        self.css = ""
     def idtext(self):
 	    return hg.at("id", self.id) + hg.at("class", self._class)
     def evtext(self):
@@ -66,6 +67,12 @@ class registerblock(htmltag):
 class navigationblock(htmltag):
     def __init__(self, id = "", _class = ""):
         htmltag.__init__(self, id, _class)
+        self.css = """
+        li {
+        float: left;
+        width: 90px;
+        }
+        """
     def text(self):
         return """<div id = "nav-div"><ul>
         <li><a href = "/">Главная</a></li>
@@ -99,15 +106,21 @@ class htmlgn:
         f.write(self.jsmain)
         f.close()
     def generatecssfiles(self):
-        filename =  "/static/js/" + str(self.jsrootname) + "main.css"
+        filename =  "/static/css/" + str(self.jsrootname) + "main.css"
         self.css.append(filename)
         f = open(settings.SITE_ROOT + filename, "w+")
+        for t in self.items:
+            for e in t.css:
+                f.write(e)
+        f.close()
     def gen(self):
         self.generatejsfiles()
         self.generatecssfiles()
         r =  "<!DOCTYPE html><html><head><title>Торгуй - легко!!!</title>"
         r += '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
-        r += hg.wh("", "link", hg.at("src", "//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"))
+        for s in self.css:
+            r += hg.wh("", "link", 'rel="stylesheet"' + hg.at("href", s))
+        r += hg.wh("", "link", 'rel="stylesheet"' + hg.at("href", "//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"))
         r += hg.wh("", "script", hg.at("src", "//code.jquery.com/jquery-1.9.1.js"))
         r += hg.wh("", "script", hg.at("src", "//code.jquery.com/ui/1.10.3/jquery-ui.js"))
         for s in self.scripts:

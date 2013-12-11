@@ -4,6 +4,11 @@ import htmlgen as hg
 def index(request):
     t = hg.htmlgn()
     t.setjsrootname(request.path)
+
+    n = hg.navigationblock()
+    t.append(n)
+    t.append(hg.htmltext("<br>"))    
+
     t.append(hg.htmltext("Admin page<br>"))
     
     e = hg.htmlevent()
