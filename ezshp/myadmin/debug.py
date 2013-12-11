@@ -7,6 +7,6 @@ def index(request):
     t = hg.htmlgn()
     #t.setjsrootname(request.path)
     httptext = str(request)
-    response = HttpResponse(httptext)
+    response = HttpResponse(httptext, content_type="application/json")
     #response.set_cookie("user_agreement", "fdsdsjhgfshjdfjkl")
     return response 
