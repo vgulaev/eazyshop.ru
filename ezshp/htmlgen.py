@@ -79,14 +79,31 @@ class navigationblock(htmltag):
         <li><a href = "/myadmin/">Админка</a></li>
         </ul></div>"""
 
+def checkmobile(metastr):
+    if (metastr["HTTP_USER_AGENT"].find("Android") == -1):
+        r = False
+    else:
+        r = True
+    return r
+
 class htmlgn:
-    def __init__(self):
+    def __init__(self, request = ""):
         self.items = []
         self.scripts = []
         self.css = []
         self.jsrootname = ""
         self.jsmain = ""
-        self.cssmain = ""
+        if (request != ""):
+            self.ismobile = checkmobile(request.META)
+        else:
+            self.ismobile = False
+        
+        if (self.ismobile):
+        self.cssmain = """body {
+            width: 320px
+            }"""
+        else:
+            self.cssmain = ""
     def setjsrootname(self, path):
         self.jsrootname = path[1:].replace("/", "-")
     def append(self, htmlel):
