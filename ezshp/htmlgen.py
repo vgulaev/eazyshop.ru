@@ -68,7 +68,7 @@ class navigationblock(htmltag):
     def __init__(self, id = "", _class = ""):
         htmltag.__init__(self, id, _class)
         self.css = """
-        li {
+        #nav-div li {
         float: left;
         width: 90px;
         }
@@ -100,7 +100,7 @@ class htmlgn:
         #self.ismobile = True
         if (self.ismobile):
             self.cssmain = """body {
-            width: 320px
+            width: 320px;
             }"""
         else:
             self.cssmain = ""

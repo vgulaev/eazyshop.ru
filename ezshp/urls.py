@@ -14,6 +14,8 @@ import showrequest
 import myadmin.main
 import myadmin.urls
 import principles
+import registration
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -21,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^json/$', jsonresponse.index, name='index'),
     url(r'^sr/$', showrequest.index, name='index'),
     url(r'^principles/', principles.index, name = 'principles'),
+    url(r'^registration/', registration.index, name = 'registration'),
     url(r'^myadmin/', include(myadmin.urls)),
     #url(r'^myadmin/', myadmin.main.index, name = 'index'),
     # url(r'^$', 'ezshp.views.home', name='home'),

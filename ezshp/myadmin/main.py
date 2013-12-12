@@ -24,12 +24,23 @@ def index(request):
     a.caption = "Init DB"
     a.events.append(e)
     t.append(a)
-    
     t.append(hg.htmltext("<br>"))
 
     a = hg.a(id = "debug")
     a.href = "/myadmin/debug"
     a.caption = "Debuging page"
+    t.append(a)
+    t.append(hg.htmltext("<br>"))
+
+    a = hg.a(id = "sa")
+    a.caption = "JSON Example"
+    a.href = "/json/"
+    t.append(a)
+    t.append(hg.htmltext("<br>"))
+
+    a = hg.a(id = "sb")
+    a.caption = "Show request"
+    a.href = "/sr/"
     t.append(a)
 
     httptext = t.gen()

@@ -5,6 +5,11 @@ import htmlgen as hg
 def index(request):
     t = hg.htmlgn(request)
     t.setjsrootname(request.path)
+
+    n = hg.navigationblock()
+    t.append(n)
+    t.append(hg.htmltext("<br>"))    
+    
     t.append(hg.htmltext("""
     <ul>
     <li>На первом месте функциональность</li>

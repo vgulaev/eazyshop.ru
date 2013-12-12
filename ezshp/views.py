@@ -12,23 +12,6 @@ def index(request):
     t.append(n)
     t.append(hg.htmltext("<br>"))    
     
-    a = hg.a(id = "reftoadmin")
-    a.caption = "Admin page"
-    a.href = "/myadmin/"
-    t.append(a)
-    t.append(hg.htmltext("<br>"))    
-
-    a = hg.a(id = "sa")
-    a.caption = "Not bad"
-    a.href = "/json/"
-    t.append(a)
-    t.append(hg.htmltext("<br>"))
-
-    a = hg.a(id = "sb")
-    a.caption = "Show request"
-    a.href = "/sr/"
-    t.append(a)
-    
     i = hg.input(id = "username")
     i.placeholder = "Логин"
     t.append(i)
@@ -54,8 +37,10 @@ def index(request):
     
     t.jsmain = """
     $(function () {
-    $("#username").val($(window).width());
-    $("#passw").val($(window).height());
+    //$("#username").val($(window).width());
+    //$("#passw").val($(window).height());
+    //$("#button-signup").button();
+    //$("#button-signin").button();
     });
     """;
 
