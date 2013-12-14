@@ -1,48 +1,23 @@
+# -*- coding: utf-8 -*-
 import smtplib
 
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+from smtplib import SMTP_SSL as SMTP
 
-# me == my email address
-# you == recipient's email address
-me = "webmaster@eazyshop.ru"
-you = "vgulaev@yandex.ru"
+from email.MIMEText import MIMEText
 
-# Create message container - the correct MIME type is multipart/alternative.
-msg = MIMEMultipart('alternative')
-msg['Subject'] = "Link"
-msg['From'] = me
-msg['To'] = you
-
-# Create the body of the message (a plain-text and an HTML version).
-text = "Hi!\nHow are you?\nHere is the link you wanted:\nhttp://www.python.org"
-html = """\
-<html>
-  <head></head>
-  <body>
-    <p>Hi!<br>
-       How are you?<br>
-       Here is the <a href="http://www.python.org">link</a> you wanted.
-    </p>
-  </body>
-</html>
+text_subtype = 'plain'
+content="""\
+Пробуем отправить русский текст
 """
+subject="Sent from Python"
 
-# Record the MIME types of both parts - text/plain and text/html.
-part1 = MIMEText(text, 'plain')
-part2 = MIMEText(html, 'html')
+msg = MIMEText(content, text_subtype)
 
-# Attach parts into message container.
-# According to RFC 2046, the last part of a multipart message, in this case
-# the HTML message, is best and preferred.
-msg.attach(part1)
-msg.attach(part2)
+msg['Subject'] = subject
+msg['From']   = "webmaster@eazyshop.ru"
 
-# Send the message via local SMTP server.
-s = smtplib.SMTP('localhost')
-# sendmail function takes 3 arguments: sender's address, recipient's address
-# and message to send - here it is sent as one string.
-#s.set_debuglevel(1)
-s.sendmail(me, you, msg.as_string())
+s = SMTP('smtp.yandex.ru', port = 465)
+s.login("webmaster@eazyshop.ru", "28061984")
+s.sendmail("webmaster@eazyshop.ru", "vgulaev@yandex.ru", msg.as_string())
 s.quit()
 print("Ok!!!")
