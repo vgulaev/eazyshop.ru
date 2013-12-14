@@ -16,8 +16,6 @@ import myadmin.urls
 import principles
 import registration
 import jsonws.urls
-import yaaccept
-
 
 urlpatterns = patterns('',
     # Examples:

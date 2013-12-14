@@ -20,4 +20,7 @@ s = SMTP('smtp.yandex.ru', port = 465)
 s.login("webmaster@eazyshop.ru", "28061984")
 s.sendmail("webmaster@eazyshop.ru", "vgulaev@yandex.ru", msg.as_string())
 s.quit()
+
+import datetime
+print(datetime.datetime.now())
 print("Ok!!!")

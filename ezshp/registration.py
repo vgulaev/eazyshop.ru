@@ -22,13 +22,10 @@ def index(request):
 
     t.jsmain = """function sendregistermail(){
     var jqxhr = $.ajax({
-    "url":"/jsonws/testjson/",
+    "url":"/jsonws/registermail/",
     type: "POST",
     "data": {
-        mail:"it is simple string for sendin",
-        enother: "dsfsdfdsfsdfsd",
-        fgffdg: "fsfdfsdsfsdf",
-        hthth: "fgdfgdg"}
+        email:$("#reg-email").val()}
     } )
         .done(function() {
             alert( "success" );
