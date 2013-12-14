@@ -21,7 +21,24 @@ def index(request):
     t.append(reg)
 
     t.jsmain = """function sendregistermail(){
-        alert("Helo!")
+    var jqxhr = $.ajax({
+    "url":"/jsonws/testjson/",
+    type: "POST",
+    "data": {
+        mail:"it is simple string for sendin",
+        enother: "dsfsdfdsfsdfsd",
+        fgffdg: "fsfdfsdsfsdf",
+        hthth: "fgdfgdg"}
+    } )
+        .done(function() {
+            alert( "success" );
+        })
+        .fail(function() {
+            alert( "error" );
+        })
+        .always(function() {
+            alert( "complete" );
+        });
     }
     """
     t.cssmain = """#reg-email {

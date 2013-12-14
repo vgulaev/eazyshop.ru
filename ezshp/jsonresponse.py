@@ -1,10 +1,9 @@
 import json
 
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
-import sys
-sys.path.append("cgi")
-from django.conf import settings
 
+@csrf_exempt
 def index(request):
     response_data = {}
     response_data['result'] = 'failed'

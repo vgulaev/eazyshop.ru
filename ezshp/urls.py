@@ -11,10 +11,12 @@ sys.path.append(settings.SITE_ROOT + "/ezshp")
 import views
 import jsonresponse
 import showrequest
-import myadmin.main
+#import myadmin.main
 import myadmin.urls
 import principles
 import registration
+import jsonws.urls
+import yaaccept
 
 
 urlpatterns = patterns('',
@@ -25,6 +27,7 @@ urlpatterns = patterns('',
     url(r'^principles/', principles.index, name = 'principles'),
     url(r'^registration/', registration.index, name = 'registration'),
     url(r'^myadmin/', include(myadmin.urls)),
+    url(r'^jsonws/', include(jsonws.urls)),
     #url(r'^myadmin/', myadmin.main.index, name = 'index'),
     # url(r'^$', 'ezshp.views.home', name='home'),
     # url(r'^ezshp/', include('ezshp.foo.urls')),
