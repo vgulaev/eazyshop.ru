@@ -14,8 +14,8 @@ def index(request):
     #if request.method == 'POST':
     rdata = request.POST
     ans = {}
-    ans["email"] = rdata["email"]
-    ans["time"] = str(datetime.datetime.now())
+    ans["e"] = rdata["email"]
+    ans["t"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     text_for_cipher = json.dumps(ans)
     
     obj = AES.new('This is a key123', AES.MODE_CFB, 'This is an IV456')
