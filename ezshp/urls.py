@@ -25,6 +25,8 @@ urlpatterns = patterns('',
     #Admin page
     url(r'^myadmin/', include(myadmin.urls)),
     #Our princeples
+    url(r'^who-we-are/', principles.who_we_are, name = 'who-we-are'),
+    #Our princeples
     url(r'^principles/', principles.index, name = 'principles'),
     #Bussines logic
     #registration page

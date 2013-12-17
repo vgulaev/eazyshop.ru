@@ -30,6 +30,12 @@ def index(request):
     t.append(a)
     t.append(hg.htmltext("<br>"))
     
+    a = hg.a(id = "whoweare")
+    a.caption = "Кто мы такие и какие наши планы"
+    a.href = "/who-we-are/"
+    t.append(a)
+    t.append(hg.htmltext("<br>"))
+
     a = hg.a(id = "pr")
     a.caption = "Узнайте наши принципы, что бы остаться с нами"
     a.href = "/principles/"

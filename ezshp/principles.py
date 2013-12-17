@@ -20,3 +20,22 @@ def index(request):
     """))
     httptext = t.gen()
     return HttpResponse(httptext)
+    
+def who_we_are(request):
+    t = hg.htmlgn(request)
+    t.setjsrootname(request.path)
+
+    n = hg.navigationblock()
+    t.append(n)
+    t.append(hg.htmltext("<br>"))    
+    
+    t.append(hg.htmltext("""Мы амбициозный проект, у которого есть несколько целей
+    <ul>
+    <li>Дать возможность каждому попробывать on-line торговлю</li>
+    <li>Стать лучшей интернет витриной</li>
+    <li>Предоставить всем сервис личных кабинетов как b2b так и b2c</li>
+    <li>Организовать удобный сервис формирование любых заказов</li>
+    </ul>
+    """))
+    httptext = t.gen()
+    return HttpResponse(httptext)
