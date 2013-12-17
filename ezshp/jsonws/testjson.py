@@ -11,7 +11,8 @@ def index(request):
     response_data['message'] = 'You messed up'
     
     if request.method == 'POST':
-        httptext = json.dumps(request.POST)
+        #httptext = json.dumps(request.POST)
+        httptext = str(request)
     else:
         httptext = json.dumps(response_data)
     #httptext = json.dumps(response_data)
