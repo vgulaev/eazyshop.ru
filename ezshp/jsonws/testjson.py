@@ -14,6 +14,6 @@ def index(request):
         #httptext = json.dumps(request.POST)
         httptext = str(request)
     else:
-        httptext = json.dumps(response_data)
+        httptext = str(request)
     #httptext = json.dumps(response_data)
     return HttpResponse(httptext, content_type="application/json")

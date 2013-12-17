@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import datetime
 import json
+import os
 
 from smtplib import SMTP_SSL as SMTP
 from email.MIMEText import MIMEText
@@ -21,14 +22,19 @@ def index(request):
     obj = AES.new('This is a key123', AES.MODE_CFB, 'This is an IV456')
     ciphertext = obj.encrypt(text_for_cipher)
 
-    forurl = "".join("{0:x}".format(ord(e)) for e in ciphertext)
+    forurl = "".join("{0:02x}".format(ord(e)) for e in ciphertext)
     
     text_subtype = 'plain'
-    content="""\
-Вас проветствует, eazyshop!!!
-Для завершение регистрации, перейдите пожалуйста по ссылке: http://eazyshop.ru/accept/%s
+    
+    if (os.environ.get('C9_USER') == None):
+        domainname = "http://eazyshop.ru"
+    else:
+        domainname = "https://eazyshop_ru-c9-vgulaev.c9.io"
+    
+    content="""Вас проветствует, eazyshop!!!
+Для завершение регистрации, перейдите пожалуйста по ссылке: %(hn)s/accept/%(uid)s
 С уважением, команда eazyshop.
-""" % forurl
+""" % {"hn": domainname, "uid": forurl}
 
     subject="Завершение регистрации на eazyshop"
     msg = MIMEText(content, text_subtype)

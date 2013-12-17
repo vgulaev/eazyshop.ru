@@ -18,22 +18,30 @@ import registration
 import jsonws.urls
 
 urlpatterns = patterns('',
-    # Examples:
+    # Index page
     url(r'^$', views.index, name='index'),
+    # For ajax and other json servises
+    url(r'^jsonws/', include(jsonws.urls)),
+    #Admin page
+    url(r'^myadmin/', include(myadmin.urls)),
+    #Our princeples
+    url(r'^principles/', principles.index, name = 'principles'),
+    #Bussines logic
+    #registration page
+    url(r'^registration/', registration.index, name = 'registration'),    
+    #aceptedpage
+    url(r'^accept/(?P<uid>\w+)', registration.accept, name = 'registration'),    
+    #End bussines logic
+    ########################################
+    #####For fun
+    ########################################
     url(r'^json/$', jsonresponse.index, name='index'),
     url(r'^sr/$', showrequest.index, name='index'),
-    url(r'^principles/', principles.index, name = 'principles'),
-    url(r'^registration/', registration.index, name = 'registration'),
     url(r'^readme.txt', registration.index, name = 'registration'),
-    url(r'^myadmin/', include(myadmin.urls)),
-    url(r'^jsonws/', include(jsonws.urls)),
-    #url(r'^myadmin/', myadmin.main.index, name = 'index'),
     # url(r'^$', 'ezshp.views.home', name='home'),
     # url(r'^ezshp/', include('ezshp.foo.urls')),
-
     # Uncomment the admin/doc line below to enable admin documentation:
     #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
     # Uncomment the next line to enable the admin:
     #url(r'^admin/', include(admin.site.urls)),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

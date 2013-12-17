@@ -42,14 +42,15 @@ class button(htmltag):
         htmltag.__init__(self, id, _class)
         self.caption = ""
     def text(self):
-		return '<button' +  self.idtext() + '>' + self.caption + '</button>'
+		return '<button' +  self.idtext() + self.evtext() + '>' + self.caption + '</button>'
 
 class input(htmltag):
     def __init__(self, id = "", _class = ""):
         htmltag.__init__(self, id, _class)
         self.placeholder = ""
+        self.value = ""
     def text(self):
-        return '<input' + self.idtext() + hg.at("placeholder", self.placeholder) + '></input>'
+        return '<input' + self.idtext() + hg.at("placeholder", self.placeholder) + hg.at("value", self.value) + '></input>'
 		
 class registerblock(htmltag):
     def __init__(self, id = "", _class = ""):
