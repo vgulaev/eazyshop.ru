@@ -15,7 +15,7 @@ def index(request):
     
     reg = hg.htmltext("""<div id = "registration-main-div">Пройдите три простых шага:
         <ol>
-        <li><div>Укажите свой электронный ящик<div><input id = "reg-email" placeholder = "e-mail"></input><button onclick = "sendregistermail()">Зарегистрироваться</button></li>
+        <li id = "point-one"><div>Укажите свой электронный ящик<div><input id = "reg-email" placeholder = "e-mail"></input><button id = "sender" onclick = "sendregistermail()">Зарегистрироваться</button></li>
         <li>Подвердите свой ящик, перейдя по ссылке в письме</li>
         <li>Выберите версию 1С, которую Вы используете</li>
         </ol></div""")
@@ -27,16 +27,24 @@ def index(request):
     "url":"/jsonws/registermail/",
     type: "POST",
     "data": {
-        email:$("#reg-email").val()}
+        email:$("#reg-email").val()},
+    beforeSend: function () {
+            $("#sender").html("Идет обработка");
+            $("#sender").attr("disabled", true);
+    }
     } )
         .done(function() {
-            alert( "success" );
+            //alert( "success" );
+            alert( "На Ваш адресс " + $("#reg-email").val() + " выслано письмо с дальнейшими действиями.");
+            $("#reg-email").attr("disabled", true);
+            $("#point-one").css("text-decoration", "line-through");
         })
         .fail(function() {
             alert( "error" );
         })
         .always(function() {
-            alert( "complete" );
+            //alert( "На Ваш адресс " + $("#reg-email").val() + " выслано письмо с дальнейшими действиями.");
+            $("#sender").html("Зарегистрироваться");
         });
     }
     """
