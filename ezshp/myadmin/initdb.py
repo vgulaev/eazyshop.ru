@@ -7,6 +7,7 @@ import secrets
 #print ("")
 #print ("Hello word")
 mysql_pass = ""
+
 class dbworker:
     def __init__(self, dbuser):
         self.db = MySQLdb.connect(host = os.environ['IP'], user=dbuser, passwd=mysql_pass, db="c9", charset='utf8')
