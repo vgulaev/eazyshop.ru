@@ -12,7 +12,7 @@ sqlqueryes = ["""
         shop CHAR(36),
         FOREIGN KEY (shop) REFERENCES shops(id)
         ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
-        """        
+        """,
         """
         CREATE TABLE goods (
         id CHAR(36) PRIMARY KEY,

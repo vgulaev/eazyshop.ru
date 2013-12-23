@@ -18,7 +18,7 @@ class dbworker:
         self.cursor.execute(sql)
         self.db.commit()
     def dropalltable(self):
-        names = ["prices", "pricetypes", "goods", "shops"]
+        names = ["prices", "pricetypes", "goods", "users", "shops"]
         for e in names:
             if self.checktableexist(e):
                 self.droptable(e)
@@ -29,53 +29,6 @@ class dbworker:
         """
         self.cursor.execute(sql, tablename)
         return not self.cursor.fetchone() is None
-    def createshopstable(self):
-        sql = """
-        CREATE TABLE shops (
-        id CHAR(40) PRIMARY KEY,
-        caption CHAR(100)
-        ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
-        """
-        self.cursor.execute(sql)
-        self.db.commit()
-    def creategoodstable(self):
-        sql = """
-        CREATE TABLE goods (
-        id CHAR(40) PRIMARY KEY,
-        shop CHAR(40),
-        caption CHAR(100),
-    
-        FOREIGN KEY (shop) REFERENCES shops(id)
-        ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
-        """
-        self.cursor.execute(sql)
-        self.db.commit()
-    def createpricetypestable(self):
-        sql = """
-        CREATE TABLE pricetypes (
-        id CHAR(40) PRIMARY KEY,
-        shop CHAR(40),
-        caption CHAR(100),
-        
-        FOREIGN KEY (shop) REFERENCES shops(id)
-        ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
-        """
-        self.cursor.execute(sql)
-        self.db.commit()
-    def createpricestable(self):
-        sql = """
-        CREATE TABLE prices (
-        pricetype CHAR(40),
-        good CHAR(40),
-        price DECIMAL(8,2),
-        
-        PRIMARY KEY(pricetype, good),
-        FOREIGN KEY (good) REFERENCES goods(id),
-        FOREIGN KEY (pricetype) REFERENCES pricetypes(id)
-        ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
-        """
-        self.cursor.execute(sql)
-        self.db.commit()
     def loadexampledata(self):
         slq = "INSERT INTO shops (id, caption) VALUES('1', 'МПК')"
         self.cursor.execute(slq)
