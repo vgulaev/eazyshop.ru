@@ -1,19 +1,22 @@
 sqlqueryes = ["""
         CREATE TABLE shops (
-        id CHAR(40) PRIMARY KEY,
+        id CHAR(36) PRIMARY KEY,
         caption CHAR(100)
         ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
         """,
         """
         CREATE TABLE users (
-        id CHAR(40) PRIMARY KEY,
-        caption CHAR(100)
+        id CHAR(36) PRIMARY KEY,
+        login CHAR(100),
+        pass CHAR(100),
+        shop CHAR(36),
+        FOREIGN KEY (shop) REFERENCES shops(id)
         ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
         """        
         """
         CREATE TABLE goods (
-        id CHAR(40) PRIMARY KEY,
-        shop CHAR(40),
+        id CHAR(36) PRIMARY KEY,
+        shop CHAR(36),
         caption CHAR(100),
     
         FOREIGN KEY (shop) REFERENCES shops(id)
@@ -21,8 +24,8 @@ sqlqueryes = ["""
         """,
         """
         CREATE TABLE pricetypes (
-        id CHAR(40) PRIMARY KEY,
-        shop CHAR(40),
+        id CHAR(36) PRIMARY KEY,
+        shop CHAR(36),
         caption CHAR(100),
         
         FOREIGN KEY (shop) REFERENCES shops(id)
@@ -30,8 +33,8 @@ sqlqueryes = ["""
         """,
         """
         CREATE TABLE prices (
-        pricetype CHAR(40),
-        good CHAR(40),
+        pricetype CHAR(36),
+        good CHAR(36),
         price DECIMAL(8,2),
         
         PRIMARY KEY(pricetype, good),
