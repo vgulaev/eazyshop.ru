@@ -3,6 +3,7 @@
 import os
 import MySQLdb
 import secrets
+import sqltables
 #print ("Content-Type: text/html; charset=utf-8")
 #print ("")
 #print ("Hello word")
@@ -96,12 +97,17 @@ class dbworker:
         """
         self.cursor.execute(slq)
         self.db.commit()
+    def createtables(self):
+        for e in sqltables.sqlqueryes:
+            self.cursor.execute(e)
+            self.db.commit()
     def doinitdb(self):
         self.dropalltable()
-        self.createshopstable()
-        self.creategoodstable()
-        self.createpricetypestable()
-        self.createpricestable()
+        #self.createshopstable()
+        #self.creategoodstable()
+        #self.createpricetypestable()
+        #self.createpricestable()
+        self.createtables()
         self.loadexampledata()
         self.db.close()
     
