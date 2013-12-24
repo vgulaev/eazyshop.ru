@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-
 import datetime
 import json
 import os
@@ -10,10 +7,9 @@ from smtplib import SMTP_SSL as SMTP
 from email.MIMEText import MIMEText
 from Crypto.Cipher import AES
 
-@csrf_exempt
-def index(request):
+def send(data):
     #if request.method == 'POST':
-    rdata = request.POST
+    rdata = data
     ans = {}
     ans["e"] = rdata["email"]
     ans["t"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -43,9 +39,7 @@ def index(request):
 
     s = SMTP('smtp.yandex.ru', port = 465)
     s.login("webmaster@eazyshop.ru", "28061984")
-    s.sendmail("webmaster@eazyshop.ru", "vgulaev@yandex.ru", msg.as_string())
+    s.sendmail("webmaster@eazyshop.ru", rdata["email"], msg.as_string())
     s.quit()  
     
-    httptext = json.dumps({"ans" : "ok"})
-    
-    return HttpResponse(httptext, content_type="application/json")
+    return {"ans" : "ok"}

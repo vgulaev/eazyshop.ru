@@ -137,6 +137,7 @@ class htmlgn:
         self.generatecssfiles()
         r =  "<!DOCTYPE html><html><head><title>Торгуй - легко!!!</title>"
         r += '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
+        r += "<meta name='yandex-verification' content='6aa20153161df0f4' />"
         for s in self.css:
             r += hg.wh("", "link", 'rel="stylesheet"' + hg.at("href", s))
         r += hg.wh("", "link", 'rel="stylesheet"' + hg.at("href", "//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"))
