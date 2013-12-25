@@ -19,7 +19,8 @@ import jsonws.urls
 
 urlpatterns = patterns('',
     # Index page
-    url(r'^$', views.index, name='index'),
+    #url(r'^$', views.index, name='index'),
+    url(r'^$', views.indexfromtemplate, name='index'),
     # For ajax and other json servises
     url(r'^jsonws/', include(jsonws.urls)),
     #Admin page

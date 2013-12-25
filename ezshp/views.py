@@ -2,7 +2,13 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.conf import settings
+from django.template import RequestContext, loader
 import htmlgen as hg
+
+def indexfromtemplate(request):
+    template = loader.get_template('index.html')
+    context = RequestContext(request, {})
+    return HttpResponse(template.render(context))
 
 def index(request):
     t = hg.htmlgn(request)
