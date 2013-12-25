@@ -42,6 +42,7 @@ def authorize(request, data):
 def index(request):
     ans = {}
     isauthorize = False
+    logout = False
     if request.method == 'POST':
         if (request.POST["method"] == "sendacceptedmail"):
             ans = sendacceptedmail.send(request.POST)
@@ -50,12 +51,16 @@ def index(request):
         elif (request.POST["method"] == "authorize"):
             ans = authorize(request, request.POST)
             isauthorize = True
-
+        elif (request.POST["method"] == "logout"):
+            ans = {"try" : "try"}
+            logout = True
         httptext = json.dumps(ans)
     else:
         httptext = str(request)
     #httptext = json.dumps(response_data)
     response = HttpResponse(httptext, content_type="application/json")
+    if (logout):
+        response.delete_cookie("ezid")
     if (isauthorize):
         if (ans["ezid"] != "no"):
             response.set_cookie("ezid", ans["ezid"])

@@ -21,3 +21,14 @@
       <li><a href="/myadmin/">Админка</a></li>
     </ul>
   </div>
+  <div id = "authorities">
+    {% if authorities.have %}
+    Привет, {{ authorities.login }}!!!
+    <button id="button-logout" onclick = "logout()">Выйти</button>
+    {% else %}
+    <input id="login" placeholder="Логин">
+    <input id="pass" placeholder="Пароль">
+    <button id="button-signin" onclick = "authorize()">Войти</button>
+    <a id="button-signup" href="/registration/">Зарегистрироваться</a>
+    {% endif %}
+  </div>
