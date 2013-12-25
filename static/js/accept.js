@@ -16,7 +16,7 @@ function sendform(){
     } )
     .done(function() {
             //alert( "success" );
-            alert( "На Ваш адресс " + $("#reg-email").val() + " выслано письмо с дальнейшими действиями.");
+            //alert( "На Ваш адресс " + $("#reg-email").val() + " выслано письмо с дальнейшими действиями.");
             $("#reg-email").attr("disabled", true);
             $("#point-one").css("text-decoration", "line-through");
         })
