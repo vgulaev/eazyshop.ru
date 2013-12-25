@@ -4,13 +4,26 @@ from django.views.decorators.csrf import csrf_exempt
 
 import json
 import sendacceptedmail
+import myadmin.initdb
+import uuid
+
+def addaccount(data):
+    db = myadmin.initdb.dbworker()
+    shopid = str(uuid.uuid1())
+    sql = "INSERT INTO shops (id, caption, synonyms) VALUES ('%s', '%s', '%s')" % (shopid, data["shopname"], data["synonyms"])
+    db.cursor.execute(sql)
+    userid = str(uuid.uuid1())
+    sql = "INSERT INTO users (id, login, pass, shop) VALUES ('%s', '%s', '%s', '%s')" % (userid, data["email"], data["pass"], shopid)    
+    db.cursor.execute(sql)
+    db.db.commit()
+    return {"email" : data["email"],
+            "pass" : data["pass"],
+            "shopname" : data["shopname"],
+            "synonyms" : data["synonyms"]}
+
 
 @csrf_exempt
 def index(request):
-    #context_instance=RequestContext(request)
-    #response_data = {}
-    #response_data['result'] = 'failed'
-    #response_data['message'] = 'You messed up'
     ans = {}
     if request.method == 'POST':
         if (request.POST["method"] == "sendacceptedmail"):
@@ -18,7 +31,6 @@ def index(request):
         elif (request.POST["method"] == "addaccount"):
             ans = addaccount(request.POST)
         httptext = json.dumps(ans)
-        #httptext = str(request)
     else:
         httptext = str(request)
     #httptext = json.dumps(response_data)

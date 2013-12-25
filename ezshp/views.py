@@ -2,5 +2,6 @@
 from django.shortcuts import render
 
 def index(request):
-    context = {}
+    scripts = ["index.js"]
+    context = {"scripts" : scripts}
     return render(request, 'index.html', context)

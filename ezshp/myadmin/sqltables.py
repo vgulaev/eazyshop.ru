@@ -1,7 +1,8 @@
 sqlqueryes = ["""
         CREATE TABLE shops (
         id CHAR(36) PRIMARY KEY,
-        caption CHAR(100)
+        caption CHAR(100),
+        synonyms CHAR(100)
         ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
         """,
         """

@@ -9,9 +9,18 @@ import sqltables
 #print ("Hello word")
 mysql_pass = ""
 
+def loadmysqlcredential():
+    global mysql_pass
+    if (os.environ.get('C9_USER') == None):
+        os.environ['C9_USER'] = "root"
+        mysql_pass = secrets.mysql_pass
+    if (os.environ.get('IP') == None):
+        os.environ['IP'] = "localhost"
+
 class dbworker:
-    def __init__(self, dbuser):
-        self.db = MySQLdb.connect(host = os.environ['IP'], user=dbuser, passwd=mysql_pass, db="c9", charset='utf8')
+    def __init__(self):
+        loadmysqlcredential()
+        self.db = MySQLdb.connect(host = os.environ['IP'], user = os.environ['C9_USER'], passwd = mysql_pass, db = "c9", charset = 'utf8')
         self.cursor = self.db.cursor()
     def droptable(self, tablename):
         sql = "DROP TABLE %s" % (tablename)
@@ -67,14 +76,6 @@ class dbworker:
 from django.http import HttpResponse
 import htmlgen as hg
 
-def loadmysqlcredential():
-    global mysql_pass
-    if (os.environ.get('C9_USER') == None):
-        os.environ['C9_USER'] = "root"
-        mysql_pass = secrets.mysql_pass
-    if (os.environ.get('IP') == None):
-        os.environ['IP'] = "localhost"
-
 #loadmysqlcredential()
 #print("*********=", mysql_pass)
 #d = dbworker(dbuser="root")
@@ -82,8 +83,8 @@ def loadmysqlcredential():
 #print("Verry Good!!!")
 
 def index(request):
-    loadmysqlcredential()
-    d = dbworker(dbuser=os.environ['C9_USER'])
+    #loadmysqlcredential()
+    d = dbworker()
     d.doinitdb()
     t = hg.htmlgn(request)
     t.setjsrootname(request.path)
