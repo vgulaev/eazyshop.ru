@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 import os
 import sys
 sys.path.append(settings.SITE_ROOT + "/ezshp")
+sys.path.append(settings.SITE_ROOT + "/cgi")
 
 import views
 import jsonresponse

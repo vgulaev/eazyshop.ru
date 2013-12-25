@@ -43,5 +43,15 @@ sqlqueryes = ["""
         FOREIGN KEY (pricetype) REFERENCES pricetypes(id)
         ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
         """]
+        
+# maintanance tables without busines logic
+sqlqueryes += ["""
+        CREATE TABLE sessions (
+        id CHAR(36) PRIMARY KEY,
+        login CHAR(36),
+        time_start CHAR(100),
+        FOREIGN KEY (login) REFERENCES users(id)
+        ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
+        """]
 #for e in sqlqueryes:
 #    print e

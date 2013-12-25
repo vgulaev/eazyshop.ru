@@ -2,7 +2,6 @@ import json
 
 from django.http import HttpResponse
 import sys
-sys.path.append("cgi")
 from django.conf import settings
 
 def index(request):

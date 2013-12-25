@@ -6,6 +6,7 @@ import json
 import sendacceptedmail
 import myadmin.initdb
 import uuid
+import datetime
 
 def addaccount(data):
     db = myadmin.initdb.dbworker()
@@ -21,17 +22,41 @@ def addaccount(data):
             "shopname" : data["shopname"],
             "synonyms" : data["synonyms"]}
 
+def authorize(request, data):
+    db = myadmin.initdb.dbworker()
+    sql = "SELECT id FROM c9.users where login = '%s' and pass = '%s';" % (data["login"], data["pass"])
+    db.cursor.execute(sql)
+    userrow =  db.cursor.fetchone()
+    if userrow is not None:
+        sessionid = uuid.uuid1()
+        time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        sql = "INSERT INTO sessions (id, login, time_start) VALUES ('%s', '%s', '%s')" % (sessionid, userrow[0], time)
+        db.cursor.execute(sql)
+        db.db.commit()
+        s = str(sessionid)
+    else:
+        s = "no"
+    return {"ezid" : s}
 
 @csrf_exempt
 def index(request):
     ans = {}
+    isauthorize = False
     if request.method == 'POST':
         if (request.POST["method"] == "sendacceptedmail"):
             ans = sendacceptedmail.send(request.POST)
         elif (request.POST["method"] == "addaccount"):
             ans = addaccount(request.POST)
+        elif (request.POST["method"] == "authorize"):
+            ans = authorize(request, request.POST)
+            isauthorize = True
+
         httptext = json.dumps(ans)
     else:
         httptext = str(request)
     #httptext = json.dumps(response_data)
-    return HttpResponse(httptext, content_type="application/json")
+    response = HttpResponse(httptext, content_type="application/json")
+    if (isauthorize):
+        if (ans["ezid"] != "no"):
+            response.set_cookie("ezid", ans["ezid"])
+    return response
