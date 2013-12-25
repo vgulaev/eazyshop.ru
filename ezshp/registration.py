@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Create your views here.
 from django.http import HttpResponse
+from django.shortcuts import render
 import htmlgen as hg
 import json
 from Crypto.Cipher import AES
@@ -59,90 +60,10 @@ def accept(request, uid = ""):
     obj2 = AES.new('This is a key123', AES.MODE_CFB, 'This is an IV456')
     cred = json.loads(obj2.decrypt(str(uid).decode("hex")))
 
-    t = hg.htmlgn(request)
-    t.setjsrootname(request.path)
+    links = ["accept.css"]
+    scripts = ["accept.js"]
+    context = { "email": cred["e"],
+                "scripts": scripts,
+                "links": links}
 
-    n = hg.navigationblock()
-    t.append(n)
-    t.append(hg.htmltext("""<br>"""))
-    
-    i = hg.input(id="email")
-    i.placeholder = "e-mail"
-    i.value = str(cred["e"])
-    t.append(i)
-    t.append(hg.htmltext("<br>"))
-    
-    i = hg.input(id="pass")
-    i.placeholder = "пароль"
-    t.append(i)
-    t.append(hg.htmltext("<br>"))
-
-    i = hg.input(id="passcopy")
-    i.placeholder = "повторите пароль"
-    t.append(i)
-    t.append(hg.htmltext("<br>"))
-
-
-    i = hg.input(id="shopname")
-    i.placeholder = "имя магазина"
-    t.append(i)
-    t.append(hg.htmltext("<br>"))
-    
-    i = hg.input(id="synonyms")
-    i.placeholder = "английский синоним"
-    t.append(i)
-    t.append(hg.htmltext(", желательно короткий"))
-    t.append(hg.htmltext("<br>"))
-    
-    e = hg.htmlevent()
-    e.name = "onclick"
-    e.function = "sendform()"
-    e.text = """function sendform(){
-    var jqxhr = $.ajax({
-    "url":"/jsonws/ws/",
-    type: "POST",
-    "data": {
-        method    : "addaccount",
-        email     : $("#email").val(),
-        pass      : $("#pass").val(),
-        shopname  : $("#shopname").val(),
-        synonyms  : $("#synonyms").val()
-        },
-    beforeSend: function () {
-            $("#sendform").html("Идет обработка");
-            $("#sendform").attr("disabled", true);
-    }
-    } )
-        .done(function() {
-            //alert( "success" );
-            alert( "На Ваш адресс " + $("#reg-email").val() + " выслано письмо с дальнейшими действиями.");
-            $("#reg-email").attr("disabled", true);
-            $("#point-one").css("text-decoration", "line-through");
-        })
-        .fail(function() {
-            alert( "error" );
-        })
-        .always(function() {
-            $("#sendform").html("Завершить регистрацию");
-        });
-        }"""
-    b = hg.button(id = "sendform")
-    b.caption = "Завершить регистрацию"
-    b.events.append(e)
-    t.append(b)
-    
-
-    #t.append(hg.htmltext(str("Hello" + uid)))
-    t.cssmain = """
-    input {
-    width: 250px
-    }
-    button {
-    width: 250px
-    }
-    """
-    t.jsmain = """
-    """
-    
-    httptext = t.gen()
-    return HttpResponse(httptext)
+    return render(request, 'registration.html', context)

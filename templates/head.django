@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name='yandex-verification' content='6aa20153161df0f4' />
+  <meta debug = "just for pleasure">
+  <title>Торгуй легко</title>
+  <link rel="stylesheet" href="/static/css/main.css">  
+  {% for l in links %}
+    <link rel="stylesheet" href="/static/css/{{ l }}">  
+  {% endfor %}
+  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  {% for s in scripts %}
+    <script src="/static/js/{{ s }}"></script>
+  {% endfor %}
+</head>
+<body>
+  <div id="nav-div">
+    <ul>
+      <li><a href="/">Главная</a></li>
+      <li><a href="/myadmin/">Админка</a></li>
+    </ul>
+  </div>
