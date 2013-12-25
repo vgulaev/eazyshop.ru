@@ -1,0 +1,11 @@
+input {
+    width: 250px
+}
+button {
+    width: 250px
+}
+
+#nav-div li {
+    float: left;
+    width: 90px;
+}
