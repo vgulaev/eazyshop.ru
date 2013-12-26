@@ -5,7 +5,7 @@ function sendform(){
         "data": {
             method    : "addaccount",
             email     : $("#email").val(),
-            pass      : $("#pass").val(),
+            pass      : $("#passwd").val(),
             shopname  : $("#shopname").val(),
             synonyms  : $("#synonyms").val()
         },

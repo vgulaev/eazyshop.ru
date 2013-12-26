@@ -1,14 +1,16 @@
 {% include "head.django" %}
+<div id = "content">
   <br>
   <input id = "email" placeholder = "e-mail" value = {{ email }}>
   <br>
-  <input id = "pass" placeholder = "пароль">
+  <input id = "passwd" placeholder = "пароль">
   <br>
-  <input id = "passcopy" placeholder = "повторите пароль">
+  <input id = "passwdcopy" placeholder = "повторите пароль">
   <br>
   <input id = "shopname" placeholder = "имя магазина">
   <br>
   <input id = "synonyms" placeholder = "английский синоним">, желательно короткий<br>
   <button id = "sendform" onclick = "sendform()">Завершить регистрацию</button>
+</div>
 </body>
 </html>
