@@ -4,23 +4,32 @@ import os
 import MySQLdb
 import secrets
 import sqltables
+import socket
+
 #print ("Content-Type: text/html; charset=utf-8")
 #print ("")
 #print ("Hello word")
-mysql_pass = ""
 
 def loadmysqlcredential():
-    global mysql_pass
+    passwd = ""
     if (os.environ.get('C9_USER') == None):
         os.environ['C9_USER'] = "root"
         mysql_pass = secrets.mysql_pass
     if (os.environ.get('IP') == None):
         os.environ['IP'] = "localhost"
+    if (socket.gethostname() == "eazyshop.ru"):
+        os.environ['C9_USER'] = "root"
+        os.environ['IP'] = "localhost"
+        passwd = secrets.mysql_pass
+    r = {   "host" : os.environ['IP'],
+            "user" : os.environ['C9_USER'],
+            "passwd" : passwd}
+    return r
 
 class dbworker:
     def __init__(self):
-        loadmysqlcredential()
-        self.db = MySQLdb.connect(host = os.environ['IP'], user = os.environ['C9_USER'], passwd = mysql_pass, db = "c9", charset = 'utf8')
+        cred = loadmysqlcredential()
+        self.db = MySQLdb.connect(host = cred["host"], user = cred["user"], passwd = cred["passwd"], db = "c9", charset = 'utf8')
         self.cursor = self.db.cursor()
     def droptable(self, tablename):
         sql = "DROP TABLE %s" % (tablename)

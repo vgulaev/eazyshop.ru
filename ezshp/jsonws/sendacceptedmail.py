@@ -2,6 +2,7 @@
 import datetime
 import json
 import os
+import socket
 
 from smtplib import SMTP_SSL as SMTP
 from email.MIMEText import MIMEText
@@ -22,7 +23,7 @@ def send(data):
     
     text_subtype = 'plain'
     
-    if (os.environ.get('C9_USER') == None):
+    if (socket.gethostname() == "eazyshop.ru"):
         domainname = "http://eazyshop.ru"
     else:
         domainname = "https://eazyshop_ru-c9-vgulaev.c9.io"
