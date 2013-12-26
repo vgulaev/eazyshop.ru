@@ -5,8 +5,7 @@ import ez
 
 def index(request):
     authorities = ez.checkauthorize(request)
-    scripts = ["index.js"]
-    context = {"scripts" : scripts,
-    "authorities": authorities}
+    #scripts = ["index.js"]
+    context = {"authorities": authorities}
     return render(request, 'index.html', context)
     #return HttpResponse(str(authorities.login), content_type="text/plain")
