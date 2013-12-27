@@ -60,7 +60,7 @@ def index(request):
         elif (jsondata["method"] == "addaccount"):
             ans = addaccount(request.POST)
         elif (jsondata["method"] == "authorize"):
-            ans = authorize(request, request.POST)
+            ans = authorize(request, jsondata)
             isauthorize = True
         elif (jsondata["method"] == "logout"):
             ans = {"try" : "try"}
