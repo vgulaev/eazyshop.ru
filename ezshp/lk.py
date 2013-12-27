@@ -6,5 +6,8 @@ def index(request):
     authorities = ez.checkauthorize(request)
     #scripts = ["index.js"]
     context = {"authorities": authorities}
-    return render(request, 'lk.html', context)
+    if (authorities.have):
+    	return render(request, 'lk.html', context)
+    else:
+    	return render(request, 'necessaryauth.html', context)
     #return HttpResponse(str(authorities.login), content_type="text/plain")

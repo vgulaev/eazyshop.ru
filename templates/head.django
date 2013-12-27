@@ -19,7 +19,9 @@
   <div id="nav-div">
     <ul>
       <li><a href="/">Главная</a></li>
+      {% if authorities.login == "vgulaev@yandex.ru" %}
       <li><a href="/myadmin/">Админка</a></li>
+      {% endif %}
       {% if authorities.have %}
       <li><a href="/lk/">Личный Кабинет</a></li>
       {% endif %}
