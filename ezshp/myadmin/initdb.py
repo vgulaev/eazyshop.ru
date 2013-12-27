@@ -79,7 +79,7 @@ class dbworker:
         #self.createpricetypestable()
         #self.createpricestable()
         self.createtables()
-        self.loadexampledata()
+        #self.loadexampledata()
         self.db.close()
     
 from django.http import HttpResponse

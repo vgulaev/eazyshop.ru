@@ -19,6 +19,7 @@ sqlqueryes = ["""
         id CHAR(36) PRIMARY KEY,
         shop CHAR(36),
         caption CHAR(100),
+        INDEX (caption),
     
         FOREIGN KEY (shop) REFERENCES shops(id)
         ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;

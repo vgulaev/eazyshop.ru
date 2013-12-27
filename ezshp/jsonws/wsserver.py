@@ -47,6 +47,17 @@ def authorize(request, data):
         s = "no"
     return {"ezid" : s}
 
+def addarticle(data):
+    db = myadmin.initdb.dbworker()
+    #тут есть момент что магазины могут отличаться а идентификаторы товаров нет
+    sql = u"""INSERT INTO goods (id, shop, caption) VALUES ('{0}', '{1}', '{2}')
+            ON DUPLICATE KEY UPDATE caption='{2}';
+    """.format(data["id"], data["shop"], data["caption"])
+    #sql = """INSERT INTO goods (id, shop, caption) VALUES ('%s', '%s', '%s')""" % (data["id"], data["shop"], data["caption"])
+    db.cursor.execute(sql)
+    db.db.commit()
+    return {}
+
 @csrf_exempt
 def index(request):
     ans = {}
@@ -65,6 +76,8 @@ def index(request):
         elif (jsondata["method"] == "logout"):
             ans = {"try" : "try"}
             logout = True
+        elif (jsondata["method"] == "addarticle"):
+            ans = addarticle(jsondata)
         httptext = json.dumps(ans)
     else:
         httptext = str(request)
