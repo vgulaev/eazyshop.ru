@@ -5,7 +5,7 @@
   <meta name='yandex-verification' content='6aa20153161df0f4' />
   <meta debug = "just for pleasure">
   <title>Торгуй легко</title>
-  <link rel="stylesheet" href="/static/css/main.css">  
+  <link rel="stylesheet" href="/static/css/ez.css">  
   {% for l in links %}
     <link rel="stylesheet" href="/static/css/{{ l }}">  
   {% endfor %}
@@ -20,16 +20,19 @@
     <ul>
       <li><a href="/">Главная</a></li>
       <li><a href="/myadmin/">Админка</a></li>
+      {% if authorities.have %}
+      <li><a href="/lk/">Личный Кабинет</a></li>
+      {% endif %}
     </ul>
-  </div>
   <div id = "authorities">
     {% if authorities.have %}
     Привет, {{ authorities.login }}!!!
     <button id="button-logout" onclick = "logout()">Выйти</button>
     {% else %}
     <input id="login" placeholder="Логин">
-    <input id="pass" placeholder="Пароль">
+    <input id="pass" type="password" placeholder="Пароль">
     <button id="button-signin" onclick = "authorize()">Войти</button>
     <a id="button-signup" href="/registration/">Зарегистрироваться</a>
     {% endif %}
+  </div>
   </div>

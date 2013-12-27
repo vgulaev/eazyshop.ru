@@ -1,4 +1,8 @@
 #nav-div li {
 	float: left;
-	width: 90px;
+	width: 160px;
+}
+
+#nav-div {
+	border: 1px solid;
 }

@@ -10,6 +10,7 @@ sys.path.append(settings.SITE_ROOT + "/ezshp")
 sys.path.append(settings.SITE_ROOT + "/cgi")
 
 import views
+import lk
 import jsonresponse
 import showrequest
 #import myadmin.main
@@ -21,6 +22,7 @@ import jsonws.urls
 urlpatterns = patterns('',
     # Index page
     url(r'^$', views.index, name='index'),
+    url(r'^lk/$', lk.index, name='index'),
     # For ajax and other json servises
     url(r'^jsonws/', include(jsonws.urls)),
     #Admin page
