@@ -12,7 +12,7 @@ function authorize(){
             $("#button-signin").attr("disabled", true);
         }
     } )
-    .done(function() {
+    .done(function( data ) {
             //$("#button-signin").attr("disabled", false);
             location.reload();
         })

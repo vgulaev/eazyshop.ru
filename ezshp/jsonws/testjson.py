@@ -2,6 +2,15 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 import json
+import codecs
+
+def normalizedata(request):
+    rawdata = request.read()
+    if (rawdata[0:3] == codecs.BOM_UTF8):
+        jsondata = json.loads(rawdata[3:])
+    else:
+        jsondata = request.POST
+    return jsondata
 
 @csrf_exempt
 def index(request):
@@ -12,7 +21,19 @@ def index(request):
     
     if request.method == 'POST':
         #httptext = json.dumps(request.POST)
-        httptext = str(request)
+        
+        #httptext = request.body
+        rawdata = request.read()
+        s = rawdata[3:]
+        goodsdic = json.loads(s)
+        #httptext = json.dumps(goodsdic)
+        if (rawdata[0:3] == codecs.BOM_UTF8):
+            httptext = "this is BOM"
+        else:
+            httptext = "this clear UTF" + codecs.BOM
+        #httptext = json.dumps(response_data)
+        #httptext = request.encoding
+        #httptext = str(request)
     else:
         httptext = str(request)
     #httptext = json.dumps(response_data)

@@ -8,6 +8,15 @@ import myadmin.initdb
 import uuid
 import datetime
 
+def normalizedata(request):
+    if ("1C" in request.META["HTTP_USER_AGENT"]):
+        rawdata = request.read()
+        jsondata = json.loads(rawdata[3:])
+    else:
+        jsondata = request.POST
+        #jsondata = str(request)
+    return jsondata
+
 def addaccount(data):
     db = myadmin.initdb.dbworker()
     shopid = str(uuid.uuid1())
@@ -44,14 +53,16 @@ def index(request):
     isauthorize = False
     logout = False
     if request.method == 'POST':
-        if (request.POST["method"] == "sendacceptedmail"):
+        #need clear BOM header if it send from stupid platforms
+        jsondata = normalizedata(request)
+        if (jsondata["method"] == "sendacceptedmail"):
             ans = sendacceptedmail.send(request.POST)
-        elif (request.POST["method"] == "addaccount"):
+        elif (jsondata["method"] == "addaccount"):
             ans = addaccount(request.POST)
-        elif (request.POST["method"] == "authorize"):
+        elif (jsondata["method"] == "authorize"):
             ans = authorize(request, request.POST)
             isauthorize = True
-        elif (request.POST["method"] == "logout"):
+        elif (jsondata["method"] == "logout"):
             ans = {"try" : "try"}
             logout = True
         httptext = json.dumps(ans)
