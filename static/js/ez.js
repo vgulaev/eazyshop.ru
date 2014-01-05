@@ -49,3 +49,15 @@ function logout(){
         $("#button-logout").attr("disabled", false);
     });
 }
+
+function uptableprice(){
+    //alert("New concept!");
+    $("#output").html($("#substr").val());
+}
+
+$(function () {
+    $("#substr").bind("change paste keyup", function () {
+        uptableprice();
+        //alert("Try to find");
+    });
+})
