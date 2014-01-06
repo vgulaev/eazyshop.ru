@@ -7,13 +7,17 @@ from django.shortcuts import render
 @csrf_exempt
 def index(request):
 	db = myadmin.initdb.dbworker()
-	sql = "select caption from (select caption FROM goods ORDER BY RAND() LIMIT 10) as main order by caption"
+	substr = request.POST.get("substr")
+	if (substr is None):
+		sql = "select caption from (select caption FROM goods ORDER BY RAND() LIMIT 10) as main order by caption"
+	else:
+		sql = u"select caption FROM goods where caption like '{0}%' ORDER BY caption LIMIT 10 ".format(substr)
+	print(sql)
 	db.cursor.execute(sql)
 	row =  db.cursor.fetchone()
 	goods = []
 	while row is not None:
 		goods += [row[0]]
-		print row[0]
 		row =  db.cursor.fetchone()
 	context = {"deguging" : False,
 	"goods" : goods}

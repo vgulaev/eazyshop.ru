@@ -51,8 +51,21 @@ function logout(){
 }
 
 function uptableprice(){
-    //alert("New concept!");
-    $("#output").html($("#substr").val());
+    var jqxhr = $.ajax({
+        "url":"/htmlws/pricetable/",
+        type: "POST",
+        "data": {
+            substr    : $("#substr").val(),
+        },
+    } )
+    .done(function(data) {
+            $("#output").html(data);
+        })
+    .fail(function() {
+    })
+    .always(function() {
+    });
+    //$("#output").html($("#substr").val());
 }
 
 $(function () {
