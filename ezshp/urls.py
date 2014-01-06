@@ -18,6 +18,7 @@ import myadmin.urls
 import principles
 import registration
 import jsonws.urls
+import htmlws.urls
 
 urlpatterns = patterns('',
     # Index page
@@ -25,6 +26,8 @@ urlpatterns = patterns('',
     url(r'^lk/$', lk.index, name='index'),
     # For ajax and other json servises
     url(r'^jsonws/', include(jsonws.urls)),
+    # For ajax and other json servises
+    url(r'^htmlws/', include(htmlws.urls)),
     #Admin page
     url(r'^myadmin/', include(myadmin.urls)),
     #Our princeples

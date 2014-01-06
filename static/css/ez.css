@@ -10,3 +10,16 @@
 #footer-div {
 	border: 1px solid;
 }
+
+table.pricetable {
+		border: 1px solid #aaa;
+		border-spacing: 0px;
+}
+
+table.pricetable tr {
+	border-collapse: collapse;
+}
+table.pricetable td {
+		border: 1px solid #aaa;
+		border-collapse: collapse;
+}

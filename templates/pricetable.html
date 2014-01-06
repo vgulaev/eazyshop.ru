@@ -1,0 +1,31 @@
+{% if deguging %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Торгуй легко</title>
+  <link rel="stylesheet" href="/static/css/ez.css">  
+  {% for l in links %}
+    <link rel="stylesheet" href="/static/css/{{ l }}">  
+  {% endfor %}
+  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="/static/js/ez.js"></script>
+  {% for s in scripts %}
+    <script src="/static/js/{{ s }}"></script>
+  {% endfor %}
+</head>
+<body>
+{% endif %}
+    <table class = "pricetable">
+    <tbody>
+    {% for i in goods %}
+    <tr>
+    <td>{{ i }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% if deguging %}
+</body>
+</html>
+{% endif %}
