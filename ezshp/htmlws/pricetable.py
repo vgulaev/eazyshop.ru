@@ -11,7 +11,7 @@ def index(request):
 	if (substr is None):
 		sql = "select caption from (select caption FROM goods ORDER BY RAND() LIMIT 10) as main order by caption"
 	else:
-		sql = u"select caption FROM goods where caption like '{0}%' ORDER BY caption LIMIT 10".format(substr)
+		sql = u"select caption FROM goods where caption like '%{0}%' ORDER BY caption LIMIT 10".format(substr)
 	#print(sql)
 	db.cursor.execute(sql)
 	row =  db.cursor.fetchone()
