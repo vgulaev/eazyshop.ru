@@ -8,7 +8,7 @@ from django.shortcuts import render
 def index(request):
 	db = myadmin.initdb.dbworker()
 	substr = request.POST.get("substr")
-	if (substr is None):
+	if ((substr is None) or (substr == "")):
 		sql = "select caption from (select caption FROM goods ORDER BY RAND() LIMIT 10) as main order by caption"
 	else:
 		sql = u"select caption FROM goods where caption like '%{0}%' ORDER BY caption LIMIT 10".format(substr)

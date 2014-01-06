@@ -18,7 +18,7 @@ sqlqueryes = ["""
         CREATE TABLE goods (
         id CHAR(36) PRIMARY KEY,
         shop CHAR(36),
-        caption CHAR(100),
+        caption CHAR(100) COLLATE utf8_general_ci,
         INDEX (caption),
     
         FOREIGN KEY (shop) REFERENCES shops(id)

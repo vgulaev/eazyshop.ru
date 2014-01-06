@@ -51,25 +51,36 @@ function logout(){
 }
 
 function uptableprice(){
-    var jqxhr = $.ajax({
-        "url":"/htmlws/pricetable/",
-        type: "POST",
-        "data": {
-            substr    : $("#substr").val(),
-        },
-    } )
-    .done(function(data) {
+    if (!ajaxtopricetable) {
+        var jqxhr = $.ajax({
+            "url":"/htmlws/pricetable/",
+            type: "POST",
+            "data": {
+                substr    : $("#substr").val(),
+            },
+            beforeSend: function () {
+                ajaxtopricetable = true;
+                ajaxcall = ajaxcall + 1;
+            },
+        } )
+        .done(function(data) {
             $("#output").html(data);
         })
-    .fail(function() {
-    })
-    .always(function() {
-    });
-    //$("#output").html($("#substr").val());
+        .fail(function() {
+        })
+        .always(function() {
+            ajaxtopricetable = false;
+        });
+    }
+    $("#output2").html("Call bindcall: " + bindcall + " ajaxcall: " + ajaxcall);
 }
 
 $(function () {
+    ajaxtopricetable = false;
+    bindcall = 0;
+    ajaxcall = 0;
     $("#substr").bind("change paste keyup", function () {
+        bindcall = bindcall + 1;
         uptableprice();
         //alert("Try to find");
     });
