@@ -30,10 +30,12 @@ urlpatterns = patterns('',
     url(r'^htmlws/', include(htmlws.urls)),
     #Admin page
     url(r'^myadmin/', include(myadmin.urls)),
-    #Our princeples
+    #Who we are
     url(r'^who-we-are/', principles.who_we_are, name = 'who-we-are'),
     #Our princeples
     url(r'^principles/', principles.index, name = 'principles'),
+    #Welcome page
+    url(r'^welcome/', principles.welcome, name = 'welcome'),
     #Bussines logic
     #registration page
     url(r'^registration/', registration.index, name = 'registration'),    
