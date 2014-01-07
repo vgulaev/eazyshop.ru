@@ -58,6 +58,17 @@ def addarticle(data):
     db.db.commit()
     return {}
 
+def get_shop_id_by_ezid(data):
+    db = myadmin.initdb.dbworker()
+    sql = u"select users.shop from sessions join users on sessions.login = users.id where sessions.id = '{0}'".format(data["session_uid"])
+    db.cursor.execute(sql)
+    userrow =  db.cursor.fetchone()
+    if userrow is not None:
+        s = userrow[0]
+    else:
+        s = "no"
+    return {"shop_uid" : s}
+
 @csrf_exempt
 def index(request):
     ans = {}
@@ -78,6 +89,8 @@ def index(request):
             logout = True
         elif (jsondata["method"] == "addarticle"):
             ans = addarticle(jsondata)
+        elif (jsondata["method"] == "get_shop_id_by_ezid"):
+            ans = get_shop_id_by_ezid(jsondata)
         httptext = json.dumps(ans)
     else:
         httptext = str(request)

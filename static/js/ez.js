@@ -51,7 +51,7 @@ function logout(){
 }
 
 function uptableprice(){
-    if (!ajaxtopricetable) {
+    if ((!ajaxtopricetable) && (lastsubstr != $("#substr").val())) {
         var jqxhr = $.ajax({
             "url":"/htmlws/pricetable/",
             type: "POST",
@@ -61,6 +61,7 @@ function uptableprice(){
             beforeSend: function () {
                 ajaxtopricetable = true;
                 ajaxcall = ajaxcall + 1;
+                lastsubstr = $("#substr").val();
             },
         } )
         .done(function(data) {
@@ -70,6 +71,7 @@ function uptableprice(){
         })
         .always(function() {
             ajaxtopricetable = false;
+            uptableprice();
         });
     }
     $("#output2").html("Call bindcall: " + bindcall + " ajaxcall: " + ajaxcall);
@@ -79,6 +81,8 @@ $(function () {
     ajaxtopricetable = false;
     bindcall = 0;
     ajaxcall = 0;
+    lastsubstr = null;
+    uptableprice();
     $("#substr").bind("change paste keyup", function () {
         bindcall = bindcall + 1;
         uptableprice();
