@@ -48,6 +48,7 @@ if (location.hostname == "eazyshop.ru") {
 <div id="nav-div">
     <ul>
       <li><a href="/">Главная</a></li>
+      <li><a href="/welcome/">Welcome</a></li>
       {% if authorities.login == "vgulaev@yandex.ru" %}
       <li><a href="/myadmin/">Админка</a></li>
       {% endif %}
