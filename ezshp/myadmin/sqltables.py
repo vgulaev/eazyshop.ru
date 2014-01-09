@@ -54,5 +54,16 @@ sqlqueryes += ["""
         FOREIGN KEY (login) REFERENCES users(id)
         ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
         """]
+
+updatequeryes = []
+#for 0 version to 1
+updatequeryes += [["""
+        CREATE TABLE sysinfo (
+        key_name CHAR(36) PRIMARY KEY,
+        value CHAR(100)
+        ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
+        """,
+        "INSERT INTO sysinfo (key_name, value) VALUES ('versiondb', '1')",
+        "ALTER TABLE goods ADD COLUMN ProductNo VARCHAR(40) AFTER caption"]]
 #for e in sqlqueryes:
 #    print e
