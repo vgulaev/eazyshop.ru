@@ -31,6 +31,16 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
-.label{
-	font-size: 14px;
+
+.hello-label {
+display: inline;
+padding: .2em .6em .3em;
+font-size: 14px;
+font-weight: bold;
+line-height: 1;
+color: #fff;
+text-align: center;
+white-space: nowrap;
+vertical-align: baseline;
+border-radius: .25em;
 }

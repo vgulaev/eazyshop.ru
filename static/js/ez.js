@@ -14,7 +14,7 @@ function authorize(){
     } )
     .done(function( data ) {
             //$("#button-signin").attr("disabled", false);
-            //location.reload();
+            location.reload();
         })
     .fail(function() {
         alert( "error" );
