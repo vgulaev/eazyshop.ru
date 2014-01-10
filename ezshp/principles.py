@@ -18,5 +18,6 @@ def welcome(request):
     authorities = ez.checkauthorize(request)
     scripts = ["welcome.js"]
     context = {"authorities"	: authorities,
+                "location": "welcome",
 				"scripts"		: scripts}
     return render(request, 'welcome.html', context)

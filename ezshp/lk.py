@@ -6,6 +6,7 @@ def index(request):
     authorities = ez.checkauthorize(request)
     scripts = ["lk.js"]
     context = {"authorities": authorities,
+    			"location": "lk",
     			"scripts": scripts}
     if (authorities.have):
     	return render(request, 'lk.html', context)
