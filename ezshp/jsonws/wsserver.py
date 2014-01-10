@@ -69,6 +69,9 @@ def get_shop_id_by_ezid(data):
         s = "no"
     return {"shop_uid" : s}
 
+def testserver():
+    return {"ans" : "ok"}
+
 @csrf_exempt
 def index(request):
     ans = {}
@@ -91,6 +94,8 @@ def index(request):
             ans = addarticle(jsondata)
         elif (jsondata["method"] == "get_shop_id_by_ezid"):
             ans = get_shop_id_by_ezid(jsondata)
+        elif (jsondata["method"] == "testserver"):
+            ans = testserver()
         httptext = json.dumps(ans)
     else:
         httptext = str(request)

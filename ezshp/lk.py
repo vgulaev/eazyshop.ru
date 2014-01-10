@@ -4,8 +4,9 @@ import ez
 
 def index(request):
     authorities = ez.checkauthorize(request)
-    #scripts = ["index.js"]
-    context = {"authorities": authorities}
+    scripts = ["lk.js"]
+    context = {"authorities": authorities,
+    			"scripts": scripts}
     if (authorities.have):
     	return render(request, 'lk.html', context)
     else:
