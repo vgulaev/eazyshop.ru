@@ -19,11 +19,13 @@ import principles
 import registration
 import jsonws.urls
 import htmlws.urls
+import gchoice
 
 urlpatterns = patterns('',
     # Index page
-    url(r'^$', views.index, name='index'),
-    url(r'^lk/$', lk.index, name='index'),
+    url(r'^$', views.index, name='home'),
+    url(r'^lk/$', lk.index, name='lk'),
+    url(r'^choice/$', gchoice.index, name='choice'),
     # For ajax and other json servises
     url(r'^jsonws/', include(jsonws.urls)),
     # For ajax and other json servises

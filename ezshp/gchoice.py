@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
+"""Like Goods choice"""
 from django.shortcuts import render
-from django.http import HttpResponse
 import ez
 
 def index(request):
    	authorities = ez.checkauthorize(request)
-   	#scripts = ["index.js"]
+   	scripts = ["gchoice.js"]
    	context = {"authorities": authorities,
-   				"location": "home"}
-   	return render(request, 'index.html', context)
+   				"location"	: "choice",
+   				"scripts"	: scripts}
+   	return render(request, 'choice.html', context)
     #return HttpResponse(str(authorities.login), content_type="text/plain")

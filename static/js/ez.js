@@ -50,6 +50,13 @@ function logout(){
     });
 }
 
+function addgoodtochoice(goodsid){
+    db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
+    db.transaction(function(tx) {
+        tx.executeSql("INSERT INTO gchoice (id, caption, amount) values (?, ?, ?)", [goodsid, "", 0], null, null);
+        });
+}
+
 function uptableprice(){
     if ((!ajaxtopricetable) && (lastsubstr != $("#substr").val())) {
         var jqxhr = $.ajax({
@@ -78,11 +85,19 @@ function uptableprice(){
     $("#output2").html("Height: " + window.screen.availHeight + " Width: " + window.screen.availWidth);
 }
 
+function createdb(){
+    db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
+    db.transaction(function(tx) {
+        tx.executeSql("CREATE TABLE IF NOT EXISTS gchoice (id TEXT UNIQUE, caption TEXT, amount REAL)", [], null, null);
+        });
+}
+
 $(function () {
     ajaxtopricetable = false;
     bindcall = 0;
     ajaxcall = 0;
     lastsubstr = null;
+    createdb();
     uptableprice();
     $("#substr").bind("change paste keyup", function () {
         bindcall = bindcall + 1;

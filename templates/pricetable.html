@@ -19,9 +19,9 @@
     <table class = "pricetable">
     <tbody>
     {% for i in goods %}
-    <tr>
-    <td>{{ i.caption }}</td>
-    <td><button class="btn btn-success" goodid = "{{ i.id }}" onclick="alert('ok')"><span class = "glyphicon glyphicon-plus"></span></button></td>
+    <tr id = "{{ i.id }}">
+    <td id = "caption">{{ i.caption }}</td>
+    <td><button class="btn btn-success" onclick="addgoodtochoice('{{ i.id }}')"><span class = "glyphicon glyphicon-plus"></span></button></td>
     </tr>
     {% endfor %}
     </tbody>
