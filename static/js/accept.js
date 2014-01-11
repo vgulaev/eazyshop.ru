@@ -26,3 +26,15 @@ function sendform(){
         $("#sendform").html("Завершить регистрацию");
     });
 }
+
+$(function () {
+    $("#passwdcopy").bind("change paste keyup", function () {
+        if ($("#passwd").val() != $("#passwdcopy").val()){
+            $("#pass-equal").html("Пароли разные");
+        }
+        else
+        {
+            $("#pass-equal").html("");
+        }
+    });
+})
