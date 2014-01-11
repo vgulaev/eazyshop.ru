@@ -74,7 +74,8 @@ function uptableprice(){
             uptableprice();
         });
     }
-    $("#output2").html("Call bindcall: " + bindcall + " ajaxcall: " + ajaxcall);
+    //$("#output2").html("Call bindcall: " + bindcall + " ajaxcall: " + ajaxcall);
+    $("#output2").html("Height: " + window.screen.availHeight + " Width: " + window.screen.availWidth);
 }
 
 $(function () {
