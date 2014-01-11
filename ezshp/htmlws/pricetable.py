@@ -10,7 +10,7 @@ def index(request):
 	db = myadmin.initdb.dbworker()
 	substr = request.POST.get("substr")
 	if ((substr is None) or (substr == "")):
-		sql = "select caption, id from (select caption FROM goods ORDER BY RAND() LIMIT 10) as main order by caption"
+		sql = "select caption, id from (select caption, id FROM goods ORDER BY RAND() LIMIT 10) as main order by caption"
 	else:
 		sql = u"select caption, id FROM goods where caption like '%{0}%' ORDER BY caption LIMIT 10".format(substr)
 	#print(sql)
@@ -18,7 +18,6 @@ def index(request):
 	row =  db.cursor.fetchone()
 	goods = []
 	Good = namedtuple('Good', ['caption', 'id'])
-
 	while row is not None:
 		goods += [Good(row[0], row[1])]
 		row =  db.cursor.fetchone()
