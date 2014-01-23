@@ -41,11 +41,11 @@ class dbworker:
             if self.checktableexist(e):
                 self.droptable(e)
     def checktableexist(self, tablename):
-        sql = """
+        sql = u"""
         SHOW TABLES IN c9
-        LIKE %s
-        """
-        self.cursor.execute(sql, tablename)
+        LIKE '{0}'
+        """.format(tablename)
+        self.cursor.execute(sql)
         return not self.cursor.fetchone() is None
     def loadexampledata(self):
         slq = "INSERT INTO shops (id, caption) VALUES('1', 'МПК')"
@@ -79,7 +79,7 @@ class dbworker:
         #self.createpricetypestable()
         #self.createpricestable()
         self.createtables()
-        #self.loadexampledata()
+        self.loadexampledata()
         self.db.close()
     
 from django.http import HttpResponse
