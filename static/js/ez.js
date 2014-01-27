@@ -50,10 +50,10 @@ function logout(){
     });
 }
 
-function addgoodtochoice(goodsid){
-    db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
+function addgoodtochoice(goodsid, caption){
+    var db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
     db.transaction(function(tx) {
-        tx.executeSql("INSERT INTO gchoice (id, caption, amount) values (?, ?, ?)", [goodsid, "", 0], null, null);
+        tx.executeSql("INSERT INTO gchoice (id, caption, amount) values (?, ?, ?)", [goodsid, caption, 0], null, null);
         });
 }
 
@@ -86,7 +86,7 @@ function uptableprice(){
 }
 
 function createdb(){
-    db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
+    var db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
     db.transaction(function(tx) {
         tx.executeSql("CREATE TABLE IF NOT EXISTS gchoice (id TEXT UNIQUE, caption TEXT, amount REAL)", [], null, null);
         });

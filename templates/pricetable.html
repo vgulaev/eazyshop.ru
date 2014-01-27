@@ -21,7 +21,7 @@
     {% for i in goods %}
     <tr id = "{{ i.id }}">
     <td id = "caption">{{ i.caption }}</td>
-    <td><button class="btn btn-success" onclick="addgoodtochoice('{{ i.id }}')"><span class = "glyphicon glyphicon-plus"></span></button></td>
+    <td><button class="btn btn-success" onclick="addgoodtochoice('{{ i.id }}', '{{ i.caption }}')"><span class = "glyphicon glyphicon-plus"></span></button></td>
     </tr>
     {% endfor %}
     </tbody>
