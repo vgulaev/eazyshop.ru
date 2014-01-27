@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-import myadmin.initdb
+import myadmin.dbconnect
 from django.shortcuts import render
 from collections import namedtuple
 
 @csrf_exempt
 def index(request):
-	db = myadmin.initdb.dbworker()
+	db = myadmin.dbconnect.dbworker()
 	substr = request.POST.get("substr")
 	if ((substr is None) or (substr == "")):
 		sql = "select caption, id from (select caption, id FROM goods ORDER BY RAND() LIMIT 10) as main order by caption"
