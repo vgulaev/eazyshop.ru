@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
 import ez
-import initdb
+import dbconnect
 import sqltables
 
 def getdbversion():
-	db = initdb.dbworker()
+	db = dbconnect.dbworker()
 	sql = "show tables from c9 like 'sysinfo'"
 	db.cursor.execute(sql)
 	userrow =  db.cursor.fetchone()
@@ -22,7 +22,7 @@ def getdbversion():
 	return ver
 	
 def runupdatedb():
-	db = initdb.dbworker()
+	db = dbconnect.dbworker()
 	dbversion = getdbversion()
 
 	#q = ""

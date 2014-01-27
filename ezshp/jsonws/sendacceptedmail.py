@@ -25,7 +25,7 @@ def send(data):
     
     if (socket.gethostname() == "eazyshop.ru"):
         domainname = "http://eazyshop.ru"
-    elif (socket.gethostname() == "ConfigsPC"):
+    elif (socket.gethostname() == "pilkiy"):
         domainname = "http://127.0.0.1:8000"
     else:
         domainname = "https://eazyshop_ru-c9-vgulaev.c9.io"

@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import json
 import sendacceptedmail
-import myadmin.initdb
+import myadmin.dbconnect
 import uuid
 import datetime
 
@@ -18,7 +18,7 @@ def normalizedata(request):
     return jsondata
 
 def addaccount(data):
-    db = myadmin.initdb.dbworker()
+    db = myadmin.dbconnect.dbworker()
     shopid = str(uuid.uuid1())
     sql = "INSERT INTO shops (id, caption, synonyms) VALUES ('%s', '%s', '%s')" % (shopid, data["shopname"], data["synonyms"])
     db.cursor.execute(sql)
@@ -32,7 +32,7 @@ def addaccount(data):
             "synonyms" : data["synonyms"]}
 
 def authorize(request, data):
-    db = myadmin.initdb.dbworker()
+    db = myadmin.dbconnect.dbworker()
     sql = "SELECT id FROM c9.users where login = '%s' and pass = '%s';" % (data["login"], data["pass"])
     db.cursor.execute(sql)
     userrow =  db.cursor.fetchone()
@@ -48,7 +48,7 @@ def authorize(request, data):
     return {"ezid" : s}
 
 def addarticle(data):
-    db = myadmin.initdb.dbworker()
+    db = myadmin.dbconnect.dbworker()
     #тут есть момент что магазины могут отличаться а идентификаторы товаров нет
     sql = u"""INSERT INTO goods (id, shop, caption) VALUES ('{0}', '{1}', '{2}')
             ON DUPLICATE KEY UPDATE caption='{2}';
@@ -59,7 +59,7 @@ def addarticle(data):
     return {}
 
 def get_shop_id_by_ezid(data):
-    db = myadmin.initdb.dbworker()
+    db = myadmin.dbconnect.dbworker()
     sql = u"select users.shop from sessions join users on sessions.login = users.id where sessions.id = '{0}'".format(data["session_uid"])
     db.cursor.execute(sql)
     userrow =  db.cursor.fetchone()

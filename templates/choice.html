@@ -1,18 +1,16 @@
 {% include "head.django" %}
 <!--input id = "substr"/-->
- <script type="text/template" id="item-template">
- <tr>
- 		<td>
- 		</td>
- </tr>
-</script>
-<div id = "output">
+<div id = "output" ng-controller="TableController">
 <table>
 <tbody id = "tbodychoice">
+<tr ng-repeat="l in lines">>
+ 		<td ng-bind = "l.uid">
+ 		</td>
+ </tr>
 </tbody>
 </table>
 <span ng-bind = "exv"></span>
-<button ng-click="alert('Heloo')" ng-init="count=0">Press me</button>
+<button ng-click="printtest()" ng-init="count=0">Press me</button>
 </div>
 <div id = "output2"></div>
 {% include "footer.django" %}

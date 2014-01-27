@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import myadmin.initdb
+import myadmin.dbconnect
 
 class authorities(object):
 	def __init__(self, have = False, login = ""):
@@ -8,7 +8,7 @@ class authorities(object):
 		
 
 def username(ezid):
-    db = myadmin.initdb.dbworker()
+    db = myadmin.dbconnect.dbworker()
     sql = """SELECT users.login FROM sessions 
 			join users on sessions.login = users.id
 			where sessions.id = '%s';""" % ezid
