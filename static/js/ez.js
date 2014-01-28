@@ -69,10 +69,21 @@ function addgoodtochoice(goodsid, caption){
         localStorage["lines"] = JSON.stringify(lines);
     }
     localStorage[goodsid] = JSON.stringify({"id" : goodsid, "caption" : caption, "amount" : 0});
-    /*var db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
-    db.transaction(function(tx) {
-        tx.executeSql("INSERT INTO gchoice (id, caption, amount) values (?, ?, ?)", [goodsid, caption, 0], null, null);
-        });*/
+
+    $("#art-name").html(caption);
+    $("#art-name").attr("art-uid", goodsid);
+    $("#page-choise").hide();
+    $("#page-amount").show();
+}
+
+function updateamount() {
+    var goodsid = $("#art-name").attr("art-uid");
+    var temobj = JSON.parse(localStorage[goodsid]);
+    temobj.amount = $("#amount").val();
+    $("#amount").val("");
+    localStorage[goodsid] = JSON.stringify(temobj);
+    $("#page-choise").show();
+    $("#page-amount").hide();
 }
 
 function uptableprice(){
@@ -103,24 +114,6 @@ function uptableprice(){
     $("#output2").html("Height: " + window.screen.availHeight + " Width: " + window.screen.availWidth);
 }
 
-/*function createdb(){
-    var db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
-    db.transaction(function(tx) {
-        tx.executeSql("CREATE TABLE IF NOT EXISTS gchoice (id TEXT UNIQUE, caption TEXT, amount REAL)", [], null, null);
-        });
-}*/
-
-function Chooser($scope) {
-    $scope.addgoodtochoice = function (goodsid, caption) {
-        var lines = getarrayfromlocalstorage("lines");
-        if (localStorage.getItem(goodsid) == null) {
-            lines.push(goodsid);    
-            localStorage["lines"] = JSON.stringify(lines);
-        }
-        localStorage[goodsid] = JSON.stringify({"id" : goodsid, "caption" : caption, "amount" : 0});
-    }
-}
-
 $(function () {
     ajaxtopricetable = false;
     bindcall = 0;
@@ -128,6 +121,7 @@ $(function () {
     lastsubstr = null;
     //createdb();
     uptableprice();
+    $("#page-amount").hide();
     $("#substr").bind("change paste keyup", function () {
         bindcall = bindcall + 1;
         uptableprice();

@@ -6,7 +6,7 @@ function TableChoice($scope) {
 
 	for (var l in lines) {
 		var item = JSON.parse(localStorage[lines[l]]);
-		$scope.lines.push({"id" : item.id, "caption" : item.caption});
+		$scope.lines.push({"id" : item.id, "caption" : item.caption, "amount" : item.amount});
 	}
 	//$scope.$apply();
 

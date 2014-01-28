@@ -10,10 +10,10 @@
 	      </div>
 		</div>
 	</div>
-	<div id = "output" ng-controller="Chooser"></div>
+	<div id = "output"></div>
 </div>
-<div id = "input-amount" class="panel panel-default">
-  <div class="panel-heading">Panel heading without title</div>
+<div id = "page-amount" class="panel panel-default">
+  <div id = "art-name" class="panel-heading">Panel heading without title</div>
   <div class="panel-body">
 	<div class="control-group">
 		<div class="controls">
@@ -21,7 +21,7 @@
 		<span class="input-group-addon">Кол-во:</span>
 		<input id = "amount" type="text" class="form-control" placeholder="1">
 		</div>
-		<button class="btn btn-success" type="button">Ок</button>
+		<button id = "btn-add" class="btn btn-success" type="button" onclick="updateamount()">Ок</button>
 		</div>
 	</div>
   </div>
