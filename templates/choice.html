@@ -1,20 +1,27 @@
 {% include "head.django" %}
 {% verbatim %}
 <div id = "output" ng-controller="TableChoice">
-<table class = "pricetable">
-<tbody id = "tbodychoice">
-<tr ng-repeat="l in lines">
-	<td ng-bind = "l.caption">
-	</td>
-	<td ng-bind = "l.amount">
-	</td>
-	<td>
-	<button class="btn btn-info" ng-click="removeitem(l.id)"><span class = "glyphicon glyphicon-minus"></span></button>
-	</td>
- </tr>
-</tbody>
-</table>
-<button class="btn btn-success" ng-click = "clear()">Очистить</button>
+	<table class = "pricetable">
+		<thead>
+			<tr>
+			<th>Номенклатура</th>
+			<th>Кол-во</th>
+			<th><span class = "glyphicon glyphicon-minus"></span></th>
+			</tr>
+		</thead>
+		<tbody id = "tbodychoice">
+			<tr ng-repeat="l in lines">
+				<td ng-bind = "l.caption">
+				</td>
+				<td ng-bind = "l.amount">
+				</td>
+				<td>
+					<button class="btn btn-info" ng-click="removeitem(l.id)"><span class = "glyphicon glyphicon-minus"></span></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="btn btn-success" ng-click = "clear()">Очистить</button>
 </div>
 <div id = "output2">
 </div>
