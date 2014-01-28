@@ -110,6 +110,17 @@ function uptableprice(){
         });
 }*/
 
+function Chooser($scope) {
+    $scope.addgoodtochoice = function (goodsid, caption) {
+        var lines = getarrayfromlocalstorage("lines");
+        if (localStorage.getItem(goodsid) == null) {
+            lines.push(goodsid);    
+            localStorage["lines"] = JSON.stringify(lines);
+        }
+        localStorage[goodsid] = JSON.stringify({"id" : goodsid, "caption" : caption, "amount" : 0});
+    }
+}
+
 $(function () {
     ajaxtopricetable = false;
     bindcall = 0;

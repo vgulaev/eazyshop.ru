@@ -8,17 +8,7 @@ function TableChoice($scope) {
 		var item = JSON.parse(localStorage[lines[l]]);
 		$scope.lines.push({"id" : item.id, "caption" : item.caption});
 	}
-	$scope.$apply();
-
-	/*var db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
-	db.transaction(function(tx) {
-		tx.executeSql("select * from gchoice", [], function (trx, result) {
-			for (var i=0; i < result.rows.length; i++) {
-				$scope.lines.push({"id" : result.rows.item(i).id, "caption" : result.rows.item(i).caption});
-			}
-			$scope.$apply();
-		}, null);
-	});	*/
+	//$scope.$apply();
 
 	$scope.clear = function clear () {
 		var lines = getarrayfromlocalstorage("lines");
@@ -46,17 +36,6 @@ function TableChoice($scope) {
 			});
 		localStorage["lines"] = JSON.stringify(lines);
 		localStorage.removeItem(uid);
-		/*var db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
-		db.transaction(function(tx) {
-			tx.executeSql("delete from gchoice where id = :id", {"id" : uid}, function (trx, result) {
-				//$scope.lines = [];
-				$scope.lines = $.grep( $scope.lines, function( n, i ) {
-  						return n.id != uid;
-				});				
-				$scope.$apply();
-				//alert(uid);
-			}, null);
-		});	*/
 	};
 }
 

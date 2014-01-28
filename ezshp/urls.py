@@ -47,6 +47,7 @@ urlpatterns = patterns('',
     ########################################
     #####For fun
     ########################################
+    url(r'^demohtml/$', views.demo, name='demo'),
     url(r'^json/$', jsonresponse.index, name='index'),
     url(r'^sr/$', showrequest.index, name='index'),
     url(r'^readme.txt', registration.index, name = 'registration'),
