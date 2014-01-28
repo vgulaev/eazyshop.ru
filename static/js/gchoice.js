@@ -2,7 +2,15 @@ function TableChoice($scope) {
 	$scope.exv = "";
 	$scope.lines = [];
 	
-	var db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
+	var lines = getarrayfromlocalstorage("lines");
+
+	for (var l in lines) {
+		var item = JSON.parse(localStorage[lines[l]]);
+		$scope.lines.push({"id" : item.id, "caption" : item.caption});
+	}
+	$scope.$apply();
+
+	/*var db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
 	db.transaction(function(tx) {
 		tx.executeSql("select * from gchoice", [], function (trx, result) {
 			for (var i=0; i < result.rows.length; i++) {
@@ -10,16 +18,16 @@ function TableChoice($scope) {
 			}
 			$scope.$apply();
 		}, null);
-	});	
+	});	*/
 
 	$scope.clear = function clear () {
-		var db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
-		db.transaction(function(tx) {
-			tx.executeSql("delete from gchoice", [], function (trx, result) {
-				$scope.lines = [];
-				$scope.$apply();
-			}, null);
-		});	
+		var lines = getarrayfromlocalstorage("lines");
+		for (var l in lines) {
+			localStorage.removeItem(lines[l]);
+		}
+		localStorage.removeItem("lines");
+		$scope.lines = [];
+		$scope.$apply();
 	};
 
 	$scope.printtest = function printtest () {
@@ -29,7 +37,16 @@ function TableChoice($scope) {
 	};
 
 	$scope.removeitem = function removeitem (uid) {
-		var db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
+		var lines = [];
+		$scope.lines = $.grep( $scope.lines, function( n, i ) {
+			if (n.id != uid){
+				lines.push(n.id);
+			}
+			return n.id != uid;
+			});
+		localStorage["lines"] = JSON.stringify(lines);
+		localStorage.removeItem(uid);
+		/*var db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
 		db.transaction(function(tx) {
 			tx.executeSql("delete from gchoice where id = :id", {"id" : uid}, function (trx, result) {
 				//$scope.lines = [];
@@ -39,7 +56,7 @@ function TableChoice($scope) {
 				$scope.$apply();
 				//alert(uid);
 			}, null);
-		});	
+		});	*/
 	};
 }
 //it = _.template($('#item-template').html());

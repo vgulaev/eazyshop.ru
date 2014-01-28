@@ -50,11 +50,29 @@ function logout(){
     });
 }
 
+function getarrayfromlocalstorage(arrayname){
+    var lArray = localStorage.getItem(arrayname);
+    if (lArray == null){
+        lArray = [];
+    }
+    else {
+        lArray = JSON.parse(lArray);
+    }
+    return lArray;
+}
+
 function addgoodtochoice(goodsid, caption){
-    var db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
+    var lines = getarrayfromlocalstorage("lines");
+    
+    if (localStorage.getItem(goodsid) == null) {
+        lines.push(goodsid);    
+        localStorage["lines"] = JSON.stringify(lines);
+    }
+    localStorage[goodsid] = JSON.stringify({"id" : goodsid, "caption" : caption, "amount" : 0});
+    /*var db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
     db.transaction(function(tx) {
         tx.executeSql("INSERT INTO gchoice (id, caption, amount) values (?, ?, ?)", [goodsid, caption, 0], null, null);
-        });
+        });*/
 }
 
 function uptableprice(){
@@ -85,19 +103,19 @@ function uptableprice(){
     $("#output2").html("Height: " + window.screen.availHeight + " Width: " + window.screen.availWidth);
 }
 
-function createdb(){
+/*function createdb(){
     var db = openDatabase("goods", "0.1", "A list of to do items.", 2000);
     db.transaction(function(tx) {
         tx.executeSql("CREATE TABLE IF NOT EXISTS gchoice (id TEXT UNIQUE, caption TEXT, amount REAL)", [], null, null);
         });
-}
+}*/
 
 $(function () {
     ajaxtopricetable = false;
     bindcall = 0;
     ajaxcall = 0;
     lastsubstr = null;
-    createdb();
+    //createdb();
     uptableprice();
     $("#substr").bind("change paste keyup", function () {
         bindcall = bindcall + 1;
