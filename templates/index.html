@@ -1,16 +1,29 @@
 {% include "head.django" %}
-
-<div class="control-group">
-	<div class="controls">
-	 <div class="input-group">
-	<input id = "substr" type="text" class="form-control" placeholder="Я ищу">
-	<span class="input-group-btn">
-        <button class="btn btn-default" type="button"><span class = "glyphicon glyphicon-remove"></span></button>
-      </span>
-      </div>
+<div id = "page-choise">
+	<div class="control-group">
+		<div class="controls">
+		<div class="input-group">
+		<input id = "substr" type="text" class="form-control" placeholder="Я ищу">
+		<span class="input-group-btn">
+	        <button class="btn btn-default" type="button"><span class = "glyphicon glyphicon-remove"></span></button>
+	      </span>
+	      </div>
+		</div>
 	</div>
+	<div id = "output" ng-controller="Chooser"></div>
 </div>
-<!--input id = "substr"/-->
-<div id = "output"></div>
-<div id = "output2"></div>
+<div id = "input-amount" class="panel panel-default">
+  <div class="panel-heading">Panel heading without title</div>
+  <div class="panel-body">
+	<div class="control-group">
+		<div class="controls">
+		<div class="input-group">
+		<span class="input-group-addon">Кол-во:</span>
+		<input id = "amount" type="text" class="form-control" placeholder="1">
+		</div>
+		<button class="btn btn-success" type="button">Ок</button>
+		</div>
+	</div>
+  </div>
+</div>
 {% include "footer.django" %}
