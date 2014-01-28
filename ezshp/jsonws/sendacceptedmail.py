@@ -28,7 +28,7 @@ def send(data):
     elif (socket.gethostname() == "pilkiy"):
         domainname = "http://127.0.0.1:8000"
     else:
-        domainname = "https://eazyshop_ru-c9-vgulaev.c9.io"
+        domainname = "https://eazyshop_ru2014-c9-vgulaev.c9.io"
     
     content="""Вас проветствует, eazyshop!!!
 Для завершение регистрации, перейдите пожалуйста по ссылке: %(hn)s/accept/%(uid)s
