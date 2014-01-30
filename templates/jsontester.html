@@ -1,0 +1,12 @@
+{% include "head.django" %}
+JSON server: <input id = "jsonserver" value="/jsonws/ws/">
+<br>
+JSON server: <textarea id = "jsondata" name="Text1" cols="60" rows="5"> {
+            "method"    : "authorize",
+            "login"     : "vgulaev@yandex.ru",
+            "pass"      : "28061984"
+        }
+        </textarea>
+<br>
+<button onclick="sendAJAX()">Send AJAX</button>
+{% include "footer.django" %}

@@ -3,6 +3,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import ez
 
+def jsontester(request):
+    authorities = ez.checkauthorize(request)
+    scripts = ["jsontester.js"]
+    context = {"authorities": authorities,
+          "location": "home",
+          "scripts": scripts}
+    return render(request, 'jsontester.html', context)
+
 def demo(request):
    	authorities = ez.checkauthorize(request)
    	#scripts = ["index.js"]

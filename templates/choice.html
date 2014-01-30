@@ -13,7 +13,8 @@
 			<tr ng-repeat="l in lines">
 				<td ng-bind = "l.caption">
 				</td>
-				<td ng-bind = "l.amount">
+				<td>
+				<input id = "amount" type = "number" art-uid = "{{ l.id }}" value="{{ l.amount }}">
 				</td>
 				<td>
 					<button class="btn btn-info" ng-click="removeitem(l.id)"><span class = "glyphicon glyphicon-minus"></span></button>
@@ -21,7 +22,8 @@
 			</tr>
 		</tbody>
 	</table>
-	<button class="btn btn-success" ng-click = "clear()">Очистить</button>
+	<button class="btn btn-info" ng-click = "clear()">Очистить</button>
+	<button class="btn btn-success">В потребности</button>
 </div>
 <div id = "output2">
 </div>
