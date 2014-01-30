@@ -11,8 +11,18 @@ def showtables(ans):
 	sql = u"show tables"
 	db.cursor.execute(sql)
 	row =  db.cursor.fetchone()
-#	while row is not None:
-#		ans["rows"] += [row[0]]
+	while row is not None:
+		ans["rows"].append(row[0])
+		row =  db.cursor.fetchone()
+
+def dbquery(ans, q):
+	db = myadmin.dbconnect.dbworker()
+	sql = q
+	db.cursor.execute(sql)
+	row =  db.cursor.fetchone()
+	while row is not None:
+		ans["rows"].append(row)
+		row =  db.cursor.fetchone()
 
 @csrf_exempt
 def index(request):
@@ -24,6 +34,8 @@ def index(request):
 		jsondata = request.POST
 		if (jsondata["method"] == "tables"):
 			showtables(ans);
+		if (jsondata["method"] == "query"):
+			dbquery(ans, jsondata["qtext"]);
 
 	httptext = json.dumps(ans)
 	response = HttpResponse(httptext, content_type="application/json")
