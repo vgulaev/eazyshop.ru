@@ -1,6 +1,6 @@
 function sendAJAX() {
     var jqxhr = $.ajax({
-        "url":"/jsonws/ws/",
+        "url": $("#jsonserver").val(),
         type: "POST",
         "data": JSON.parse($("#jsondata").val()),
         beforeSend: function () {

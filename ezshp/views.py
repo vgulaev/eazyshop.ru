@@ -5,7 +5,7 @@ import ez
 
 def jsontester(request):
     authorities = ez.checkauthorize(request)
-    scripts = ["jsontester.js"]
+    scripts = ["jsontester.js", "dbadapter.js"]
     context = {"authorities": authorities,
           "location": "home",
           "scripts": scripts}
