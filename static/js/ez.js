@@ -1,3 +1,60 @@
+function PageChooser($scope) {
+    $scope.result = [];
+
+    $scope.uptableprice = function uptableprice() {
+        if ((!ajaxtopricetable) && (lastsubstr != $("#substr").val())) {
+            var jqxhr = $.ajax({
+                "url":"/jsonws/db/",
+                type: "POST",
+                "data": {
+                    "method"        : "query",
+                    "qtext"         : "select * from goods where caption like '%{0}%' limit 10".replace("{0}", $("#substr").val())
+                },
+                beforeSend: function () {
+                    ajaxtopricetable = true;
+                    ajaxcall = ajaxcall + 1;
+                    lastsubstr = $("#substr").val();
+                },
+            })
+            .done(function(data) {
+                //$("#output").html(data);
+                $scope.result = data;
+                $scope.$apply();
+            })
+            .fail(function() {
+            })
+            .always(function() {
+                ajaxtopricetable = false;
+                $scope.uptableprice();
+            });
+        }
+    }
+
+    $scope.addgoodtochoice = function addgoodtochoice(el){
+        var lines = getarrayfromlocalstorage("lines");
+        var goodsid = el[0];
+        var caption = el[2];
+        if (localStorage.getItem(goodsid) == null) {
+            lines.push(goodsid);    
+            localStorage["lines"] = JSON.stringify(lines);
+        }
+        localStorage[goodsid] = JSON.stringify({"id" : goodsid, "caption" : caption, "amount" : 0});
+
+        $("#art-name").html(caption);
+        $("#art-name").attr("art-uid", goodsid);
+        $("#art-unit").html(el[4]);
+        $("#page-choise").hide();
+        $("#page-amount").show();
+    }
+
+    $scope.uptableprice();
+    $("#substr").bind("change paste keyup", function () {
+        bindcall = bindcall + 1;
+        $scope.uptableprice();
+    });
+
+}
+
 function authorize(){
     var jqxhr = $.ajax({
         "url":"/jsonws/ws/",
@@ -61,21 +118,6 @@ function getarrayfromlocalstorage(arrayname){
     return lArray;
 }
 
-function addgoodtochoice(goodsid, caption){
-    var lines = getarrayfromlocalstorage("lines");
-    
-    if (localStorage.getItem(goodsid) == null) {
-        lines.push(goodsid);    
-        localStorage["lines"] = JSON.stringify(lines);
-    }
-    localStorage[goodsid] = JSON.stringify({"id" : goodsid, "caption" : caption, "amount" : 0});
-
-    $("#art-name").html(caption);
-    $("#art-name").attr("art-uid", goodsid);
-    $("#page-choise").hide();
-    $("#page-amount").show();
-}
-
 function updateamount() {
     var goodsid = $("#art-name").attr("art-uid");
     var temobj = JSON.parse(localStorage[goodsid]);
@@ -86,45 +128,11 @@ function updateamount() {
     $("#page-amount").hide();
 }
 
-function uptableprice(){
-    if ((!ajaxtopricetable) && (lastsubstr != $("#substr").val())) {
-        var jqxhr = $.ajax({
-            "url":"/htmlws/pricetable/",
-            type: "POST",
-            "data": {
-                substr    : $("#substr").val(),
-            },
-            beforeSend: function () {
-                ajaxtopricetable = true;
-                ajaxcall = ajaxcall + 1;
-                lastsubstr = $("#substr").val();
-            },
-        } )
-        .done(function(data) {
-            $("#output").html(data);
-        })
-        .fail(function() {
-        })
-        .always(function() {
-            ajaxtopricetable = false;
-            uptableprice();
-        });
-    }
-    //$("#output2").html("Call bindcall: " + bindcall + " ajaxcall: " + ajaxcall);
-    $("#output2").html("Height: " + window.screen.availHeight + " Width: " + window.screen.availWidth);
-}
-
 $(function () {
     ajaxtopricetable = false;
     bindcall = 0;
     ajaxcall = 0;
     lastsubstr = null;
     //createdb();
-    uptableprice();
     $("#page-amount").hide();
-    $("#substr").bind("change paste keyup", function () {
-        bindcall = bindcall + 1;
-        uptableprice();
-        //alert("Try to find");
-    });
 })

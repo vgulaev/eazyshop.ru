@@ -1,5 +1,6 @@
 {% include "head.django" %}
 <div id = "page-choise">
+	{% verbatim %}
 	<div class="control-group">
 		<div class="controls">
 		<div class="input-group">
@@ -10,7 +11,17 @@
 	      </div>
 		</div>
 	</div>
-	<div id = "output"></div>
+	<div id = "output">
+		<table class = "pricetable">
+			<tbody>
+				<tr ng-repeat="l in result.rows">
+					<td id = "caption">{{ l[2] }}</td>
+					<td><button class="btn btn-success" ng-click="addgoodtochoice(l)"><span class = "glyphicon glyphicon-plus"></span></button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	{% endverbatim %}
 </div>
 <div id = "page-amount" class="panel panel-default">
   <div id = "art-name" class="panel-heading">Panel heading without title</div>
@@ -20,6 +31,7 @@
 		<div class="input-group">
 		<span class="input-group-addon">Кол-во:</span>
 		<input id = "amount" type="number" class="form-control" placeholder="1">
+		<span id = "art-unit" class="input-group-addon"></span>
 		</div>
 		<button id = "btn-add" class="btn btn-success" type="button" onclick="updateamount()">Ок</button>
 		</div>
