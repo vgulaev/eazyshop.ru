@@ -31,7 +31,7 @@ class dbworker:
         self.cursor.execute(sql)
         self.db.commit()
     def dropalltable(self):
-        names = ["prices", "pricetypes", "goods", "sessions","users", "shops"]
+        names = ["sysinfo", "prices", "pricetypes", "goods", "sessions","users", "shops"]
         for e in names:
             if self.checktableexist(e):
                 self.droptable(e)

@@ -65,5 +65,9 @@ updatequeryes += [["""
         """,
         "INSERT INTO sysinfo (key_name, value) VALUES ('versiondb', '1')",
         "ALTER TABLE goods ADD COLUMN ProductNo VARCHAR(40) AFTER caption"]]
-#for e in sqlqueryes:
-#    print e
+
+updatequeryes += [["""ALTER TABLE goods ADD COLUMN unit VARCHAR(40)""",
+        """
+        UPDATE sysinfo
+        set value = '2' WHERE key_name = 'versiondb'
+        """]]
