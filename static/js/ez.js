@@ -1,14 +1,27 @@
 function PageChooser($scope) {
     $scope.result = [];
+    $scope.t = "";
 
     $scope.uptableprice = function uptableprice() {
         if ((!ajaxtopricetable) && (lastsubstr != $("#substr").val())) {
+            var cond = $("#substr").val().split(" ");
+            var filter = "True"
+            for (e in cond) {
+                if (cond[e].trim() != ""){
+                    filter += "and caption like '%" + cond[e] + "%'";
+                }
+            }
+
+            if (filter.trim() != "True"){
+                filter = filter.slice(8);
+            }
+
             var jqxhr = $.ajax({
                 "url":"/jsonws/db/",
                 type: "POST",
                 "data": {
                     "method"        : "query",
-                    "qtext"         : "select * from goods where caption like '%{0}%' limit 10".replace("{0}", $("#substr").val())
+                    "qtext"         : "select * from goods where {0} limit 10".replace("{0}", filter)
                 },
                 beforeSend: function () {
                     ajaxtopricetable = true;
@@ -38,6 +51,7 @@ function PageChooser($scope) {
             lines.push(goodsid);    
             localStorage["lines"] = JSON.stringify(lines);
         }
+
         localStorage[goodsid] = JSON.stringify({"id" : goodsid, "caption" : caption, "amount" : 0});
 
         $("#art-name").html(caption);
@@ -121,7 +135,7 @@ function getarrayfromlocalstorage(arrayname){
 function updateamount() {
     var goodsid = $("#art-name").attr("art-uid");
     var temobj = JSON.parse(localStorage[goodsid]);
-    temobj.amount = $("#amount").val();
+    temobj.amount = parseInt($("#amount").val());
     $("#amount").val("");
     localStorage[goodsid] = JSON.stringify(temobj);
     $("#page-choise").show();

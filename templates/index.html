@@ -1,10 +1,10 @@
 {% include "head.django" %}
-<div id = "page-choise">
+<div id = "page-choise" ng-controller = "PageChooser">
 	{% verbatim %}
 	<div class="control-group">
 		<div class="controls">
 		<div class="input-group">
-		<input id = "substr" type="text" class="form-control" placeholder="Я ищу">
+		<input id = "substr" type="text" class="form-control" placeholder="Я ищу" ng-model = "t">
 		<span class="input-group-btn">
 	        <button class="btn btn-default" type="button"><span class = "glyphicon glyphicon-remove"></span></button>
 	      </span>

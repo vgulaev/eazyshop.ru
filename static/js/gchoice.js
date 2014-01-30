@@ -20,11 +20,6 @@ function TableChoice($scope) {
 		$scope.$apply();
 	};
 
-	$scope.printtest = function printtest () {
-		//alert("Hello!!!");
-		$scope.exv = "What ever you want";
-		$scope.$apply();
-	};
 
 	$scope.removeitem = function removeitem (uid) {
 		var lines = [];
@@ -37,6 +32,12 @@ function TableChoice($scope) {
 		localStorage["lines"] = JSON.stringify(lines);
 		localStorage.removeItem(uid);
 	};
+
+	$scope.updateamount = function removeitem (el) {
+		localStorage[el.id] = JSON.stringify(el);
+		//alert("Chan");
+		//localStorage.removeItem(uid);
+	}
 }
 
 $(function () {
