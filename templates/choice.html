@@ -14,7 +14,7 @@
 				<td ng-bind = "l.caption">
 				</td>
 				<td>
-				<input id = "amount" type = "number" art-uid = "{{ l.id }}" value="{{ l.amount }}" ng-model = "l.amount" ng-change = "updateamount(l)">
+				<input id = "amount" class = "choise-input" type = "number" art-uid = "{{ l.id }}" value="{{ l.amount }}" ng-model = "l.amount" ng-change = "updateamount(l)">
 				</td>
 				<td>
 					<button class="btn btn-info" ng-click="removeitem(l.id)"><span class = "glyphicon glyphicon-minus"></span></button>

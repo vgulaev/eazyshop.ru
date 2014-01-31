@@ -3,17 +3,21 @@
 }
 
 table.pricetable {
-		border: 1px solid #aaa;
-		border-spacing: 0px;
+	border: 1px solid #aaa;
+	border-spacing: 0px;
 }
 
 table.pricetable tr {
 	border-collapse: collapse;
 }
 table.pricetable td, th {
-		border: 1px solid #aaa;
-		border-collapse: collapse;
+	border: 1px solid #aaa;
+	border-collapse: collapse;
 }
+
+/*.table-art-caption {
+	width: 200px;
+}*/
 
 body {
   padding-top: 50px;
@@ -35,4 +39,8 @@ text-align: center;
 white-space: nowrap;
 vertical-align: baseline;
 border-radius: .25em;
+}
+
+.choise-input {
+	width: 70px;
 }
