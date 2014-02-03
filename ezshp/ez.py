@@ -5,7 +5,6 @@ class authorities(object):
 	def __init__(self, have = False, login = ""):
 		self.have = have
 		self.login = login
-		
 
 def username(ezid):
     db = myadmin.dbconnect.dbworker()
