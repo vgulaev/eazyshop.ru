@@ -3,6 +3,7 @@ from django.shortcuts import render
 import ez
 import dbconnect
 import sqltables
+import db1c.mainclass
 
 def getdbversion():
 	db = dbconnect.dbworker()
@@ -39,6 +40,18 @@ def index(request):
     context = {"authorities": authorities}
     if ((authorities.have) and (authorities.login == "vgulaev@yandex.ru")):
     	context["dbup"] = runupdatedb()
+    	return render(request, 'updatedb.html', context)
+    else:
+    	return render(request, 'necessaryauth.html', context)
+
+def db1c_create(request):
+    authorities = ez.checkauthorize(request)
+    #scripts = ["index.js"]
+    context = {"authorities": authorities}
+    if ((authorities.have) and (authorities.login == "vgulaev@yandex.ru")):
+    	dbc = db1c.mainclass.db1c()
+    	dbc.create_tables()
+    	context["dbup"] = "complate db1c creation"
     	return render(request, 'updatedb.html', context)
     else:
     	return render(request, 'necessaryauth.html', context)

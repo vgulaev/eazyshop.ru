@@ -27,7 +27,7 @@ class dbworker:
         self.db = MySQLdb.connect(host = cred["host"], user = cred["user"], passwd = cred["passwd"], db = "c9", charset = 'utf8')
         self.cursor = self.db.cursor()
     def droptable(self, tablename):
-        sql = "DROP TABLE %s" % (tablename)
+        sql = "DROP TABLE IF EXISTS %s" % (tablename)
         self.cursor.execute(sql)
         self.db.commit()
     def dropalltable(self):

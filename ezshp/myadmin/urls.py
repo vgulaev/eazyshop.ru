@@ -5,6 +5,7 @@ import debug
 import initdb
 import updatedb
 import xmltodb
+import db1c
 
 urlpatterns = patterns('',
     url(r'^$', main.index, name = "index"),
@@ -12,4 +13,5 @@ urlpatterns = patterns('',
     url(r'initdb/', initdb.index, name = "initdb"),
     url(r'updatedb/', updatedb.index, name = "initdb"),
     url(r'xmltodb/', xmltodb.index, name = "xmltodb"),
+    url(r'db1c_create/', updatedb.db1c_create, name = "updatedb.db1c_create"),
 )
