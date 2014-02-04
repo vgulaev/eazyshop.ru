@@ -1,3 +1,12 @@
+Date.prototype.toMYSQL = function () {
+    var s = this.getFullYear() + "-" + this.getMonth() + "-" + this.getDate() + " " + t.toLocaleTimeString();
+    return s;
+};
+
+function curenttimeforMYSQL(){
+
+}
+
 function PageChooser($scope) {
     $scope.result = [];
     $scope.t = "";
@@ -59,6 +68,7 @@ function PageChooser($scope) {
         $("#art-unit").html(el[4]);
         $("#page-choise").hide();
         $("#page-amount").show();
+        $("#choicelength").html(lines.length);
     }
 
     $scope.uptableprice();
@@ -135,7 +145,7 @@ function getarrayfromlocalstorage(arrayname){
 function updateamount() {
     var goodsid = $("#art-name").attr("art-uid");
     var temobj = JSON.parse(localStorage[goodsid]);
-    temobj.amount = parseInt($("#amount").val());
+    temobj.amount = Number(parseFloat($("#amount").val()).toFixed(3));
     $("#amount").val("");
     localStorage[goodsid] = JSON.stringify(temobj);
     $("#page-choise").show();
@@ -149,4 +159,7 @@ $(function () {
     lastsubstr = null;
     //createdb();
     $("#page-amount").hide();
+
+    var lines = getarrayfromlocalstorage("lines");
+    $("#choicelength").html(lines.length);
 })

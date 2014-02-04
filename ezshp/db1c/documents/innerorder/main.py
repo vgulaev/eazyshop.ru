@@ -2,10 +2,11 @@
 sql_query_for_create_table = ["""CREATE TABLE IF NOT EXISTS innerorder (
         id1C CHAR(36) PRIMARY KEY,
         docnumber CHAR(12),
-        docdata DATETIME,
+        docdate CHAR(36),
         organization CHAR(36),
         userowner CHAR(36),
-        doer CHAR(36)
+        doer CHAR(36),
+        dataversion CHAR(36)
         ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
 """]
 

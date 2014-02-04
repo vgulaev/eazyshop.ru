@@ -1,32 +1,42 @@
 {% include "head.django" %}
 {% verbatim %}
-<div id = "output" ng-controller="TableChoice">
-	<!--table class = "pricetable">
+<div id = "output" ng-controller="InnerOrdersList">
+	<button class="btn btn-success" ng-click = "update()">Обновить</button>
+	<table class = "pricetable">
 		<thead>
 			<tr>
-			<th>Номенклатура</th>
-			<th>Кол-во</th>
-			<th><span class = "glyphicon glyphicon-minus"></span></th>
+			<th>Дата</th>
+			<th>Номер</th>
+			<th>Кто оформил</th>
+			<th>Открыть</th>
 			</tr>
 		</thead>
 		<tbody id = "tbodychoice">
 			<tr ng-repeat="l in lines">
-				<td ng-bind = "l.caption">
+				<td ng-bind = "l[2]">
+				</td>
+				<td ng-bind = "l[1]">
+				</td>
+				<td ng-bind = "l[4]">
 				</td>
 				<td>
-				<input id = "amount" class = "choise-input" type = "number" art-uid = "{{ l.id }}" value="{{ l.amount }}" ng-model = "l.amount" ng-change = "updateamount(l)">
-				</td>
-				<td>
-					<button class="btn btn-info" ng-click="removeitem(l.id)"><span class = "glyphicon glyphicon-minus"></span></button>
+				<button class="btn btn-success" ng-click="addgoodtochoice(l)"><span class = "glyphicon glyphicon-folder-open"></span></button>				
 				</td>
 			</tr>
 		</tbody>
-	</table-->
-	<button class="btn btn-info" ng-click = "clear()">Очистить</button>
-	<button class="btn btn-success" ng-click = "create_innerorder()">В потребности</button>
+	</table>
+	<ul class="pagination">
+  <li><a href="#">&laquo;</a></li>
+  <li class="active"><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+  <li><a href="#">&raquo;</a></li>
+		</ul>
 </div>
-<div id = "output2">
+<!--div id = "output2">
 Hello!!!
-</div>
+</div-->
 {% endverbatim %}
 {% include "footer.django" %}

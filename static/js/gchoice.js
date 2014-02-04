@@ -1,5 +1,4 @@
 function TableChoice($scope) {
-	$scope.exv = "";
 	$scope.lines = [];
 	
 	var lines = getarrayfromlocalstorage("lines");
@@ -8,6 +7,8 @@ function TableChoice($scope) {
 		var item = JSON.parse(localStorage[lines[l]]);
 		$scope.lines.push({"id" : item.id, "caption" : item.caption, "amount" : item.amount});
 	}
+
+	$("#choicelength").html($scope.lines.length);
 	//$scope.$apply();
 
 	$scope.clear = function clear () {
@@ -31,6 +32,7 @@ function TableChoice($scope) {
 			});
 		localStorage["lines"] = JSON.stringify(lines);
 		localStorage.removeItem(uid);
+		$("#choicelength").html($scope.lines.length);
 	};
 
 	$scope.updateamount = function removeitem (el) {
@@ -38,10 +40,10 @@ function TableChoice($scope) {
 	}
 
 	$scope.create_innerorder = function create_innerorder () {
-		var sql = "START TRANSACTION; insert into innerorder (id1C) value ('{id1C}');"
-
 		var today = new Date();
-		var id1C = "new " + today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+		var sql = "START TRANSACTION; insert into innerorder (id1C, docdate) value ('{id1C}', '{docdate}');"
+		var id1C = "new " + today.toJSON();
+		sql = sql.replace("{docdate}", today.toJSON());
 		//sql = sql.replace("{id1C}", id1C);
 		sql = sql + " insert into innerorder_goods (id1C, rownumber, good, quantity) VALUES "
 
@@ -63,6 +65,7 @@ function TableChoice($scope) {
 			},
 		})
 		.done(function(data) {
+			$scope.clear();
             })
 		.fail(function() {
 		})

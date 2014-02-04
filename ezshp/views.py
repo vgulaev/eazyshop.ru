@@ -30,5 +30,6 @@ def innerorders(request):
     authorities = ez.checkauthorize(request)
     scripts = ["innerorderslist.js"]
     context = {"authorities": authorities,
-          "location": "innerorders"}
+          "location": "innerorders",
+          "scripts": scripts}
     return render(request, 'innerorderslist.html', context)
