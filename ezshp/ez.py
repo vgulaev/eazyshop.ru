@@ -17,6 +17,7 @@ def username(ezid):
     	r = None
     else:
     	r = userrow[0]
+    db.cursor.close()
     return r
 
 def  checkauthorize(request):

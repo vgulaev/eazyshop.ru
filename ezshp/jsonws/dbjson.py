@@ -15,14 +15,21 @@ def showtables(ans):
 		ans["rows"].append(row[0])
 		row =  db.cursor.fetchone()
 
-def dbquery(ans, q):
+def dbquery(ans, q, ifcommit = False):
 	db = myadmin.dbconnect.dbworker()
 	sql = q
+	db.db.commit()
 	db.cursor.execute(sql)
-	row =  db.cursor.fetchone()
-	while row is not None:
-		ans["rows"].append(row)
+	if (ifcommit == "True"):
+		db.db.commit()
+		ans.clear()
+		ans["result"] = "ok"
+	else:
 		row =  db.cursor.fetchone()
+		while row is not None:
+			ans["rows"].append(row)
+			row =  db.cursor.fetchone()
+	db.cursor.close()
 
 @csrf_exempt
 def index(request):
@@ -35,7 +42,7 @@ def index(request):
 		if (jsondata["method"] == "tables"):
 			showtables(ans);
 		if (jsondata["method"] == "query"):
-			dbquery(ans, jsondata["qtext"]);
+			dbquery(ans, jsondata["qtext"], jsondata.get("commit"));
 
 	httptext = json.dumps(ans)
 	response = HttpResponse(httptext, content_type="application/json")

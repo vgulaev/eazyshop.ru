@@ -35,8 +35,39 @@ function TableChoice($scope) {
 
 	$scope.updateamount = function removeitem (el) {
 		localStorage[el.id] = JSON.stringify(el);
-		//alert("Chan");
-		//localStorage.removeItem(uid);
+	}
+
+	$scope.create_innerorder = function create_innerorder () {
+		var sql = "START TRANSACTION; insert into innerorder (id1C) value ('{id1C}');"
+
+		var today = new Date();
+		var id1C = "new " + today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+		//sql = sql.replace("{id1C}", id1C);
+		sql = sql + " insert into innerorder_goods (id1C, rownumber) VALUES ('{id1C}', 3), ('{id1C}', 4)"
+
+		for (e in $scope.lines) {
+			sql = sql + "('{id1C}', " + e + "), "
+		}
+
+		sql = sql + ";COMMIT;";
+		sql = sql.replace("/{id1C}/g", id1C);
+		var jqxhr = $.ajax({
+			"url":"/jsonws/db/",
+			type: "POST",
+			"data": {
+				"method"        : "query",
+				"qtext"         : sql,
+				"commit"		: "False"
+			},
+			beforeSend: function () {
+			},
+		})
+		.done(function(data) {
+            })
+		.fail(function() {
+		})
+		.always(function() {
+		});
 	}
 }
 
