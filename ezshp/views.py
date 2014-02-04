@@ -13,7 +13,6 @@ def jsontester(request):
 
 def demo(request):
    	authorities = ez.checkauthorize(request)
-   	#scripts = ["index.js"]
    	context = {"authorities": authorities,
    				"location": "home"}
    	return render(request, 'demo.html', context)
@@ -26,3 +25,10 @@ def index(request):
    				"location": "home"}
    	return render(request, 'index.html', context)
     #return HttpResponse(str(authorities.login), content_type="text/plain")
+
+def innerorders(request):
+    authorities = ez.checkauthorize(request)
+    scripts = ["innerorderslist.js"]
+    context = {"authorities": authorities,
+          "location": "innerorders"}
+    return render(request, 'innerorderslist.html', context)

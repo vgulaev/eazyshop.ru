@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^$', views.index, name='home'),
     url(r'^lk/$', lk.index, name='lk'),
     url(r'^choice/$', gchoice.index, name='choice'),
+    url(r'^innerorders/$', views.innerorders, name='choice'),
     # For ajax and other json servises
     url(r'^jsonws/', include(jsonws.urls)),
     # For ajax and other json servises
