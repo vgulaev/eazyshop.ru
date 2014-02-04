@@ -14,6 +14,9 @@ function InnerOrdersList ($scope) {
 		})
 		.done(function(data) {
 			$scope.lines = data.rows;
+			angular.forEach($scope.lines, function(value, key){
+				value[2] = (new Date(value[2])).toDateString();
+			});
 			$scope.$apply();
 		})
 		.fail(function() {
