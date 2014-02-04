@@ -18,7 +18,6 @@ def showtables(ans):
 def dbquery(ans, q, ifcommit = False):
 	db = myadmin.dbconnect.dbworker()
 	sql = q
-	db.db.commit()
 	db.cursor.execute(sql)
 	if (ifcommit == "True"):
 		db.db.commit()
