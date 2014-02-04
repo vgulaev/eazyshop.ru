@@ -43,14 +43,14 @@ function TableChoice($scope) {
 		var today = new Date();
 		var id1C = "new " + today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 		//sql = sql.replace("{id1C}", id1C);
-		sql = sql + " insert into innerorder_goods (id1C, rownumber) VALUES ('{id1C}', 3), ('{id1C}', 4)"
+		sql = sql + " insert into innerorder_goods (id1C, rownumber, good, quantity) VALUES "
 
 		for (e in $scope.lines) {
-			sql = sql + "('{id1C}', " + e + "), "
+			sql = sql + "('{id1C}', " + e + ", '"+ $scope.lines[e].id + "'," + $scope.lines[e].amount + "),"
 		}
-
+		sql = sql.slice(0, -1);
 		sql = sql + ";COMMIT;";
-		sql = sql.replace("/{id1C}/g", id1C);
+		sql = sql.replace(/{id1C}/g, id1C);
 		var jqxhr = $.ajax({
 			"url":"/jsonws/db/",
 			type: "POST",
