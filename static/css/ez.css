@@ -44,3 +44,14 @@ border-radius: .25em;
 .choise-input {
 	width: 70px;
 }
+
+.ajaxing-dialog {
+	display: absolut;
+	border: 2px solid;
+	width: 200px;
+	border-radius: 10px;
+	text-align: center;
+	padding: 10px;
+	background-color: aliceblue;
+	position: absolute;
+}

@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/static/css/{{ l }}">  
   {% endfor %}
   <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <!--script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/backbone-localstorage.js/1.1.0/backbone.localStorage-min.js"></script-->
@@ -94,4 +95,4 @@
       </div><!--/.nav-collapse -->
     </div>
   </div>
-  <div class="container">
+  <div id = "maincontainer" class="container">

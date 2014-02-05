@@ -1,39 +1,45 @@
 {% include "head.django" %}
 {% verbatim %}
+<div id = "ajaxing" class = "ajaxing-dialog" style = "display : none">
+<p>Идёт загрузка...</p>
+<img src="/static/img/ajax-loader.gif">
+</div>
 <div id = "output" ng-controller="InnerOrdersList">
-	<button class="btn btn-success" ng-click = "update()">Обновить</button>
-	<table class = "pricetable">
-		<thead>
-			<tr>
-			<th>Дата</th>
-			<th>Номер</th>
-			<th>Кто оформил</th>
-			<th>Открыть</th>
-			</tr>
-		</thead>
-		<tbody id = "tbodychoice">
-			<tr ng-repeat="l in lines">
-				<td ng-bind = "l[2]">
-				</td>
-				<td ng-bind = "l[1]">
-				</td>
-				<td ng-bind = "l[4]">
-				</td>
-				<td>
-				<button class="btn btn-success" ng-click="addgoodtochoice(l)"><span class = "glyphicon glyphicon-folder-open"></span></button>				
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<ul class="pagination">
-  <li><a href="#">&laquo;</a></li>
-  <li class="active"><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#">4</a></li>
-  <li><a href="#">5</a></li>
-  <li><a href="#">&raquo;</a></li>
+	<div id = "page-order-list">
+		<button class="btn btn-success" ng-click = "update()">Обновить</button>
+		<table class = "pricetable">
+			<thead>
+				<tr>
+					<th>Дата</th>
+					<th>Номер</th>
+					<th>Кто оформил</th>
+					<th>Открыть</th>
+				</tr>
+			</thead>
+			<tbody id = "tbodychoice">
+				<tr ng-repeat="l in lines">
+					<td ng-bind = "l[2]">
+					</td>
+					<td ng-bind = "l[1]">
+					</td>
+					<td ng-bind = "l[4]">
+					</td>
+					<td>
+						<button class="btn btn-success" ng-click="openinnerorder(l[0])"><span class = "glyphicon glyphicon-folder-open"></span></button>				
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<ul class="pagination">
+			<li><a href="#">&laquo;</a></li>
+			<li class="active"><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+			<li><a href="#">5</a></li>
+			<li><a href="#">&raquo;</a></li>
 		</ul>
+	</div>
 </div>
 <!--div id = "output2">
 Hello!!!
