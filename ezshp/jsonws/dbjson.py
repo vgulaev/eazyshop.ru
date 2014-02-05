@@ -33,7 +33,6 @@ def dbquery(ans, q, ifcommit = False):
 @csrf_exempt
 def index(request):
 	ans = {"test": "test"}
-
 	if request.method == 'POST':
 		ans = {"colums" : [],
 		"rows": []}
@@ -42,7 +41,14 @@ def index(request):
 			showtables(ans);
 		if (jsondata["method"] == "query"):
 			dbquery(ans, jsondata["qtext"], jsondata.get("commit"));
-
+		if (jsondata["method"] == "queries"):
+			ans = {"results" : []}
+			qs = json.loads(jsondata["qtext"])
+			for q in qs:
+				a = {"colums" : [],
+				"rows": []}
+				dbquery(a, q);
+				ans["results"].append(a)
 	httptext = json.dumps(ans)
 	response = HttpResponse(httptext, content_type="application/json")
 	return response
