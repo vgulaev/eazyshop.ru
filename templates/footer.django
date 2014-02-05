@@ -1,10 +1,10 @@
   <div id = "footer-div">
-  <a id="whoweare" href="/who-we-are/">Кто мы такие и какие наши планы</a>
+  <!--a id="whoweare" href="/who-we-are/">Кто мы такие и какие наши планы</a>
   <br>
   <a id="pr" href="/principles/">Узнайте наши принципы, что бы остаться с нами</a>
   <br>
   <span>Это открытый проект и любая информация как предоставленная так и полученная может быть свободно использованна. Скорее всего </span><a rel="license" href="//ru.wikipedia.org/wiki/Википедия:Текст_лицензии_Creative_Commons_Attribution-ShareAlike_3.0_Unported">лицензия Creative Commons Attribution-ShareAlike</a>
-  </div>
+  </div-->
   </div>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>

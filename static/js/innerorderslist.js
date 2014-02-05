@@ -42,7 +42,7 @@ function InnerOrdersList ($scope, dateFilter) {
 	}
 
 	$scope.openinnerorder = function openinnerorder (id1c) {
-		var s = ["select * from innerorder where id1C = '{id1C}'".replace("{id1C}", id1c), "select * from innerorder_goods where id1C = '{id1C}'".replace("{id1C}", id1c)];
+		var s = ["select * from innerorder where id1C = '{id1C}'".replace("{id1C}", id1c), "select rownumber, caption, quantity  from innerorder_goods join (goods) on (innerorder_goods.good = goods.id) where id1C = '{id1C}'".replace("{id1C}", id1c)];
 		var jqxhr = $.ajax({
 			"url":"/jsonws/db/",
 			type: "POST",

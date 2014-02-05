@@ -48,9 +48,18 @@
 		<br>
 		Заявка <input type = "text" ng-readonly="true" ng-model = "order.docnumber"> от <input type = "date" ng-readonly="true" ng-model = "order.dateString">
 		<table class = "pricetable">
+			<thead>
+				<tr>
+					<th>№</th>
+					<th>Номенклатура</th>
+					<th>Кол-во</th>
+				</tr>
+			</thead>
 			<tbody>
 				<tr ng-repeat="l in order.lines">
-				<td ng-bind = "l[1] + 1"></td>
+				<td ng-bind = "l[0] + 1"></td>
+				<td ng-bind = "l[1]"></td>
+				<td ng-bind = "l[2]"></td>
 				</tr>
 			</tbody>
 		</table>
