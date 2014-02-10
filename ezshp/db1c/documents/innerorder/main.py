@@ -6,7 +6,7 @@ sql_query_for_create_table = ["""CREATE TABLE IF NOT EXISTS innerorder (
         organization CHAR(36),
         userowner CHAR(36),
         doer CHAR(36),
-        dataversion CHAR(36)
+        dataversion CHAR(12)
         ) ENGINE=INNODB CHARACTER SET utf8 COLLATE utf8_bin;
 """]
 
