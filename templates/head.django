@@ -7,6 +7,7 @@
   <meta debug = "just for pleasure">
   {% if authorities.have %}
   <meta property = "ezid" content="{{ authorities.ezid }}">
+  <meta property = "uid" content="{{ authorities.uid }}">
   {% else %}
   <meta property = "ezid" content="00000000-0000-0000-0000-000000000000">
   {% endif %}

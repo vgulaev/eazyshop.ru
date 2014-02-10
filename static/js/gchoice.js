@@ -45,7 +45,7 @@ function TableChoice($scope) {
 		var sql = "START TRANSACTION; insert into innerorder (id1C, docdate, userowner) value ('{id1C}', '{docdate}', '{owner}');"
 		var id1C = "new " + today.toJSON();
 		sql = sql.replace("{docdate}", today.toJSON());
-		sql = sql.replace("{owner}", $("[property='ezid']").attr("content"));
+		sql = sql.replace("{owner}", $("[property='uid']").attr("content"));
 		//sql = sql.replace("{id1C}", id1C);
 		sql = sql + " insert into innerorder_goods (id1C, rownumber, good, quantity) VALUES "
 

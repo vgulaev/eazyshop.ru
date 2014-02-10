@@ -13,12 +13,13 @@ function InnerOrdersList ($scope, dateFilter) {
     });	
 	//$scope.dateString dateString
 	$scope.update = function update() {
+		var sql = [];
 		var jqxhr = $.ajax({
 			"url":"/jsonws/db/",
 			type: "POST",
 			"data": {
 				"method"        : "query",
-				"qtext"         : "select * from innerorder order by docdate desc limit 0, 10"
+				"qtext"         : "select id1C, docnumber, docdate, login from innerorder left join users on (innerorder.userowner = users.id) order by docdate desc limit 0, 10"
 			},
 			beforeSend: function () {
 			},
@@ -42,7 +43,7 @@ function InnerOrdersList ($scope, dateFilter) {
 	}
 
 	$scope.openinnerorder = function openinnerorder (id1c) {
-		var s = ["select * from innerorder where id1C = '{id1C}'".replace("{id1C}", id1c), "select rownumber, caption, quantity  from innerorder_goods join (goods) on (innerorder_goods.good = goods.id) where id1C = '{id1C}'".replace("{id1C}", id1c)];
+		var s = ["select * from innerorder where id1C = '{id1C}'".replace("{id1C}", id1c), "select rownumber, caption, quantity, goods.unit from innerorder_goods join (goods) on (innerorder_goods.good = goods.id) where id1C = '{id1C}'".replace("{id1C}", id1c)];
 		var jqxhr = $.ajax({
 			"url":"/jsonws/db/",
 			type: "POST",
