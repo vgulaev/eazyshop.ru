@@ -24,7 +24,9 @@ def loadmysqlcredential():
 class dbworker:
     def __init__(self):
         cred = loadmysqlcredential()
-        self.db = MySQLdb.connect(host = cred["host"], user = cred["user"], passwd = cred["passwd"], db = "c9", charset = 'utf8')
+        conv = MySQLdb.converters.conversions.copy()
+        conv[246] = float
+        self.db = MySQLdb.connect(host = cred["host"], user = cred["user"], passwd = cred["passwd"], db = "c9", charset = 'utf8', conv = conv)
         self.cursor = self.db.cursor()
     def droptable(self, tablename):
         sql = "DROP TABLE IF EXISTS %s" % (tablename)

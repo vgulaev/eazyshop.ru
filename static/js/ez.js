@@ -61,7 +61,7 @@ function PageChooser($scope) {
             localStorage["lines"] = JSON.stringify(lines);
         }
 
-        localStorage[goodsid] = JSON.stringify({"id" : goodsid, "caption" : caption, "amount" : 0});
+        localStorage[goodsid] = JSON.stringify({"id" : goodsid, "caption" : caption, "amount" : 0, "unit": el[4]});
 
         $("#art-name").html(caption);
         $("#art-name").attr("art-uid", goodsid);

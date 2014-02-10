@@ -2,9 +2,10 @@
 import myadmin.dbconnect
 
 class authorities(object):
-	def __init__(self, have = False, login = ""):
+	def __init__(self, have = False, login = "", ezid = ""):
 		self.have = have
 		self.login = login
+		self.ezid = ezid
 
 def username(ezid):
     db = myadmin.dbconnect.dbworker()
@@ -25,5 +26,5 @@ def  checkauthorize(request):
 	if (ezid is None):
 		r = authorities()
 	else:
-		r = authorities(True, username(ezid))
+		r = authorities(True, username(ezid), ezid)
 	return r

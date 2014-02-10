@@ -14,7 +14,7 @@ sql_query_for_create_table += ["""CREATE TABLE IF NOT EXISTS innerorder_goods (
         id1C CHAR(36),
         rownumber INT,
         good CHAR(36),
-        quantity INT,
+        quantity DECIMAL(10,3),
         unit CHAR(36),
 
         primary key (id1C, rownumber),
