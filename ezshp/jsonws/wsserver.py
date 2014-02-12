@@ -7,6 +7,8 @@ import sendacceptedmail
 import myadmin.dbconnect
 import uuid
 import datetime
+import db1c.server1c
+import xml.etree.cElementTree as et
 
 def normalizedata(request):
     if ("1C" in request.META["HTTP_USER_AGENT"]):
@@ -69,6 +71,31 @@ def get_shop_id_by_ezid(data):
         s = "no"
     return {"shop_uid" : s}
 
+def getordertable(data):
+    srv1c = db1c.server1c.remoteserver()
+    q = u"""
+ВЫБРАТЬ
+    ВнутреннийЗаказ.Ссылка
+ИЗ
+    Документ.ВнутреннийЗаказ КАК ВнутреннийЗаказ
+
+УПОРЯДОЧИТЬ ПО
+    ВнутреннийЗаказ.Дата УБЫВ    
+    """
+    sxml = srv1c.gettable(q, u"дата, номер, ответственный")
+    root = et.fromstring(sxml.encode("utf-8"))
+    ans = {"colums" : [],
+        "rows": []}
+    for row in root.findall("row"):
+        r = {u"дата" : row.attrib[u"дата"],
+                u"номер" : row.attrib[u"номер"],
+                u"ответственный" : row.attrib[u"ответственный"],
+                u"uid" : row.attrib[u"uid"]}
+        ans["rows"].append(r)
+        #ans["rows"][
+        #ans["rows"][]
+    return ans
+
 def testserver():
     return {"ans" : "ok"}
 
@@ -96,6 +123,8 @@ def index(request):
             ans = get_shop_id_by_ezid(jsondata)
         elif (jsondata["method"] == "testserver"):
             ans = testserver()
+        elif (jsondata["method"] == "getordertable"):
+            ans = getordertable(jsondata)
         httptext = json.dumps(ans)
     else:
         httptext = str(request)

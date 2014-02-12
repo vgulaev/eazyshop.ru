@@ -15,25 +15,28 @@ function InnerOrdersList ($scope, dateFilter) {
 	$scope.update = function update() {
 		var sql = [];
 		var jqxhr = $.ajax({
-			"url":"/jsonws/db/",
+			"url":"/jsonws/ws/",
 			type: "POST",
 			"data": {
-				"method"        : "query",
-				"qtext"         : "select id1C, docnumber, docdate, login from innerorder left join users on (innerorder.userowner = users.id) order by docdate desc limit 0, 10"
+				"method"        : "getordertable"
 			},
 			beforeSend: function () {
+				$("#ajaxing").css("left", (window.screen.availWidth - $("#ajaxing").width())/2 + "px");
+				$("#ajaxing").css("top", ($("#maincontainer").height()- $("#ajaxing").height()) / 2 + "px");
+				$("#ajaxing").show();
 			},
 		})
 		.done(function(data) {
 			$scope.lines = data.rows;
 			angular.forEach($scope.lines, function(value, key){
-				value[2] = dateFilter((new Date(value[2])), "yyyy-MM-dd");
+				value["дата"] = dateFilter((new Date(value["дата"])), "yyyy-MM-dd");
 			});
 			$scope.$apply();
 		})
 		.fail(function() {
 		})
 		.always(function() {
+			$("#ajaxing").hide();
 		});
 	}
 

@@ -18,11 +18,11 @@
 			</thead>
 			<tbody id = "tbodychoice">
 				<tr ng-repeat="l in lines">
-					<td id = "row-date" ng-bind = "l[2]">
+					<td id = "row-date" ng-bind = "l['дата']">
 					</td>
-					<td ng-bind = "l[1]">
+					<td ng-bind = "l['номер']">
 					</td>
-					<td ng-bind = "l[3]">
+					<td ng-bind = "l['ответственный']">
 					</td>
 					<td>
 						<button class="btn btn-success" ng-click="openinnerorder(l[0])"><span class = "glyphicon glyphicon-folder-open"></span></button>
