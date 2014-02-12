@@ -82,7 +82,8 @@ def getordertable(data):
 УПОРЯДОЧИТЬ ПО
     ВнутреннийЗаказ.Дата УБЫВ    
     """
-    sxml = srv1c.gettable(q, u"дата, номер, ответственный")
+    count = "0";
+    sxml = srv1c.gettable(q, u"дата, номер, ответственный", "0", count)
     root = et.fromstring(sxml.encode("utf-8"))
     ans = {"colums" : [],
         "rows": []}
@@ -94,6 +95,8 @@ def getordertable(data):
         ans["rows"].append(r)
         #ans["rows"][
         #ans["rows"][]
+    ans["count"] = root.attrib["count"]
+    #ans = json.dumps(sxml)
     return ans
 
 def testserver():
