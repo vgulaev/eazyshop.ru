@@ -75,7 +75,7 @@
         <ul class="nav navbar-nav">
           <li {% if location == 'home' %} class="active" {% endif %}><a href="/">Главная</a></li>
           <li {% if location == 'choice' %} class="active" {% endif %}><a href="/choice/"><span id = "choicelength" class="badge pull-right"></span>Подбор</a></li>
-          <li {% if location == 'innerorders' %} class="active" {% endif %}><a href="/innerorders/">Заявки</a></li>
+          <li {% if location == 'innerorders' %} class="active" {% endif %}><a href="/orderlist/">Заявки</a></li>
           <!--li {% if location == 'welcome' %} class="active" {% endif %}><a href="/welcome/">Welcome</a></li-->
           {% if authorities.login == "vgulaev@yandex.ru" %}
           <li {% if location == 'myadmin' %} class="active" {% endif %}><a href="/myadmin/">Админка</a></li>

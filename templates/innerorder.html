@@ -1,0 +1,43 @@
+{% include "head.django" %}
+<meta property = "orderuid" content="{{ orderuid }}">
+{% verbatim %}
+<div id = "ajaxing" class = "ajaxing-dialog" style = "display : none">
+<p>Идёт загрузка...</p>
+<img src="/static/img/ajax-loader.gif">
+</div>
+<div id = "output" ng-controller="InnerOrders">
+	<div id = "page-order">
+		<div class="btn-group">
+			<button class="btn btn-info" ng-click="closeorder()">Закрыть</button>
+			<button class="btn btn-info" ng-click="update()">Обновить</button>
+			<button class="btn btn-success" ng-click="closeorder()">Утвердить</button>
+		</div>
+		<br>
+		Заявка <input type = "text" ng-readonly="true" ng-model = "order.Number"> от <input type = "date" ng-readonly="true" ng-model = "order.dateString">
+		<br>
+		Ответственный <input type = "text" ng-readonly="true" ng-model = "order['Ответственный']['наименование']">
+		<table class = "pricetable">
+			<thead>
+				<tr>
+					<th>№</th>
+					<th>Номенклатура</th>
+					<th>Кол-во</th>
+					<th>Ед.</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="l in order.row">
+				<td ng-bind = "l[0] + 1"></td>
+				<td ng-bind = "l[1]"></td>
+				<td ng-bind = "l[2]"></td>
+				<td ng-bind = "l[3]"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<!--div id = "output2">
+Hello!!!
+</div-->
+{% endverbatim %}
+{% include "footer.django" %}

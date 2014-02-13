@@ -26,7 +26,8 @@ urlpatterns = patterns('',
     url(r'^$', views.index, name='home'),
     url(r'^lk/$', lk.index, name='lk'),
     url(r'^choice/$', gchoice.index, name='choice'),
-    url(r'^innerorders/$', views.innerorders, name='choice'),
+    url(r'^orderlist/$', views.orderlist, name='choice'),
+    url(r'^innerorder/(?P<uid>[-\w]+)', views.innerorder, name = 'registration'),
     # For ajax and other json servises
     url(r'^jsonws/', include(jsonws.urls)),
     # For ajax and other json servises
@@ -41,9 +42,9 @@ urlpatterns = patterns('',
     url(r'^welcome/', principles.welcome, name = 'welcome'),
     #Bussines logic
     #registration page
-    url(r'^registration/', registration.index, name = 'registration'),    
+    url(r'^registration/', registration.index, name = 'registration'),
     #aceptedpage
-    url(r'^accept/(?P<uid>\w+)', registration.accept, name = 'registration'),    
+    url(r'^accept/(?P<uid>\w+)', registration.accept, name = 'registration'),
     #End bussines logic
     ########################################
     #####For fun

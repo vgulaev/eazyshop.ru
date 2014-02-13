@@ -26,10 +26,19 @@ def index(request):
    	return render(request, 'index.html', context)
     #return HttpResponse(str(authorities.login), content_type="text/plain")
 
-def innerorders(request):
+def orderlist(request):
     authorities = ez.checkauthorize(request)
     scripts = ["innerorderslist.js"]
     context = {"authorities": authorities,
           "location": "innerorders",
           "scripts": scripts}
     return render(request, 'innerorderslist.html', context)
+
+def innerorder(request, uid = ""):
+    authorities = ez.checkauthorize(request)
+    scripts = ["innerorder.js"]
+    context = {"authorities": authorities,
+          "location": "innerorders",
+          "orderuid" : uid,
+          "scripts": scripts}
+    return render(request, 'innerorder.html', context)

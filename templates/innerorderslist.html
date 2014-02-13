@@ -13,6 +13,7 @@
 					<th>Дата</th>
 					<th>Номер</th>
 					<th>Кто оформил</th>
+					<th>Утв.</th>
 					<th>Открыть</th>
 				</tr>
 			</thead>
@@ -25,7 +26,12 @@
 					<td ng-bind = "l['ответственный']">
 					</td>
 					<td>
-						<button class="btn btn-success" ng-click="openinnerorder(l[0])"><span class = "glyphicon glyphicon-folder-open"></span></button>
+						<span ng-if="l['исполнитель'] != ''" class = "glyphicon glyphicon-ok">
+	    				</span>
+					</td>
+					<td>
+						<a href="/innerorder/{{ l['uid'] }}" class="btn btn-success"><span class = "glyphicon glyphicon-folder-open"></span></a>
+						<!--button class="btn btn-success" ng-click="openinnerorder(l[0])"><span class = "glyphicon glyphicon-folder-open"></span></button-->
 					</td>
 				</tr>
 			</tbody>

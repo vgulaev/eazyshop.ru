@@ -18,7 +18,7 @@ function InnerOrdersList ($scope, dateFilter) {
 			"url":"/jsonws/ws/",
 			type: "POST",
 			"data": {
-				"method"        : "getordertable"
+				"method"        : "getorderlist"
 			},
 			beforeSend: function () {
 				$("#ajaxing").css("left", (window.screen.availWidth - $("#ajaxing").width())/2 + "px");
