@@ -13,10 +13,27 @@ function suds1c () {
   };
 
   this.client = function (paramobj) {
-    return soapquery();
+    res = new soapclient;
+
+    $.ajax({
+      "url" : paramobj["wsdl"],
+      "type": "GET",
+      "async" : false
+    })
+    .done(function (wsdl) {
+      var namespace = wsdl.documentElement.attributes["targetNamespace"].value;
+      var swname = wsdl.documentElement.attributes["targetNamespace"].value;
+      alert("ok");
+    })
+    .fail(function () {
+    });
+
+
+    return res;
   };
 }
 
 cl = new suds1c;
-cl.client({"url" : "http://89.250.147.200:40080/USODev2014/ws/restservice.1cws",
- "wsdl": "http://89.250.147.200:40080/USODev2014/ws/restservice.1cws?wsdl"});
+ws = cl.client({"url" : "http://127.0.0.1/USODev2014/ws/restservice.1cws",
+ "wsdl": "http://127.0.0.1/USODev2014/ws/restservice.1cws?wsdl"});
+ws
