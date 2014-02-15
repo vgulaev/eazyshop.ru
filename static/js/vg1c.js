@@ -29,30 +29,40 @@ function suds1c () {
         var methodname = operators[i].attributes["name"].value;
         res[methodname] = function (methodname) {
           return function (params) {
-          var soapq = soapquery();
-          soapq.documentElement.setAttribute("xmlns:ns1", namespace);
-          var body = soapq.documentElement.getElementsByTagNameNS("http://schemas.xmlsoap.org/soap/envelope/", "Body")[0];
-          var el = soapq.createElement("ns1:" + methodname);
-          body.appendChild(el);
-          //(new XMLSerializer()).serializeToString(soapq)
-          //alert("I am " + methodname);
-          alert((new XMLSerializer()).serializeToString(soapq));
-        }
-          }(methodname);
+            var soapq = soapquery();
+            //soapq.documentElement.setAttribute("xmlns:ns1", namespace);
+            $(soapq.documentElement).attr("xmlns:ns1", namespace);
+            var body = soapq.documentElement.getElementsByTagNameNS("http://schemas.xmlsoap.org/soap/envelope/", "Body")[0];
+            var el = soapq.createElement("ns1:" + methodname);
+            body.appendChild(el);
+            var xstr = (new XMLSerializer()).serializeToString(soapq);
+            $.ajax({
+              "url": paramobj["url"],
+              type: "POST",
+              "data": xstr
+            })
+            .done(function (data) {
+              var res = data.evaluate("/*[local-name()='Envelope']/*[local-name()='Body']/*/*", data, null, 9, null).singleNodeValue;
+              params["done"](res.innerHTML);
+            });
+          }
+        }(methodname);
       }
-      //alert("ok");
     })
-    .fail(function () {
-    });
+.fail(function () {
+});
 
 
-    return res;
-  };
+return res;
+};
 }
 
 cl = new suds1c;
 ws = cl.client({"url" : "http://127.0.0.1/USODev2014/ws/restservice.1cws",
- "wsdl": "http://127.0.0.1/USODev2014/ws/restservice.1cws?wsdl"});
+  "wsdl": "http://127.0.0.1/USODev2014/ws/restservice.1cws?wsdl"});
 $("#output").html("Heloo!!!");
 
-ws.helloword({});
+ws.helloword({"done" : function (data) {
+  alert(data)
+}
+});
