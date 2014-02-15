@@ -23,7 +23,24 @@ function suds1c () {
     .done(function (wsdl) {
       var namespace = wsdl.documentElement.attributes["targetNamespace"].value;
       var swname = wsdl.documentElement.attributes["targetNamespace"].value;
-      alert("ok");
+      var portType = wsdl.getElementsByTagName("portType");
+      var operators = portType[0].getElementsByTagName("operation");
+      for (var i = 0; i < operators.length; i++) {
+        var methodname = operators[i].attributes["name"].value;
+        res[methodname] = function (methodname) {
+          return function (params) {
+          var soapq = soapquery();
+          soapq.documentElement.setAttribute("xmlns:ns1", namespace);
+          var body = soapq.documentElement.getElementsByTagNameNS("http://schemas.xmlsoap.org/soap/envelope/", "Body")[0];
+          var el = soapq.createElement("ns1:" + methodname);
+          body.appendChild(el);
+          //(new XMLSerializer()).serializeToString(soapq)
+          //alert("I am " + methodname);
+          alert((new XMLSerializer()).serializeToString(soapq));
+        }
+          }(methodname);
+      }
+      //alert("ok");
     })
     .fail(function () {
     });
@@ -36,4 +53,6 @@ function suds1c () {
 cl = new suds1c;
 ws = cl.client({"url" : "http://127.0.0.1/USODev2014/ws/restservice.1cws",
  "wsdl": "http://127.0.0.1/USODev2014/ws/restservice.1cws?wsdl"});
-ws
+$("#output").html("Heloo!!!");
+
+ws.helloword({});
