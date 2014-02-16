@@ -47,7 +47,7 @@ function suds1c () {
               "data": xstr
             })
             .done(function (data) {
-              var res = $(data).find("return").text();
+              var res = $(data).text();
               params["done"](res);
             });
           }
@@ -59,10 +59,6 @@ function suds1c () {
 return res;
 };
 }
-
-/*function vg1c() {
-
-}*/
 
 function loadvg1cobject () {
     vg1c = {};
@@ -123,21 +119,12 @@ $(function () {
     cl = new suds1c;
     ws = cl.client({"url" : "http://127.0.0.1/USODev2014/ws/restservice.1cws", "wsdl": "http://127.0.0.1/USODev2014/ws/restservice.1cws?wsdl"});
 
+    /*ws.helloword({"done" : function (data) {
+      alert(data);
+    }});*/
     loadvg1cobject();
     
     vg1c.tab.update({});
-ws.getobj({
-  "data" : {
-    "uid" : "3081c8b7-9498-11e3-88b2-94de80b807e8",
-    "type" : "ВнутреннийЗаказ",
-    "variant" : "own",
-  },
-  "done" : function (data) {
-    //alert(data)
-  }
-});
-});
-
 /*ws.getobj({
   "data" : {
     "uid" : "3081c8b7-9498-11e3-88b2-94de80b807e8",
@@ -148,3 +135,5 @@ ws.getobj({
     alert(data)
   }
 });*/
+});
+
