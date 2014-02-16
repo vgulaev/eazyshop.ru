@@ -34,6 +34,13 @@ function suds1c () {
             $(soapq.documentElement).attr("xmlns:ns1", namespace);
             var body = soapq.documentElement.getElementsByTagNameNS("http://schemas.xmlsoap.org/soap/envelope/", "Body")[0];
             var el = soapq.createElement("ns1:" + methodname);
+            if (params["data"] != undefined) {
+              for (var e in params["data"]) {
+                var pxml = soapq.createElement("ns1:" + e);
+                pxml.textContent = params["data"][e];
+                el.appendChild(pxml);
+              }
+            }
             body.appendChild(el);
             var xstr = (new XMLSerializer()).serializeToString(soapq);
             $.ajax({
@@ -42,8 +49,9 @@ function suds1c () {
               "data": xstr
             })
             .done(function (data) {
-              var res = data.evaluate("/*[local-name()='Envelope']/*[local-name()='Body']/*/*", data, null, 9, null).singleNodeValue;
-              params["done"](res.innerHTML);
+              //var res = data.evaluate("/*[local-name()='Envelope']/*[local-name()='Body']/*/*", data, null, 9, null).singleNodeValue;
+              var res = $(data).find("return").text();
+              params["done"]();
             });
           }
         }(methodname);
@@ -62,7 +70,19 @@ ws = cl.client({"url" : "http://127.0.0.1/USODev2014/ws/restservice.1cws",
   "wsdl": "http://127.0.0.1/USODev2014/ws/restservice.1cws?wsdl"});
 $("#output").html("Heloo!!!");
 
-ws.helloword({"done" : function (data) {
+/*ws.helloword({"done" : function (data) {
+  alert(data)
+}
+});*/
+
+ws.getobj({
+  "data" : {
+    "uid" : "3081c8b7-9498-11e3-88b2-94de80b807e8",
+    "type" : "ВнутреннийЗаказ",
+    "variant" : "own",
+  },
+  "done" : function (data) {
   alert(data)
 }
 });
+
