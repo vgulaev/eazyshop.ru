@@ -109,16 +109,16 @@ function loadvg1cobject (params) {
 }
 
 $(function () {
-    cl = new suds1c;
-    ws = cl.client({"url" : "http://127.0.0.1:8000/ws/restservice.1cws", "wsdl": "http://127.0.0.1:8000/ws/restservice.wsdl"});
+    //cl = new suds1c;
+    //ws = cl.client({"url" : "http://127.0.0.1:8000/ws/restservice.1cws", "wsdl": "http://127.0.0.1:8000/ws/restservice.wsdl"});
     /*ws.helloword({"done" : function (data) {
       alert(data);
     }});*/
-    loadvg1cobject({"url" : "http://127.0.0.1:8000/ws/restservice.1cws", "wsdl": "http://127.0.0.1:8000/ws/restservice.wsdl"});
+    //loadvg1cobject({"url" : "http://127.0.0.1:8000/ws/restservice.1cws", "wsdl": "http://127.0.0.1:8000/ws/restservice.wsdl"});
     //vg1c.tab.hide();
     //vg1c.innerorder.update({"uid" : "3081c8b7-9498-11e3-88b2-94de80b807e8"});
-    vg1c.tab.update({});
-    vg1c.innerorder.hide();
+    //vg1c.tab.update({});
+    //vg1c.innerorder.hide();
     
     /*ws.getobj({
   "data" : {

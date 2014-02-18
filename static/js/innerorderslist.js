@@ -1,3 +1,8 @@
+$(function () {
+	loadvg1cobject({"url" : "/ws/restservice.1cws", "wsdl": "/ws/restservice.wsdl"});
+	vg1c.tab.update({});
+});
+
 function InnerOrdersList ($scope, dateFilter) {
 	$scope.lines = [];
 	$scope.order = {};

@@ -4,36 +4,19 @@
 <p>Идёт загрузка...</p>
 <img src="/static/img/ajax-loader.gif">
 </div>
-<div id = "output" ng-controller="InnerOrdersList">
+<div id = "output">
 	<div id = "page-order-list">
 		<button class="btn btn-success" ng-click = "update()">Обновить</button>
-		<table class = "pricetable">
+		<table id = "tab" class = "pricetable" vg1csource = "ДокументСписок.ВнутреннийЗаказ">
 			<thead>
 				<tr>
-					<th>Дата</th>
-					<th>Номер</th>
-					<th>Кто оформил</th>
-					<th>Утв.</th>
-					<th>Открыть</th>
+					<th vg1cfield = "Дата">Дата</th>
+					<th vg1cfield = "Номер">Номер</th>
+					<th vg1cfield = "Ответственный">Ответственный</th>
+					<th vg1ccommand = "open" vg1chref = "">open</th>
 				</tr>
 			</thead>
 			<tbody id = "tbodychoice">
-				<tr ng-repeat="l in lines">
-					<td id = "row-date" ng-bind = "l['дата']">
-					</td>
-					<td ng-bind = "l['номер']">
-					</td>
-					<td ng-bind = "l['ответственный']">
-					</td>
-					<td>
-						<span ng-if="l['исполнитель'] != ''" class = "glyphicon glyphicon-ok">
-	    				</span>
-					</td>
-					<td>
-						<a href="/innerorder/{{ l['uid'] }}" class="btn btn-success"><span class = "glyphicon glyphicon-folder-open"></span></a>
-						<!--button class="btn btn-success" ng-click="openinnerorder(l[0])"><span class = "glyphicon glyphicon-folder-open"></span></button-->
-					</td>
-				</tr>
 			</tbody>
 		</table>
 		<ul class="pagination">
@@ -45,32 +28,6 @@
 			<li><a href="#">5</a></li>
 			<li><a href="#">&raquo;</a></li>
 		</ul>
-	</div>
-	<div id = "page-order" style = "display : none">
-		<div class="btn-group">
-			<button class="btn btn-info" ng-click="closeorder()">Закрыть</button>
-			<button class="btn btn-success" ng-click="closeorder()">Утвердить</button>
-		</div>
-		<br>
-		Заявка <input type = "text" ng-readonly="true" ng-model = "order.docnumber"> от <input type = "date" ng-readonly="true" ng-model = "order.dateString">
-		<table class = "pricetable">
-			<thead>
-				<tr>
-					<th>№</th>
-					<th>Номенклатура</th>
-					<th>Кол-во</th>
-					<th>Ед.</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="l in order.lines">
-				<td ng-bind = "l[0] + 1"></td>
-				<td ng-bind = "l[1]"></td>
-				<td ng-bind = "l[2]"></td>
-				<td ng-bind = "l[3]"></td>
-				</tr>
-			</tbody>
-		</table>
 	</div>
 </div>
 <!--div id = "output2">
