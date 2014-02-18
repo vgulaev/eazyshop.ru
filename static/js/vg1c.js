@@ -7,8 +7,15 @@ function loadvg1cobject (params) {
     var defarray = strobj.split(".");
     var objid = this.id;
     vg1c[objid] = {};
+    vg1c[objid].view = this;
+    vg1c[objid].show = function () {
+      $(this.view).show();
+    }
+    vg1c[objid].hide = function () {
+      $(this.view).hide();
+    }
+
     if (defarray[0] == "ДокументСписок") {
-      vg1c[objid].view = this;
       vg1c[objid].tablename = "Документ." + defarray[1];
       var colums = "";
       $(this).find("[vg1cfield]").each( function () {
@@ -50,15 +57,8 @@ function loadvg1cobject (params) {
           }
         });
       };
-      vg1c[objid].show = function () {
-        $(this.view).show();
-      }
-      vg1c[objid].hide = function () {
-        $(this.view).hide();
-      }
     }
     else if (defarray[0] == "ДокументОбъект") {
-      vg1c[objid].view = this;
       vg1c[objid].update = function (params) {
         vg1c.ws.getobj({
           "data" : {
@@ -68,6 +68,7 @@ function loadvg1cobject (params) {
           },
           "done" : function (data) {
             var xmltable = $.parseXML(data);
+            $(vg1c[objid].view).attr("uid", params["uid"]);
             $(vg1c[objid].view).find("input[vg1cfield]").each(function ( i ) {
               var node = $(xmltable).find($(this).attr("vg1cfield"));
               $(this).val(node.text());
@@ -75,7 +76,10 @@ function loadvg1cobject (params) {
                 $(this).attr("vg1cuid", $(node).attr("uid"));
               }
             });
-            
+            $(vg1c[objid].view).find("textarea[vg1cfield]").each(function ( i ) {
+              var node = $(xmltable).find($(this).attr("vg1cfield"));
+              $(this).html(node.text());
+            });
             $(vg1c[objid].view).find("table[vg1ctable]").each(function ( i ) {
               var columns = $(this).find("[vg1ccolumn]");
               var tbody = $(this).find("tbody");
@@ -93,9 +97,9 @@ function loadvg1cobject (params) {
             });
           }
         });
-      }
-    }
-  });
+}
+}
+});
 }
 
 $(function () {
