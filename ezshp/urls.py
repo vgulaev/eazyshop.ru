@@ -20,6 +20,7 @@ import registration
 import jsonws.urls
 import htmlws.urls
 import gchoice
+import db1c.route1cws
 
 urlpatterns = patterns('',
     # Index page
@@ -27,6 +28,8 @@ urlpatterns = patterns('',
     url(r'^lk/$', lk.index, name='lk'),
     url(r'^choice/$', gchoice.index, name='choice'),
     url(r'^orderlist/$', views.orderlist, name='choice'),
+    url(r'^ws/restservice.1cws', db1c.route1cws.route, name='ws'),
+    url(r'^ws/restservice.wsdl', db1c.route1cws.routewsdl, name='ws'),
     url(r'^innerorder/(?P<uid>[-\w]+)', views.innerorder, name = 'registration'),
     # For ajax and other json servises
     url(r'^jsonws/', include(jsonws.urls)),

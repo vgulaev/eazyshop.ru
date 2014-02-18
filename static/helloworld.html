@@ -2,22 +2,60 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<script src="//code.jquery.com/jquery-1.9.1.js"></script>
+<!--link rel="stylesheet" href="http://127.0.0.1:8000/static/css/ez.css"-->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+
+<style type="text/css">
+	.ajaxing-dialog {
+		border: 2px solid;
+		width: 200px;
+		border-radius: 10px;
+		text-align: center;
+		padding: 10px;
+		background-color: aliceblue;
+		position: absolute;
+	}	
+</style>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="/static/js/suds.js"></script>
-<script src="/static/js/vg1c.js"></script>
+<script src="http://127.0.0.1:8000/static/js/suds1c.js"></script>
+<script src="http://127.0.0.1:8000/static/js/vg1c.js"></script>
 <body>
-<table id = "tab" vg1csource = "ДокументСписок.ВнутреннийЗаказ">
-<thead> 
-<tr>
-<th vg1csource = "Номер">№</th>
-<th vg1csource = "Дата">Дата</th>
-<th vg1csource = "Ответственный">Ответственный</th>
-<th vg1csource = "Исполнитель">Исполнитель</th>
-<th vg1ccommand = "open">open</th>
-</tr>
-</thead>
-</table>
+	<table id = "tab" vg1csource = "ДокументСписок.ПоступлениеДопРасходов">
+		<thead> 
+			<tr>
+				<th vg1cfield = "Дата">Дата</th>
+				<th vg1cfield = "Номер">Номер</th>
+				<th vg1cfield = "Ответственный">Ответственный</th>
+				<!--th vg1cfield = "Исполнитель">Исполнитель</th-->
+				<th vg1ccommand = "open" vg1chref = "">open</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	<div id = "innerorder" vg1csource = "ДокументОбъект.ВнутреннийЗаказ" vg1cuid = "">
+		<input value="" vg1cfield = "Number" vg1cuid = "">
+		от
+		<input value="" vg1cfield = "Date" vg1cuid = "">
+		<input value="" vg1cfield = "Ответственный" vg1cuid = "">
+		<table vg1ctable = "Товары">
+			<thead> 
+				<tr>
+				<th vg1ccolumn = "Номенклатура">Номенклатура</th>
+				<th vg1ccolumn = "Количество">Кол-во</th>
+				<th vg1ccolumn = "ЕдиницаИзмерения">Ед.</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<textarea vg1cfield = "Комментарий"></textarea>
+	</div>
+	<div id = "output">
+	</div>
 </body>
 </html>
