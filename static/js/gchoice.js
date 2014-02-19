@@ -58,5 +58,5 @@ function TableChoice($scope) {
 }
 
 $(function () {
-	$("#output2").html(localStorage.length);
+	//$("#output2").html(localStorage.length);
 })

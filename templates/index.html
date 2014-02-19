@@ -3,12 +3,16 @@
 	{% verbatim %}
 	<div class="control-group">
 		<div class="controls">
-		<div class="input-group">
-		<input id = "substr" type="text" class="form-control" placeholder="Я ищу" ng-model = "t">
-		<span class="input-group-btn">
-	        <button class="btn btn-default" type="button"><span class = "glyphicon glyphicon-remove"></span></button>
-	      </span>
-	      </div>
+			<div class="input-group">
+				<input id = "substr" type="text" class="form-control" placeholder="Я ищу" ng-model = "t">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button"><span class = "glyphicon glyphicon-remove"></span></button>
+				</span>
+			</div>
+		</div>
+		<div id = "addposition" style="display:none">
+		<p>Может быть Вы ошиблись, а может надо добавить позицию:</p>
+		<button class="btn btn-info" ng-click = "createposition()">Добавить позицию</button>
 		</div>
 	</div>
 	<div id = "output">

@@ -41,6 +41,11 @@ function PageChooser($scope) {
             .done(function(data) {
                 //$("#output").html(data);
                 $scope.result = data;
+                if ( data.rows.length == 0 ) {
+                    $("#addposition").show();
+                } else {
+                    $("#addposition").hide();
+                };
                 $scope.$apply();
             })
             .fail(function() {
@@ -50,7 +55,7 @@ function PageChooser($scope) {
                 $scope.uptableprice();
             });
         }
-    }
+    };
 
     $scope.addgoodtochoice = function addgoodtochoice(el){
         var lines = getarrayfromlocalstorage("lines");
@@ -69,8 +74,43 @@ function PageChooser($scope) {
         $("#page-choise").hide();
         $("#page-amount").show();
         $("#choicelength").html(lines.length);
-    }
+    };
 
+    $scope.createposition = function () {
+        var cl = new suds1c;
+        var ws = cl.client({"url" : "/ws/restservice.1cws", "wsdl": "/ws/restservice.wsdl"});
+        ws.createobj({"data" : {"type" : "Номенклатура",
+            "variant" : "own",
+            "strrepresent" : $("#substr").val()},
+                    "done" : function (data) {
+                        //alert(data);
+                        sql = "insert into goods (id, caption) value ('{id}', '{caption}')";
+                        sql = sql.replace("{id}", data);
+                        sql = sql.replace("{caption}", $("#substr").val());
+                        var jqxhr = $.ajax({
+                            "url":"/jsonws/db/",
+                            type: "POST",
+                            "data": {
+                                "method"        : "query",
+                                "qtext"         : sql,
+                                "commit"        : "True"
+                            },
+                            beforeSend: function () {
+                            },
+                        })
+                        .done(function(data) {
+                            $("#addposition").hide();
+                            lastsubstr = "";
+                            $scope.uptableprice();
+                            })
+                        .fail(function() {
+                        })
+                        .always(function() {
+                        });
+                    }
+                });
+    };
+    
     $scope.uptableprice();
     $("#substr").bind("change paste keyup", function () {
         bindcall = bindcall + 1;

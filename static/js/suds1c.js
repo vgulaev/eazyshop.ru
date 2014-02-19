@@ -83,6 +83,7 @@ function suds1c () {
             })
             .done(function (data) {
               var res = $(data).text();
+              res = $.trim(res);
               params["done"](res);
             })
             .always(function () {
