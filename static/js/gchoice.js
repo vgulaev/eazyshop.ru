@@ -38,42 +38,22 @@ function TableChoice($scope) {
 
 	$scope.updateamount = function updateamount (el) {
 		localStorage[el.id] = JSON.stringify(el);
-	}
+	};
 
+	$scope.choicetoxml = function () {
+		return "";
+	};
+	
 	$scope.create_innerorder = function create_innerorder () {
-		var today = new Date();
-		var sql = "START TRANSACTION; insert into innerorder (id1C, docdate, userowner) value ('{id1C}', '{docdate}', '{owner}');"
-		var id1C = "new " + today.toJSON();
-		sql = sql.replace("{docdate}", today.toJSON());
-		sql = sql.replace("{owner}", $("[property='uid']").attr("content"));
-		//sql = sql.replace("{id1C}", id1C);
-		sql = sql + " insert into innerorder_goods (id1C, rownumber, good, quantity) VALUES "
-
-		for (e in $scope.lines) {
-			sql = sql + "('{id1C}', " + e + ", '"+ $scope.lines[e].id + "'," + $scope.lines[e].amount + "),"
-		}
-		sql = sql.slice(0, -1);
-		sql = sql + ";COMMIT;";
-		sql = sql.replace(/{id1C}/g, id1C);
-		var jqxhr = $.ajax({
-			"url":"/jsonws/db/",
-			type: "POST",
-			"data": {
-				"method"        : "query",
-				"qtext"         : sql,
-				"commit"		: "False"
-			},
-			beforeSend: function () {
-			},
-		})
-		.done(function(data) {
-			$scope.clear();
-			$("#choicelength").html($scope.lines.length);
-            })
-		.fail(function() {
-		})
-		.always(function() {
-		});
+    	var cl = new suds1c;
+    	var ws = cl.client({"url" : "/ws/restservice.1cws", "wsdl": "/ws/restservice.wsdl"});
+    	ws.createobj({"data" : {"type" : "ВнутреннийЗаказ",
+    		"variant" : "own",
+    		"strrepresent" : $scope.choicetoxml()},
+    				"done" : function (data) {
+    					alert(data);
+    				}
+    			});
 	}
 }
 

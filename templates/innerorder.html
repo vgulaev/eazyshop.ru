@@ -8,14 +8,19 @@
 <div id = "output">
 	<div id = "innerorder" vg1csource = "ДокументОбъект.ВнутреннийЗаказ" vg1cuid = "">
 		<div class="btn-group">
-			<button class="btn btn-info" ng-click="closeorder()">Закрыть</button>
-			<button class="btn btn-info" ng-click="update()">Обновить</button>
+			<a href="/orderlist/" class="btn btn-info">Закрыть</a>
+			<!--button class="btn btn-info">Закрыть</button-->
+			<!--button class="btn btn-info" ng-click="update()">Обновить</button-->
 			<button class="btn btn-success" ng-click="closeorder()">Утвердить</button>
 		</div>
 		<br>
 		Заявка <input value="" vg1cfield = "Number" vg1cuid = ""> от <input value="" vg1cfield = "Date" vg1cuid = "">
-		<br>
-		Ответственный <input value="" vg1cfield = "Ответственный" vg1cuid = "">
+		<table>
+			<tr>
+				<td>Ответственный:</td><td><input value="" vg1cfield = "Ответственный" vg1cuid = "" style="width: 250px;"></td>
+			</tr>
+			<tr><td>Исполнитель:</td><td><input value="" vg1cfield = "Исполнитель" vg1cuid = "" style="width: 250px;"></td></tr>
+		</table>
 		<table class = "pricetable" vg1ctable = "Товары">
 			<thead>
 				<tr>

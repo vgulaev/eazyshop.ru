@@ -1,3 +1,32 @@
+suds1ccalls = {
+  "calls" : 0,
+  "zero" : function () {
+    $("#ajaxing").hide();
+  },
+  "working" : function () {
+    var dialog = '<div id = "ajaxing" style = "display : none; border: 2px solid; width: 200px; border-radius: 10px; text-align: center; padding: 10px; background-color: aliceblue; position: absolute;"><p>Идёт загрузка...</p><img src="/static/img/ajax-loader.gif"></div>';
+    if ($("#ajaxing").length == 0) {
+      $("body").append(dialog);
+    }
+    $("#ajaxing").css("left", ($( window ).width() - $("#ajaxing").width())/2 + "px");
+    $("#ajaxing").css("top", ($( window ).height()- $("#ajaxing").height()) / 2 + "px");
+    $("#ajaxing").show();
+  },
+  "inc" : function () {
+    if (this.calls == 0) {
+      this.working();
+    }
+    this.calls = this.calls + 1;
+  },
+  "dec" : function () {
+    //alert("ok");
+    this.calls = this.calls - 1;
+    if (this.calls == 0) {
+      this.zero();
+    }
+  }
+};
+
 function suds1c () {
   var soapquery = function () {
     var xstr = '<?xml version="1.0" encoding="UTF-8"?>'+
@@ -17,7 +46,10 @@ function suds1c () {
     $.ajax({
       "url" : paramobj["wsdl"],
       "type": "GET",
-      "async" : false
+      "async" : false,
+      beforeSend: function () {
+        suds1ccalls.inc();
+      }      
     })
     .done(function (wsdl) {
       var namespace = wsdl.documentElement.attributes["targetNamespace"].value;
@@ -44,17 +76,24 @@ function suds1c () {
             $.ajax({
               "url": paramobj["url"],
               type: "POST",
-              "data": xstr
+              "data": xstr,
+              beforeSend: function () {
+                suds1ccalls.inc();
+              }      
             })
             .done(function (data) {
               var res = $(data).text();
               params["done"](res);
+            })
+            .always(function () {
+              suds1ccalls.dec();
             });
           }
         }(methodname);
       }
     })
-.fail(function () {
+.always(function () {
+  suds1ccalls.dec();
 });
 return res;
 };
