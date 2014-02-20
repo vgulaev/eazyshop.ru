@@ -25,5 +25,5 @@ def index(request):
 			f.close()			
 	for e in stat:
 		httptext = httptext + "<br>" + e + " " + str(stat[e]["items"]) + " lines " + str(stat[e]["lines"])
-	httptext = httptext + "<br>" + str(totallines * 12) + " $"
+	httptext = httptext + "<br>" + "Total lines: " + str(totallines) + " cost: "+ str(totallines * 12) + " $"
 	return HttpResponse(httptext)

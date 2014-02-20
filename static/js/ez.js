@@ -3,10 +3,6 @@ Date.prototype.toMYSQL = function () {
     return s;
 };
 
-function curenttimeforMYSQL(){
-
-}
-
 function PageChooser($scope) {
     $scope.result = [];
     $scope.t = "";
@@ -197,9 +193,7 @@ $(function () {
     bindcall = 0;
     ajaxcall = 0;
     lastsubstr = null;
-    //createdb();
     $("#page-amount").hide();
-
     var lines = getarrayfromlocalstorage("lines");
     $("#choicelength").html(lines.length);
 })

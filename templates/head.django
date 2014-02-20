@@ -8,8 +8,10 @@
   {% if authorities.have %}
   <meta property = "ezid" content="{{ authorities.ezid }}">
   <meta property = "uid" content="{{ authorities.uid }}">
+  <meta property = "uid1c" content="{{ authorities.uid1c }}">
   {% else %}
   <meta property = "ezid" content="00000000-0000-0000-0000-000000000000">
+  <meta property = "uid1c" content="00000000-0000-0000-0000-000000000000">
   {% endif %}
   <title>Торгуй легко</title>
   <link rel="stylesheet" href="/static/css/ez.css">  

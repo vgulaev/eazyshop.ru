@@ -10,7 +10,6 @@ function TableChoice($scope) {
 	}
 
 	$("#choicelength").html($scope.lines.length);
-	//$scope.$apply();
 
 	$scope.clear = function clear () {
 		var lines = getarrayfromlocalstorage("lines");
@@ -21,7 +20,6 @@ function TableChoice($scope) {
 		$scope.lines = [];
 		$scope.$apply();
 	};
-
 
 	$scope.removeitem = function removeitem (uid) {
 		var lines = [];
@@ -41,7 +39,14 @@ function TableChoice($scope) {
 	};
 
 	$scope.choicetoxml = function () {
-		return "";
+		xstr = "";
+		xstr = xstr + "<DocumentObject.ВнутреннийЗаказ>"
+		xstr = xstr + "<Ответственный>" + $("meta[property='uid1c']").attr("content") + "</Ответственный>"
+		for (var l in $scope.lines) {
+			xstr = xstr + '<row номенклатура = "' + $scope.lines[l]["id"] + '"' + ' количество = "' + $scope.lines[l]["amount"] + '"/>'
+		}
+		xstr = xstr + "</DocumentObject.ВнутреннийЗаказ>"
+		return xstr;
 	};
 	
 	$scope.create_innerorder = function create_innerorder () {
@@ -51,12 +56,8 @@ function TableChoice($scope) {
     		"variant" : "own",
     		"strrepresent" : $scope.choicetoxml()},
     				"done" : function (data) {
-    					alert(data);
+    					//alert(data);
     				}
     			});
 	}
 }
-
-$(function () {
-	//$("#output2").html(localStorage.length);
-})

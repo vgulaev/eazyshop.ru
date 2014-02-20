@@ -71,3 +71,9 @@ updatequeryes += [["""ALTER TABLE goods ADD COLUMN unit VARCHAR(40)""",
         UPDATE sysinfo
         set value = '2' WHERE key_name = 'versiondb'
         """]]
+
+updatequeryes += [["""ALTER TABLE users ADD COLUMN uid1c VARCHAR(40)""",
+        """
+        UPDATE sysinfo
+        set value = '3' WHERE key_name = 'versiondb'
+        """]]
