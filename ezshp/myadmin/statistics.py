@@ -11,7 +11,16 @@ def index(request):
 	path = __file__.split(dirsym)
 	rootdir = dirsym.join(path[0:-3])
 
-	httptext = ""
+	httptext = """<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+</head>
+<body>
+	"""
 	#stat = {}
 	stat = {".css" : {}, ".js" : {}, ".django" : {}, ".py" : {}, ".html" : {}}
 	for e in stat:
@@ -31,6 +40,7 @@ def index(request):
 			#	stat[fileExtension] = {"items" : 1, "lines" : len(f.readlines())}
 			f.close()			
 	for e in stat:
-		httptext = httptext + "<br>" + e + " " + str(stat[e]["items"]) + " lines " + str(stat[e]["lines"])
-	httptext = httptext + "<br>" + "Total lines: " + str(totallines) + " cost: "+ str(totallines * 12) + " $"
+		httptext += "<br>" + e + " " + str(stat[e]["items"]) + " lines " + str(stat[e]["lines"])
+	httptext += "<br>" + "Total lines: " + str(totallines) + " cost: "+ str(totallines * 12) + " $"
+	httptext += "</body></html>"
 	return HttpResponse(httptext)
