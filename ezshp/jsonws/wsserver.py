@@ -72,17 +72,16 @@ def get_shop_id_by_ezid(data):
     return {"shop_uid" : s}
 
 def getorder(data):
-    srv1c = db1c.server1c.remoteserver()
-    sxml = srv1c.getobj(data["uid"], u"ВнутреннийЗаказ", "own")
-    root = et.fromstring(sxml.encode("utf-8"))
-    ans = {child.tag : child.text for child in root if (child.tag in ['Date', 'Number', u'Комментарий'])}
-    el = root.find(u"Ответственный")
-    ans[u"Ответственный"] = {"uid" : el.attrib["uid"], u"наименование" : el.attrib[u"наименование"]}
-    el = root.find(u"Исполнитель")
-    ans[u"Исполнитель"] = {"uid" : el.attrib["uid"], u"наименование" : el.attrib[u"наименование"]}
-    ans["row"] = [];
-
-    #ans = {"re": sxml}
+    # srv1c = db1c.server1c.remoteserver()
+    # sxml = srv1c.getobj(data["uid"], u"ВнутреннийЗаказ", "own")
+    # root = et.fromstring(sxml.encode("utf-8"))
+    # ans = {child.tag : child.text for child in root if (child.tag in ['Date', 'Number', u'Комментарий'])}
+    # el = root.find(u"Ответственный")
+    # ans[u"Ответственный"] = {"uid" : el.attrib["uid"], u"наименование" : el.attrib[u"наименование"]}
+    # el = root.find(u"Исполнитель")
+    # ans[u"Исполнитель"] = {"uid" : el.attrib["uid"], u"наименование" : el.attrib[u"наименование"]}
+    # ans["row"] = [];
+    ans = {"re": "sxml"}
     return ans
 
 def getorderlist(data):
