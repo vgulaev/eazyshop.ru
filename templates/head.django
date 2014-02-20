@@ -81,7 +81,7 @@
           <li {% if location == 'myadmin' %} class="active" {% endif %}><a href="/myadmin/">Админка</a></li>
           {% endif %}
           {% if authorities.have %}
-          <li {% if location == 'lk' %} class="active" {% endif %}><a href="/lk/">Личный Кабинет</a></li>
+          <!--li {% if location == 'lk' %} class="active" {% endif %}><a href="/lk/">Личный Кабинет</a></li-->
           {% endif %}
         </ul>
         <div class="navbar-form navbar-right" role="form">

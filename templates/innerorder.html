@@ -11,6 +11,7 @@
 			<a href="/orderlist/" class="btn btn-info">Закрыть</a>
 			<!--button class="btn btn-info">Закрыть</button-->
 			<!--button class="btn btn-info" ng-click="update()">Обновить</button-->
+			<button class="btn btn-danger" style = "display : none" vg1ccommand = "write">Записать изменения<span class="badge pull-right">2</span></button>
 			<button class="btn btn-success" onclick="acceptorder()">Утвердить</button>
 		</div>
 		<br>
@@ -33,7 +34,7 @@
 			<tbody>
 			</tbody>
 		</table>
-		<textarea vg1cfield = "Комментарий"></textarea>
+		<textarea id = "Комментарий" vg1cfield = "Комментарий" vg1ceditable = "true"></textarea>
 	</div>
 </div>
 <!--div id = "output2">
