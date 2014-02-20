@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
 import os
+import platform
 
 def index(request):
-	path = __file__.split("\\")
-	rootdir = "\\".join(path[0:-3])
+	if (platform.system() == "Windows"):
+		dirsym = "\\"
+	else:
+		dirsym = "/"
+	path = __file__.split(dirsym)
+	rootdir = dirsym.join(path[0:-3])
+
 	httptext = ""
 	#stat = {}
 	stat = {".css" : {}, ".js" : {}, ".django" : {}, ".py" : {}, ".html" : {}}
@@ -14,7 +20,8 @@ def index(request):
 	for root, subFolders, files in os.walk(rootdir):
 		for fl in files:
 			fileName, fileExtension = os.path.splitext(fl)
-			f = open(root + "\\" + fl)
+			
+			f = open(root + dirsym + fl)
 			if ((fileExtension in stat) == True):
 				stat[fileExtension]["items"] = stat[fileExtension]["items"] + 1
 				lines = len(f.readlines())
