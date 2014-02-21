@@ -18,6 +18,7 @@ function TableChoice($scope) {
 		}
 		localStorage.removeItem("lines");
 		$scope.lines = [];
+		$("#choicelength").html($scope.lines.length);
 		$scope.$apply();
 	};
 
@@ -56,7 +57,7 @@ function TableChoice($scope) {
     		"variant" : "own",
     		"strrepresent" : $scope.choicetoxml()},
     				"done" : function (data) {
-    					//alert(data);
+    					$scope.clear();
     				}
     			});
 	}
