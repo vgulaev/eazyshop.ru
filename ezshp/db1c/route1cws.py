@@ -10,8 +10,10 @@ def connectionurl():
 		res = "http://89.250.147.200:40080/USODev2014/ws/"
 	else:
 		res = "http://89.250.147.200:40080/USO/ws/"
+	#res = "http://89.250.147.200:40080/USO/ws/"
+	res = "http://89.250.147.200:40080/USODev2014/ws/"
 	return res
-	
+
 @csrf_exempt
 def route(request):
 	rawdata = request.read()
