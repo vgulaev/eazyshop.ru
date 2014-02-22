@@ -2,7 +2,8 @@ function sendAJAX() {
     var jqxhr = $.ajax({
         "url": $("#jsonserver").val(),
         type: "POST",
-        "data": JSON.parse($("#jsondata").val()),
+        //"data": JSON.parse($("#jsondata").val()),
+        "data": $("#jsondata").val(),
         beforeSend: function () {
         }
     } )
