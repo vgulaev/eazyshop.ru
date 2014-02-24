@@ -196,4 +196,20 @@ $(function () {
     $("#page-amount").hide();
     var lines = getarrayfromlocalstorage("lines");
     $("#choicelength").html(lines.length);
+    
+    function moveloginformtop() {
+        if ($("#togglebutton").css("display") != "none") {
+            $("#userpassdiv").css("position", "absolute");
+            $("#userpassdiv").css("top", "0px");
+        }
+    };
+    
+    function moveloginformdefault() {
+        if ($("#togglebutton").css("display") != "none") {
+            $("#userpassdiv").css("position", "inherit");
+            $("#userpassdiv").css("top", "");
+        }
+    };
+    $(".movetop").focus(moveloginformtop);
+    $(".movetop").focusout(moveloginformdefault);
 })
