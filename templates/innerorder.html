@@ -1,10 +1,5 @@
 {% include "head.django" %}
 <meta property = "orderuid" content="{{ orderuid }}">
-{% verbatim %}
-<div id = "ajaxing" class = "ajaxing-dialog" style = "display : none">
-<p>Идёт загрузка...</p>
-<img src="/static/img/ajax-loader.gif">
-</div>
 <div id = "output">
 	<div id = "innerorder" vg1csource = "ДокументОбъект.ВнутреннийЗаказ" vg1cuid = "">
 		<div class="btn-group">
@@ -12,7 +7,9 @@
 			<!--button class="btn btn-info">Закрыть</button-->
 			<!--button class="btn btn-info" ng-click="update()">Обновить</button-->
 			<button class="btn btn-danger" style = "display : none" vg1ccommand = "write">Записать изменения<span class="badge pull-right">2</span></button>
+			{% if authorities.login == "vgulaev@yandex.ru" or authorities.login == "kukuyuriy@yandex.ru" %}
 			<button class="btn btn-success" onclick="acceptorder()">Утвердить</button>
+			{% endif %}
 		</div>
 		<br>
 		Заявка <input value="" vg1cfield = "Number" vg1cuid = ""> от <input value="" vg1cfield = "Date" vg1cuid = "">
@@ -40,5 +37,4 @@
 <!--div id = "output2">
 Hello!!!
 </div-->
-{% endverbatim %}
 {% include "footer.django" %}

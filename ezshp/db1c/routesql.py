@@ -22,8 +22,14 @@ def connectionurl():
 	res = "http://89.250.147.200:40080/USODev2014/ws/"
 	return res
 
+def DATETIMEtoStr(data, cur):
+	return data
+	
 @csrf_exempt
 def route(request):
+	psycopg2.extensions.register_type(
+    	psycopg2.extensions.new_type(
+        	psycopg2.DATETIME.values, 'Date-str', DATETIMEtoStr))
 	psycopg2.extensions.register_type(
     	psycopg2.extensions.new_type(
         	psycopg2.BINARY.values, 'BINARY-PICKLE', cast_pickle))

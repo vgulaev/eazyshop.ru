@@ -1,8 +1,5 @@
 {% include "head.django" %}
 {% verbatim %}
-<script type="1c">
-	
-</script>
 <div id = "output" ng-controller="TableChoice">
 	<table class = "pricetable">
 		<thead>
@@ -30,9 +27,13 @@
 		</tbody>
 	</table>
 	<button class="btn btn-info" ng-click = "clear()">Очистить</button>
+	{% endverbatim %}
+	{% if authorities.have %}
 	<button class="btn btn-success" ng-click = "create_innerorder()">В заявку</button>
+	{% else %}
+	<button class="btn btn-danger">Авторизуйтесь что бы создать заявку</button>
+	{% endif %}
 </div>
 <div id = "output2">
 </div>
-{% endverbatim %}
 {% include "footer.django" %}

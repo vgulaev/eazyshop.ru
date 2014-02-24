@@ -10,21 +10,22 @@ def connectionurl():
 		res = "http://89.250.147.200:40080/USODev2014/ws/"
 	else:
 		res = "http://89.250.147.200:40080/USO/ws/"
-	#res = "http://89.250.147.200:40080/USO/ws/"
-	res = "http://89.250.147.200:40080/USODev2014/ws/"
+	res = "http://89.250.147.200:40080/USO/ws/"
+	#res = "http://89.250.147.200:40080/USODev2014/ws/"
 	return res
 
 @csrf_exempt
 def route(request):
-	rawdata = request.read()
-	#url = "http://127.0.0.1/USODev2014/ws/restservice.1cws"
 	url = connectionurl() + "restservice.1cws"
-	r = requests.post(url, data = rawdata)
+	if request.method == 'POST':
+		rawdata = request.read()
+		r = requests.post(url, data = rawdata)
+		content = r.content;
+	else:
+		r = requests.get(url)
 	response = HttpResponse(r.text, content_type="text/xml")
-	#response = HttpResponse(str(request), content_type="text/plain")
 	return response
 def routewsdl(request):
-	#url = "http://127.0.0.1/USODev2014/ws/restservice.1cws?wsdl"
 	url = connectionurl() + "restservice.1cws?wsdl"
 	r = requests.get(url)
 	response = HttpResponse(r.text, content_type="text/xml")

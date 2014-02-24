@@ -73,7 +73,7 @@ function loadvg1cobject (params) {
           fields.push(i);
           values.push(vg1c[objid]["push"].items[i]);
         }
-        vg1c.ws.update({
+        vg1c.ws.updateobj({
       "data" : {
         "type" : "",
         "uid" : $("meta[property='orderuid']").attr("content"),
