@@ -25,8 +25,8 @@
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <script src="/static/js/suds1c.js"></script>
   <script src="/static/js/vg1c.js"></script>
-  <script src="/static/js/schema1c.js"></script>
-  <script src="/static/js/free1c.js"></script>
+  <!--script src="/static/js/schema1c.js"></script>
+  <script src="/static/js/free1c.js"></script-->
   <script src="/static/js/ez.js"></script>
   {% for s in scripts %}
   <script src="/static/js/{{ s }}"></script>

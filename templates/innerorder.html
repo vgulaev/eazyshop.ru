@@ -1,6 +1,7 @@
 {% include "head.django" %}
 <meta property = "orderuid" content="{{ orderuid }}">
 <div id = "output">
+	{% if authorities.have %}
 	<div id = "innerorder" vg1csource = "ДокументОбъект.ВнутреннийЗаказ" vg1cuid = "">
 		<div class="btn-group">
 			<a href="/orderlist/" class="btn btn-info">Закрыть</a>
@@ -33,6 +34,9 @@
 		</table>
 		<textarea id = "Комментарий" vg1cfield = "Комментарий" vg1ceditable = "true"></textarea>
 	</div>
+	{% else %}
+	<span style = "color : red">Нужна авторизация что бы просматривать заказы</span>
+	{% endif %}
 </div>
 <!--div id = "output2">
 Hello!!!
