@@ -6,7 +6,7 @@
 			<div class="input-group">
 				<input id = "substr" type="text" class="form-control" placeholder="Я ищу" ng-model = "t">
 				<span class="input-group-btn">
-					<button class="btn btn-default" type="button"><span class = "glyphicon glyphicon-remove"></span></button>
+					<button class="btn btn-default" type="button" ng-click="clearsubstr()"><span class = "glyphicon glyphicon-remove"></span></button>
 				</span>
 			</div>
 		</div>
@@ -37,7 +37,8 @@
 		<input id = "amount" type="number" class="form-control" placeholder="0.000">
 		<span id = "art-unit" class="input-group-addon"></span>
 		</div>
-		<button id = "btn-add" class="btn btn-success" type="button" onclick="updateamount()">Ок</button>
+			<button id = "btn-cancel" class="btn btn-danger" type="button" onclick="updateamount()">Отмена</button>
+			<button id = "btn-add" class="btn btn-success" type="button" onclick="cancelchoise()">В подбор</button>
 		</div>
 	</div>
   </div>

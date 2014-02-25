@@ -106,6 +106,11 @@ function PageChooser($scope) {
                     }
                 });
     };
+    $scope.clearsubstr = function () {
+        $("#substr").val("");
+        lastsubstr = "";
+    };
+    
     
     $scope.uptableprice();
     $("#substr").bind("change paste keyup", function () {
@@ -184,6 +189,11 @@ function updateamount() {
     temobj.amount = Number(parseFloat($("#amount").val()).toFixed(3));
     $("#amount").val("");
     localStorage[goodsid] = JSON.stringify(temobj);
+    $("#page-choise").show();
+    $("#page-amount").hide();
+}
+
+function cancelchoise() {
     $("#page-choise").show();
     $("#page-amount").hide();
 }
