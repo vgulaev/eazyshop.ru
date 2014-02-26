@@ -43,6 +43,7 @@ function TableChoice($scope) {
 		xstr = "";
 		xstr = xstr + "<DocumentObject.ВнутреннийЗаказ>"
 		xstr = xstr + "<Ответственный>" + $("meta[property='uid1c']").attr("content") + "</Ответственный>"
+		xstr = xstr + "<Комментарий>" + $("#Комментарий").val() + "</Комментарий>"
 		for (var l in $scope.lines) {
 			xstr = xstr + '<row номенклатура = "' + $scope.lines[l]["id"] + '"' + ' количество = "' + $scope.lines[l]["amount"] + '"/>'
 		}

@@ -1,6 +1,6 @@
 {% include "head.django" %}
 {% verbatim %}
-<div id = "output" ng-controller="TableChoice">
+<div id = "output" ng-controller="TableChoice" style="display: table-cell;">
 	<table class = "pricetable">
 		<thead>
 			<tr>
@@ -26,6 +26,8 @@
 			</tr>
 		</tbody>
 	</table>
+	<span>Коментарий к заявке:</span>
+	<textarea id = "Комментарий" vg1cfield = "Комментарий" vg1ceditable = "true" style="display: table-cell; width: 100%;"></textarea>
 	<button class="btn btn-info" ng-click = "clear()">Очистить</button>
 	{% endverbatim %}
 	{% if authorities.have %}

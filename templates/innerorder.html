@@ -2,7 +2,7 @@
 <meta property = "orderuid" content="{{ orderuid }}">
 <div id = "output">
 	{% if authorities.have %}
-	<div id = "innerorder" vg1csource = "ДокументОбъект.ВнутреннийЗаказ" vg1cuid = "">
+	<div id = "innerorder" vg1csource = "ДокументОбъект.ВнутреннийЗаказ" vg1cuid = "" style="display: table-cell;">
 		<div class="btn-group">
 			<a href="/orderlist/" class="btn btn-info">Закрыть</a>
 			<!--button class="btn btn-info">Закрыть</button-->
@@ -32,7 +32,8 @@
 			<tbody>
 			</tbody>
 		</table>
-		<textarea id = "Комментарий" vg1cfield = "Комментарий" vg1ceditable = "true"></textarea>
+		<span>Коментарий к заявке:</span>
+		<textarea id = "Комментарий" vg1cfield = "Комментарий" vg1ceditable = "true" style="display: table-cell; width: 100%;"></textarea>
 	</div>
 	{% else %}
 	<span style = "color : red">Нужна авторизация что бы просматривать заказы</span>
