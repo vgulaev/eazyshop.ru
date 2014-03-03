@@ -12,7 +12,13 @@
 		</div>
 		<div id = "addposition" style="display:none">
 		<p>Может быть Вы ошиблись, а может надо добавить позицию:</p>
+		{% endverbatim %}
+		{% if authorities.have %}
 		<button class="btn btn-info" ng-click = "createposition()">Добавить позицию</button>
+		{% else %}
+		<button class="btn btn-danger">Авторизуйтесь что бы добавить позицию</button>
+		{% endif %}
+		{% verbatim %}
 		</div>
 	</div>
 	<div id = "output">

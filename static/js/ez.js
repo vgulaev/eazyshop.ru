@@ -126,7 +126,7 @@ function authorize(){
         type: "POST",
         "data": {
             method    : "authorize",
-            login     : $("#login").val(),
+            login     : $("#login").val().toLocaleLowerCase(),
             pass      : $("#pass").val()
         },
         beforeSend: function () {
