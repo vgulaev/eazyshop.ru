@@ -96,7 +96,7 @@
           <div class="form-group">
             <input type="password" placeholder="Password" class="form-control movetop" id = "pass">
           </div>
-          <button class="btn btn-success" onclick = "authorize()">Войти</button>
+          <button class="btn btn-success movetop" onclick = "authorize()">Войти</button>
           <!--a id="button-signup" href="/registration/" class="btn btn-primary">Зарегистрироваться</a-->
           {% endif %}
         </div>

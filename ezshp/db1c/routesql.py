@@ -13,33 +13,25 @@ def cast_pickle(data, cur):
     #print data
     return r
 
-def connectionurl():
-	if (platform.system() == "Windows"):
-		res = "http://89.250.147.200:40080/USODev2014/ws/"
-	else:
-		res = "http://89.250.147.200:40080/USO/ws/"
-	#res = "http://89.250.147.200:40080/USO/ws/"
-	res = "http://89.250.147.200:40080/USODev2014/ws/"
-	return res
-
 def DATETIMEtoStr(data, cur):
 	return data
 	
 @csrf_exempt
 def route(request):
-	psycopg2.extensions.register_type(
-    	psycopg2.extensions.new_type(
-        	psycopg2.DATETIME.values, 'Date-str', DATETIMEtoStr))
-	psycopg2.extensions.register_type(
-    	psycopg2.extensions.new_type(
-        	psycopg2.BINARY.values, 'BINARY-PICKLE', cast_pickle))
-	conn = psycopg2.connect("host='89.250.147.200' port='55432' dbname='USODev' user='usodev' password='usodev'")
-	curs = conn.cursor()
-	sql = request.read()
-	curs.execute(sql)
+	# psycopg2.extensions.register_type(
+ #    	psycopg2.extensions.new_type(
+ #        	psycopg2.DATETIME.values, 'Date-str', DATETIMEtoStr))
+	# psycopg2.extensions.register_type(
+ #    	psycopg2.extensions.new_type(
+ #        	psycopg2.BINARY.values, 'BINARY-PICKLE', cast_pickle))
+	# conn = psycopg2.connect("host='89.250.147.200' port='55432' dbname='USODev' user='usodev' password='usodev'")
+	# curs = conn.cursor()
+	# sql = request.read()
+	# curs.execute(sql)
 	#, _idrref, _fld3204rref, _version
-	httptext = json.dumps(curs.fetchall())
-	response = HttpResponse(httptext, content_type="application/json")
+	# httptext = json.dumps(curs.fetchall())
+	# response = HttpResponse(httptext, content_type="application/json")
 	#response = HttpResponse(httptext, content_type="text/plain")
 	#response = HttpResponse(str(request), content_type="text/plain")
+	httptext = "Hello word!!!"
 	return response

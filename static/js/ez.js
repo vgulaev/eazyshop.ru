@@ -26,7 +26,8 @@ function PageChooser($scope) {
                 type: "POST",
                 "data": {
                     "method"        : "query",
-                    "qtext"         : "select * from goods where {0} limit 10".replace("{0}", filter)
+                    "query_text"    : "select_from_goods",
+                    "qtext"         : filter
                 },
                 beforeSend: function () {
                     ajaxtopricetable = true;
